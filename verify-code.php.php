@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION["user"])) {
     header("Location: http://localhost/myshop-admin/dashboard.php");
-}elseif (!isset($_COOKIE["2fa"])) {
+} elseif (!isset($_COOKIE["2fa"])) {
     header("Location: http://localhost/myshop-admin/index.php");
 }
 ?>
@@ -16,7 +16,7 @@ if (isset($_SESSION["user"])) {
     <title>Verify Login</title>
     <link rel="icon" href="resources/image/Logo.png" />
     <link rel="stylesheet" href="bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -27,20 +27,14 @@ if (isset($_SESSION["user"])) {
         <div class="row d-flex flex-column justify-content-center align-items-center min-vh-100">
             <div class="col-11 col-md-6 p-3 bg-white rounded-3 col-lg-4 d-flex flex-column justify-content-center align-items-center">
                 <img src="resources/image/Logo.png" alt="">
-
+                <h5 class="mt-4">Verify Login</h5>
                 <div class="w-100 mt-4 mb-4">
                     <div class="mb-3">
                         <label for="username" class="form-label">Enter Code</label>
-                        <input type="text" class="form-control" id="username" required />
-                    </div>
-                    <div class="mb-3 mt-3">
-                        <label for="password" class="col-sm-2 col-form-label text-black">Password</label>
-                        <div class="">
-                            <input type="password" class="form-control" id="password" required>
-                        </div>
+                        <input type="text" class="form-control" id="code" required />
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-4">
-                        <button class="btn btn-dark px-3" onclick="Login();">Verify</button>
+                        <button class="btn btn-dark px-3" onclick="verifyLogin();">Verify</button>
                         <button class="btn bg-transparent border-0 text-primary fw-bold">Resend Code?</button>
                     </div>
                 </div>

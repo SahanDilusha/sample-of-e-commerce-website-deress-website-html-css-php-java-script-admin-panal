@@ -26,8 +26,8 @@ if ($username == "") {
         if ($row["two_step"] == "1") {
             setcookie("2fa", "on");
             $_SESSION["temp_user"] = $row;
-            header('Location: verify_code.php');
-            echo("2fa");
+            echo ("2fa");
+            exit;
         } else {
             $_SESSION['user'] = $row;
 
