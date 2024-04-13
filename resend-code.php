@@ -99,4 +99,5 @@ if (!isset($_SESSION["otp"]) || !isset($_COOKIE["email"])) {
     } else {
         echo 'Error sending email: ' . $mail->ErrorInfo;
     }
-}
+} 
+?>

@@ -22,6 +22,8 @@ if (isset($_SESSION["user"])) {
 
 <body class="bg-body-secondary">
 
+    <? include "spinners.php" ?>
+
     <div class="container-fluid min-vh-100">
 
         <div class="row d-flex flex-column justify-content-center align-items-center min-vh-100">
@@ -35,7 +37,7 @@ if (isset($_SESSION["user"])) {
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <button class="btn btn-dark px-3" onclick="verifyLogin();">Verify</button>
-                        <button class="btn bg-transparent border-0 text-primary fw-bold">Resend Code?</button>
+                        <button class="btn bg-transparent border-0 text-primary fw-bold" onclick="resendCode();">Resend Code?</button>
                     </div>
                 </div>
             </div>
