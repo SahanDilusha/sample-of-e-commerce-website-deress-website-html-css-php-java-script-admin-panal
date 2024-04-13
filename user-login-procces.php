@@ -14,16 +14,21 @@ if ($username == "") {
     echo ("Invalid password!");
 } else {
 
-    $checkUser = Database::search("SELECT * FROM `system_login` WHERE `system_login`.`system_login_username` = '".$username."' AND `system_login`.`password` = '".$password."' 
+    $checkUser = Database::search("SELECT * FROM `system_login` WHERE `system_login`.`system_login_username` = '" . $username . "' AND `system_login`.`password` = '" . $password . "' 
     AND `system_login`.`stetus_stetus_id` = '1';");
 
     if ($checkUser->num_rows == 0) {
         echo ("Invalid username or password!");
     } else {
 
-        $_SESSION['user'] = $checkUser->fetch_assoc();
+        $row = $checkUser->fetch_assoc();
 
-        echo ("ok");
+        if ($row["two_step"] == "1") {
+            # code...
+        } else {
+            $_SESSION['user'] = $row;
 
+            echo ("ok");
+        }
     }
 }

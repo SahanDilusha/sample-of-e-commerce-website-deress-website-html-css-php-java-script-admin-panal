@@ -37,7 +37,7 @@ function Logout() {
 
         if (request.readyState == "4" && request.status == "200") {
 
-            window.location.href = "index.php";
+            window.location.replace("index.php");
         }
     }
 

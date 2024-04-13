@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["user"])) {
+if (isset($_SESSION["user"])) {
     header("Location: http://localhost/myshop-admin/dashboard.php");
 }
 ?>
@@ -14,7 +14,7 @@ if (!isset($_SESSION["user"])) {
     <title>Krist Admin Login</title>
     <link rel="icon" href="resources/image/Logo.png" />
     <link rel="stylesheet" href="bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -31,7 +31,7 @@ if (!isset($_SESSION["user"])) {
                         <label for="username" class="form-label">Username</label>
                         <input type="text" class="form-control" id="username" required />
                     </div>
-                    <div class="mb-3 mt-3 w-75">
+                    <div class="mb-3 mt-3">
                         <label for="password" class="col-sm-2 col-form-label text-black">Password</label>
                         <div class="">
                             <input type="password" class="form-control" id="password" required>
