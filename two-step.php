@@ -2,8 +2,8 @@
 session_start();
 if (isset($_SESSION["user"])) {
     header("Location: http://localhost/myshop-admin/dashboard.php");
-}elseif (isset($_COOKIE["2fa"])) {
-    # code...
+}elseif (!isset($_COOKIE["2fa"])) {
+    header("Location: http://localhost/myshop-admin/index.php");
 }
 ?>
 
@@ -13,7 +13,7 @@ if (isset($_SESSION["user"])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Krist Admin Login</title>
+    <title>Verify Login</title>
     <link rel="icon" href="resources/image/Logo.png" />
     <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
