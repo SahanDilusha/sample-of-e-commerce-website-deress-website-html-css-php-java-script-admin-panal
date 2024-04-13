@@ -26,8 +26,6 @@ if (!isset($_SESSION["otp"]) || !isset($_COOKIE["email"]) || !isset($_SESSION["t
             unset($_SESSION["otp"]);
 
             echo ("ok");
-
-            header("Location: http://localhost/myshop-admin/dashboard.php");
             exit;
         } else {
             echo ("Wrong OTP Code!");

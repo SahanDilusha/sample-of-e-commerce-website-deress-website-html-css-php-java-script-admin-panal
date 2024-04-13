@@ -7,6 +7,7 @@ require 'PHPMailerFile/src/PHPMailer.php';
 require 'PHPMailerFile/src/SMTP.php';
 
 include "connecton.php";
+include "generate-otp.php";
 
 
 session_start();
@@ -33,9 +34,9 @@ if ($username == "") {
         $email = $row["email"];
 
         if ($row["two_step"] == "1") {
-           
+
             $getOtp = $row["otp"];
-            
+
 
             $mail = new PHPMailer(true);
 
@@ -122,14 +123,12 @@ if ($username == "") {
                 setcookie("email", $email);
                 $_SESSION["temp_user"] = $row;
                 $_SESSION["otp"] = $getOtp;
+                Database::iud("UPDATE `system_login` SET `system_login`.`otp` = '" . GenerateOtp::generateOTP(6) . "' WHERE `system_login`.`system_login_username` = '" . $_SESSION["temp_user"]["system_login_username"] . "';");
                 echo ("2fa");
                 exit;
-               
             } else {
                 echo 'Error sending email: ' . $mail->ErrorInfo;
             }
-
-           
         } else {
             $_SESSION['user'] = $row;
             setcookie("email", $email);
@@ -137,4 +136,3 @@ if ($username == "") {
         }
     }
 }
-?>

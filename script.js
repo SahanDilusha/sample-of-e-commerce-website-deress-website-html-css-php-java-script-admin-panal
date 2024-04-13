@@ -72,7 +72,6 @@ function verifyLogin() {
 
         if (request.readyState == "4" && request.status == "200") {
             hideSpinners();
-            alert(request.responseText);
             if (request.responseText == "ok") {
                 window.location.replace("dashboard.php");
             } else {
@@ -98,7 +97,7 @@ function resendCode() {
 
         if (request.readyState == "4" && request.status == "200") {
             hideSpinners();
-            if (request.responseText !== "ok") {
+            if (request.responseText == "ok") {
                 document.getElementById("text-erro").innerHTML = request.responseText;
                 new bootstrap.Modal(document.getElementById("error-model")).show();
             }

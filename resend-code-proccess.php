@@ -8,29 +8,43 @@ require 'PHPMailerFile/src/Exception.php';
 require 'PHPMailerFile/src/PHPMailer.php';
 require 'PHPMailerFile/src/SMTP.php';
 
-if (!isset($_SESSION["otp"]) || !isset($_COOKIE["email"])) {
-    echo ("Error! Please go back to the login page.");
+include "connecton.php";
+include "generate-otp.php";
+
+if (!isset($_SESSION["otp"]) || !isset($_COOKIE["email"]) || !isset($_SESSION["temp_user"])) {
+    header("Location: http://localhost/myshop-admin/index.php");
+    exit;
 } else {
-    $getOtp = $_SESSION["otp"];
-    $email  = $_COOKIE['email'];
 
-    $mail = new PHPMailer(true);
+    $checkUser = Database::search("SELECT `system_login`.`otp` FROM `system_login` WHERE `system_login`.`system_login_username` = '" . $_SESSION["temp_user"]["system_login_username"] . "' AND `system_login`.`password` = '" . $_SESSION["temp_user"]["password"] . "' 
+    AND `system_login`.`stetus_stetus_id` = '1';");
 
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'sdilusha34@gmail.com';
-    $mail->Password = 'pjfsvhvtyxoahcrv';
-    $mail->SMTPSecure = 'ssl';
-    $mail->Port = 465;
+    if ($checkUser->num_rows == 0) {
+        header("Location: http://localhost/myshop-admin/index.php");
+        exit;
+    } else {
 
-    $mail->setFrom('sdilusha34@gmail.com');
-    $mail->addAddress($email);
 
-    $mail->isHTML(true);
+        $getOtp = $checkUser->fetch_assoc()["otp"];
+        $email  = $_COOKIE['email'];
 
-    $mail->Subject = 'Verify Login';
-    $mail->Body = '<!DOCTYPE html>
+        $mail = new PHPMailer(true);
+
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'sdilusha34@gmail.com';
+        $mail->Password = 'pjfsvhvtyxoahcrv';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+
+        $mail->setFrom('sdilusha34@gmail.com');
+        $mail->addAddress($email);
+
+        $mail->isHTML(true);
+
+        $mail->Subject = 'Verify Login';
+        $mail->Body = '<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -94,15 +108,15 @@ if (!isset($_SESSION["otp"]) || !isset($_COOKIE["email"])) {
 
 </html>';
 
-    if ($mail->send()) {
-        $_SESSION["otp"] = $getOtp;
-        echo ("ok");
-        exit;
-    } else {
-        echo 'Error sending email: ' . $mail->ErrorInfo;
+        if ($mail->send()) {
+            $_SESSION["otp"] = $getOtp;
+            Database::iud("UPDATE `system_login` SET `system_login`.`otp` = '" . GenerateOtp::generateOTP(6) . "' WHERE `system_login`.`system_login_username` = '" . $_SESSION["temp_user"]["system_login_username"] . "';");
+            echo ("ok");
+            exit;
+        } else {
+            echo 'Error sending email: ' . $mail->ErrorInfo;
+        }
     }
-} 
-
-
+}
 
 ?>
