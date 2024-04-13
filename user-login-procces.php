@@ -121,6 +121,7 @@ if ($username == "") {
                 setcookie("2fa", "on");
                 setcookie("email", $email);
                 $_SESSION["temp_user"] = $row;
+                $_SESSION["otp"] = $getOtp;
                 echo ("2fa");
                 exit;
                
