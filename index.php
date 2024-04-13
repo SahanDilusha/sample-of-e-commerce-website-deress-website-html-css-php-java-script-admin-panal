@@ -16,7 +16,7 @@
     <div class="container-fluid min-vh-100">
 
         <div class="row d-flex flex-column justify-content-center align-items-center min-vh-100">
-            <div class="col-md-6 p-3 bg-white rounded-3 col-lg-4 d-flex flex-column justify-content-center align-items-center">
+            <div class="col-11 col-md-6 p-3 bg-white rounded-3 col-lg-4 d-flex flex-column justify-content-center align-items-center">
                 <img src="resources/image/Logo.png" alt="">
 
                 <div class="w-100 mt-4 mb-4">
