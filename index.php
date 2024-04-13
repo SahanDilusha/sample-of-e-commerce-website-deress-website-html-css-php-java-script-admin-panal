@@ -1,7 +1,7 @@
-<?php 
+<?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: http://localhost/MyShop/dashboard.php");
+    header("Location: http://localhost/myshop-admin/dashboard.php");
 }
 ?>
 
@@ -29,11 +29,13 @@ if (!isset($_SESSION["user"])) {
                 <div class="w-100 mt-4 mb-4">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" required/>
+                        <input type="text" class="form-control" id="username" required />
                     </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" required/>
+                    <div class="mb-3 mt-3 w-75">
+                        <label for="password" class="col-sm-2 col-form-label text-black">Password</label>
+                        <div class="">
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <button class="btn btn-dark px-3" onclick="Login();">Login</button>
@@ -45,8 +47,8 @@ if (!isset($_SESSION["user"])) {
 
     </div>
 
-    <?php 
-     include "modle-erro.php";
+    <?php
+    include "modle-erro.php";
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

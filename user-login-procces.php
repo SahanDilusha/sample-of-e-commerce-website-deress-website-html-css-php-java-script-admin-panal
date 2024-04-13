@@ -15,7 +15,7 @@ if ($username == "") {
 } else {
 
     $checkUser = Database::search("SELECT * FROM `system_login` WHERE `system_login`.`system_login_username` = '".$username."' AND `system_login`.`password` = '".$password."' 
-    AND `system_login`.`types_types_id` = '1';");
+    AND `system_login`.`stetus_stetus_id` = '1';");
 
     if ($checkUser->num_rows == 0) {
         echo ("Invalid username or password!");
