@@ -2,8 +2,8 @@
 session_start();
 if (isset($_SESSION["user"])) {
     header("Location: http://localhost/myshop-admin/dashboard.php");
-}elseif (isset($_COOKIE["2fa"])) {
-    # code...
+}elseif (!isset($_COOKIE["2fa"])) {
+    header("Location: http://localhost/myshop-admin/index.php");
 }
 ?>
 
