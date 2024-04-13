@@ -24,7 +24,7 @@ if ($username == "") {
         $row = $checkUser->fetch_assoc();
 
         if ($row["two_step"] == "1") {
-            # code...
+            setcookie("2fa", "on"); 
         } else {
             $_SESSION['user'] = $row;
 
