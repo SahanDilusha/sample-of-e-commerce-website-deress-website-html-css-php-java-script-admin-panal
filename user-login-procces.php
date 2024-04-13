@@ -32,9 +32,7 @@ if ($username == "") {
         $row = $checkUser->fetch_assoc();
 
         if ($row["two_step"] == "1") {
-            setcookie("2fa", "on");
-            $_SESSION["temp_user"] = $row;
-
+           
             $getOtp = $row["otp"];
             $email = $row["email"];
 
@@ -49,11 +47,11 @@ if ($username == "") {
             $mail->Port = 465;
 
             $mail->setFrom('sdilusha34@gmail.com');
-            $mail->addAddress('sahancodelygroup@gmail.com');
+            $mail->addAddress($email);
 
             $mail->isHTML(true);
 
-            $mail->Subject = 'Reset Your Password This OTP';
+            $mail->Subject = 'Verify Login';
             $mail->Body = '<!DOCTYPE html>
         <html lang="en">
         
@@ -119,16 +117,16 @@ if ($username == "") {
         </html>';
 
             if ($mail->send()) {
-
-                setcookie("otp_mail", $email);
-
-                echo 'ok';
+                setcookie("2fa", "on");
+                $_SESSION["temp_user"] = $row;
+                echo ("2fa");
+                exit;
+               
             } else {
                 echo 'Error sending email: ' . $mail->ErrorInfo;
             }
 
-            echo ("2fa");
-            exit;
+           
         } else {
             $_SESSION['user'] = $row;
 
