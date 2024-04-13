@@ -14,7 +14,7 @@ if (isset($_SESSION["user"])) {
     <title>Krist Admin Login</title>
     <link rel="icon" href="resources/image/Logo.png" />
     <link rel="stylesheet" href="bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -25,7 +25,7 @@ if (isset($_SESSION["user"])) {
         <div class="row d-flex flex-column justify-content-center align-items-center min-vh-100">
             <div class="col-11 col-md-6 p-3 bg-white rounded-3 col-lg-4 d-flex flex-column justify-content-center align-items-center">
                 <img src="resources/image/Logo.png" alt="">
-
+                <h5 class="mt-4">Login</h5>
                 <div class="w-100 mt-4 mb-4">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>

@@ -30,7 +30,7 @@ if (isset($_SESSION["user"])) {
 
                 <div class="w-100 mt-4 mb-4">
                     <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
+                        <label for="username" class="form-label">Enter Code</label>
                         <input type="text" class="form-control" id="username" required />
                     </div>
                     <div class="mb-3 mt-3">
@@ -40,8 +40,8 @@ if (isset($_SESSION["user"])) {
                         </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-4">
-                        <button class="btn btn-dark px-3" onclick="Login();">Login</button>
-                        <button class="btn bg-transparent border-0 text-primary fw-bold">forgot password?</button>
+                        <button class="btn btn-dark px-3" onclick="Login();">Verify</button>
+                        <button class="btn bg-transparent border-0 text-primary fw-bold">Resend Code?</button>
                     </div>
                 </div>
             </div>

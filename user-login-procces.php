@@ -24,7 +24,10 @@ if ($username == "") {
         $row = $checkUser->fetch_assoc();
 
         if ($row["two_step"] == "1") {
-            setcookie("2fa", "on"); 
+            setcookie("2fa", "on");
+            $_SESSION["temp_user"] = $row;
+            header('Location: verify_code.php');
+            echo("2fa");
         } else {
             $_SESSION['user'] = $row;
 
