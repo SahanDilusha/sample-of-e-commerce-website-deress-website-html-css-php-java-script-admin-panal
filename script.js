@@ -83,7 +83,7 @@ function verifyLogin() {
 
     }
 
-    request.open("POST", "verify-code.php", true);
+    request.open("POST", "verify-login.php", true);
     request.send(form);
 
 }
@@ -100,9 +100,6 @@ function resendCode() {
             hideSpinners();
             if (request.responseText !== "ok") {
                 document.getElementById("text-erro").innerHTML = request.responseText;
-                new bootstrap.Modal(document.getElementById("error-model")).show();
-            }else if (request.responseText == "ok") {
-                document.getElementById("text-erro").innerHTML = "Verification code sent!";
                 new bootstrap.Modal(document.getElementById("error-model")).show();
             }
         }

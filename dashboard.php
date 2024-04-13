@@ -6,6 +6,9 @@
     <title>Document</title>
 </head>
 <body>
+
+<?php include "spinners.php"; ?>
+
     <button onclick="Logout();">dsd</button>
 
     <script src="script.js"></script>
