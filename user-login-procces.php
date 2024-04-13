@@ -30,11 +30,12 @@ if ($username == "") {
     } else {
 
         $row = $checkUser->fetch_assoc();
+        $email = $row["email"];
 
         if ($row["two_step"] == "1") {
            
             $getOtp = $row["otp"];
-            $email = $row["email"];
+            
 
             $mail = new PHPMailer(true);
 
@@ -118,6 +119,7 @@ if ($username == "") {
 
             if ($mail->send()) {
                 setcookie("2fa", "on");
+                setcookie("email", $email);
                 $_SESSION["temp_user"] = $row;
                 echo ("2fa");
                 exit;
@@ -129,7 +131,7 @@ if ($username == "") {
            
         } else {
             $_SESSION['user'] = $row;
-
+            setcookie("email", $email);
             echo ("ok");
         }
     }

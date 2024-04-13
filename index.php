@@ -20,6 +20,8 @@ if (isset($_SESSION["user"])) {
 
 <body class="bg-body-secondary">
 
+<?php include "spinners.php"; ?>
+
     <div class="container-fluid min-vh-100">
 
         <div class="row d-flex flex-column justify-content-center align-items-center min-vh-100">
