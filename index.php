@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if (!isset($_SESSION["user"])) {
+    header("Location: http://localhost/MyShop/dashboard.php");
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -29,7 +36,7 @@
                         <input type="password" class="form-control" id="password" required/>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-4">
-                        <button class="btn btn-dark px-3">Login</button>
+                        <button class="btn btn-dark px-3" onclick="Login();">Login</button>
                         <button class="btn bg-transparent border-0 text-primary fw-bold">forgot password?</button>
                     </div>
                 </div>
