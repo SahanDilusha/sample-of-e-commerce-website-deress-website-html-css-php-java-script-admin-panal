@@ -15,7 +15,7 @@ function Login() {
             if (request.responseText == "ok") {
                 window.location.replace("dashboard.php");
             } else if (request.responseText == "2fa") {
-                window.location.replace("verify-code.php.php");
+                window.location.replace("verify-code.php");
             } else{
                 document.getElementById("text-erro").innerHTML = request.responseText;
                 new bootstrap.Modal(document.getElementById("error-model")).show();
