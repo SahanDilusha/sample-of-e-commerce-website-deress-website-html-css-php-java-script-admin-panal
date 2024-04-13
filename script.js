@@ -90,7 +90,27 @@ function verifyLogin() {
 
 function resendCode() {
 
+    const request = new XMLHttpRequest();
+  
+    showSpinners();
    
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+            hideSpinners();
+            if (request.responseText !== "ok") {
+                document.getElementById("text-erro").innerHTML = request.responseText;
+                new bootstrap.Modal(document.getElementById("error-model")).show();
+            }else if (request.responseText == "ok") {
+                document.getElementById("text-erro").innerHTML = "Verification code sent!";
+                new bootstrap.Modal(document.getElementById("error-model")).show();
+            }
+        }
+
+    }
+
+    request.open("POST", "resend-code-proccess.php", true);
+    request.send();
 
 }
 

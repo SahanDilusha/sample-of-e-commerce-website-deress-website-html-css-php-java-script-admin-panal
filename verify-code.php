@@ -22,7 +22,7 @@ if (isset($_SESSION["user"])) {
 
 <body class="bg-body-secondary">
 
-    <? include "spinners.php" ?>
+    <?php include "spinners.php" ?>
 
     <div class="container-fluid min-vh-100">
 

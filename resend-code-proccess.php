@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 use PHPMailer\PHPMailer\PHPMailer;
 
 require 'PHPMailerFile/src/Exception.php';
@@ -100,4 +102,7 @@ if (!isset($_SESSION["otp"]) || !isset($_COOKIE["email"])) {
         echo 'Error sending email: ' . $mail->ErrorInfo;
     }
 } 
+
+
+
 ?>
