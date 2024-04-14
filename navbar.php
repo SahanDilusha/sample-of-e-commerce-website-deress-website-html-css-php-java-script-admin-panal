@@ -29,6 +29,9 @@ session_start();
                 <li class="nav-item">
                     <a class="nav-link" href="#">Admins</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Messages</a>
+                </li>
             </ul>
 
             <a href="#" class="px-2 text-decoration-none d-flex justify-content-center align-items-center gap-2">
