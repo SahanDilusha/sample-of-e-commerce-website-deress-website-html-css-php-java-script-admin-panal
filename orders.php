@@ -51,6 +51,8 @@
                             for ($i=0; $i < $getInvoice->num_rows ; $i++) { 
                                
                                 $row = $getInvoice->fetch_assoc();
+
+                                $getItemCount=Database::search("SELECT COUNT(`invoice_items_id`) AS `count` FROM `invoice_items` WHERE `invoice_invoice_id` = '".$row["invoice_id"]."';");
                            
                         ?>
 
@@ -67,7 +69,11 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>10</td>
+                                <td>
+                                    <?php if ( $getItemCount->num_rows !=0) {
+                                        echo($getItemCount->fetch_assoc()["count"]);
+                                    }?>
+                                </td>
                                 <td><?= $row["grand_total"];?></td>
                                 <td><select class="form-select" aria-label="Default select example">
                                         <option value="1" selected>Active</option>
@@ -75,7 +81,7 @@
                                         <option value="3">On Packing</option>
                                         <option value="4">On Shiping</option>
                                         <option value="5">Diliverd</option>
-                                        <option value="5">Cancel</option>
+                                        <option value="6">Cancel</option>
                                     </select></td>
                             </tr>
 
