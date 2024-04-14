@@ -21,6 +21,10 @@
         exit;
     } else {
 
+        include "connecton.php";
+
+        $getInvoice = Database::search("SELECT * FROM `invoice` INNER JOIN `users` ON `invoice`.`users_username` = `users`.`username`  WHERE  `invoice`.`stetus_stetus_id` != '9' OR `invoice`.`stetus_stetus_id`!='10';");
+
     ?>
 
         <div class="container-fluid overflow-x-hidden">
@@ -40,28 +44,42 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                        <?php 
+                            if ($getInvoice->num_rows !=0) {
+                              
+                            for ($i=0; $i < $getInvoice->num_rows ; $i++) { 
+                               
+                                $row = $getInvoice->fetch_assoc();
+                           
+                        ?>
+
                             <tr>
                                 <td>
-                                    #5788878
+                                    <?= $row["invoice_id"];?>
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="http://localhost/MyShop//profile_images/pwani.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
+                                        <img src="http://localhost/MyShop/profile_images/<?= $row["username"];?>.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
                                         <div class="ms-3">
-                                            <p class="fw-bold mb-1">John Doe</p>
-                                            <p class="text-muted mb-0">john.doe@gmail.com</p>
+                                            <p class="fw-bold mb-1"><?= $row["username"];?></p>
+                                            <p class="text-muted mb-0"><?= $row["email"];?></p>
                                         </div>
                                     </div>
                                 </td>
                                 <td>10</td>
-                                <td>3000.00</td>
+                                <td><?= $row["grand_total"];?></td>
                                 <td><select class="form-select" aria-label="Default select example">
-                                        <option selected>Processing</option>
-                                        <option value="1">On Packing</option>
-                                        <option value="2">On Shiping</option>
-                                        <option value="3">Diliverd</option>
+                                        <option value="1" selected>Active</option>
+                                        <option value="2">Processing</option>
+                                        <option value="3">On Packing</option>
+                                        <option value="4">On Shiping</option>
+                                        <option value="5">Diliverd</option>
+                                        <option value="5">Cancel</option>
                                     </select></td>
                             </tr>
+
+                            <?php } }?>
 
                         </tbody>
                     </table>
