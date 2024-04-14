@@ -4,3 +4,18 @@
     backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 0, 0, 0.25);
 }
+
+.d1 {
+    background: rgb(63, 94, 251);
+    background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+}
+
+.d2 {
+    background: rgb(78, 63, 251);
+    background: linear-gradient(90deg, rgba(78, 63, 251, 1) 4%, rgba(70, 252, 94, 1) 91%);
+}
+
+.d3 {
+    background: rgb(78, 63, 251);
+    background: linear-gradient(90deg, rgba(78, 63, 251, 1) 4%, rgba(252, 158, 70, 1) 91%);
+}

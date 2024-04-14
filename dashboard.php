@@ -23,11 +23,38 @@
 
     ?>
 
-
-
-
-
-
+        <div class="container mt-5 mb-5">
+            <div class="row d-flex gap-3 justify-content-center align-items-center">
+                <div class="col-md-3 col-lg-3 d1 p-4 d-flex rounded-3">
+                    <div class="w-25 d-flex justify-content-center align-items-center">
+                        <i class="bi bi-truck fs-1 text-white"></i>
+                    </div>
+                    <div class="w-75">
+                        <h5 class="text-center fw-bold pt-3 ps-3">New Orders</h5>
+                        <h3 class="text-center">10</h3>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3 d2 p-4 d-flex rounded-3">
+                    <div class="w-25 d-flex justify-content-center align-items-center">
+                        <i class="bi bi-cash-coin fs-1 text-white"></i>
+                    </div>
+                    <div class="w-75">
+                        <h5 class="text-center fw-bold pt-3 ps-3">Total  Revenue</h5>
+                        <h3 class="text-center">10</h3>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3 d3 p-4 d-flex rounded-3">
+                    <div class="w-25 d-flex justify-content-center align-items-center">
+                        <i class="bi bi-people-fill fs-1 text-white"></i>
+                    </div>
+                    <div class="w-75">
+                        <h5 class="text-center fw-bold pt-3 ps-3">Total Users</h5>
+                        <h3 class="text-center">10</h3>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
 
         <?php
         include "modle-erro.php";
