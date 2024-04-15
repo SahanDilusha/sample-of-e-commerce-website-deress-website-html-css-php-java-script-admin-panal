@@ -8,11 +8,11 @@ function hideSpinners() {
 
 function Login() {
 
-    const username = document.getElementById("username").value;
+    const id = document.getElementById("id").value;
     const password = document.getElementById("password").value;
 
     const form = new FormData();
-    form.append('username', username);
+    form.append('id', id);
     form.append('password', password);
 
     const request = new XMLHttpRequest();
@@ -125,8 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
             // Populate modal fields with table row data
             const cells = tr.querySelectorAll("td");
             document.getElementById("in_id").value = cells[0].textContent.trim();
-            const usernameDiv = cells[1].querySelector(".fw-bold");
-            document.getElementById("in_username").value = usernameDiv.textContent.trim();
+            const idDiv = cells[1].querySelector(".fw-bold");
+            document.getElementById("in_id").value = idDiv.textContent.trim();
             document.getElementById("in_qty").value = cells[4].textContent.trim();
             document.getElementById("in_grand").value = cells[5].textContent.trim();
             document.getElementById("in_status").value = tr.querySelector("select").value;
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (tr) {
             // Populate modal fields with table row data
             const cells = tr.querySelectorAll("td");
-            document.getElementById("in_username").value = cells[0].querySelector(".fw-bold").textContent.trim();
+            document.getElementById("in_id").value = cells[0].querySelector(".fw-bold").textContent.trim();
             document.getElementById("in_firstname").value = cells[1].textContent.trim();
             document.getElementById("in_lastname").value = cells[2].textContent.trim();
             document.getElementById("in_mobile").value = cells[3].textContent.trim();
@@ -245,12 +245,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function search() {
 
-    const username = document.getElementById("searchField").value;
+    const id = document.getElementById("searchField").value;
 
     const request = new XMLHttpRequest();
 
     const from = new FormData();
-    from.append('text', username);
+    from.append('text', id);
 
     showSpinners();
 
@@ -265,5 +265,9 @@ function search() {
     request.open("POST", "set-text.php", true);
     request.send(from);
 
+}
+
+function searchInvoice(){
+    window.location.href="http://localhost/myshop-admin/orders.php?id="+document.getElementById("searchField").value;
 }
 

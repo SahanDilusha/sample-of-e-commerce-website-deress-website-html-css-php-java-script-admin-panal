@@ -23,12 +23,26 @@
 
         include "connecton.php";
 
-        $getInvoice = Database::search("SELECT * FROM `invoice` INNER JOIN `users` ON `invoice`.`users_username` = `users`.`username` INNER JOIN `user_address` ON `invoice`.`user_address_address_id` = `user_address`.`address_id` INNER JOIN `city` ON `user_address`.`city_city_id` = `city`.`city_id`  WHERE  `invoice`.`stetus_stetus_id` != '9' OR `invoice`.`stetus_stetus_id`!='10';");
+        $q = "SELECT * FROM `invoice` INNER JOIN `users` ON `invoice`.`users_username` = `users`.`username` INNER JOIN `user_address` ON `invoice`.`user_address_address_id` = `user_address`.`address_id` INNER JOIN `city` ON `user_address`.`city_city_id` = `city`.`city_id`";
+
+        if (isset($_GET["id"]) & $_GET["id"]!='') {
+            $q = $q . "AND `invoice_id` = '" . $_GET["id"] . "';";
+        }
+
+        $getInvoice = Database::search($q);
 
     ?>
 
         <div class="container-fluid overflow-x-hidden">
             <div class="row">
+
+                <div class="d-flex w-50 mt-4 mb-4">
+                    <input class="form-control me-2" type="text" value="<?php if (isset($_GET["id"])) {
+                                                                                echo ($_GET["id"]);
+                                                                            } ?>" id="searchField" placeholder="Username" />
+                    <button class="btn btn-dark" onclick="searchInvoice();">Search</button>
+                </div>
+
                 <div class="col-12 overflow-x-scroll mt-5">
 
                     <h4 class="fw-bold">Orders</h4>
@@ -70,9 +84,9 @@
                                                 </div>
                                             </div>
                                         </td>
-                                       
+
                                         <td>
-                                            <?="No.". $row["line_1"].", ".$row["line_2"].", ".$row["city_name"] ?>
+                                            <?= "No." . $row["line_1"] . ", " . $row["line_2"] . ", " . $row["city_name"] ?>
                                         </td>
                                         <td>
                                             <?= $row["address_mobile"]; ?>
@@ -103,7 +117,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -168,7 +182,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id="modalTableBody">
-                                           
+
                                         </tbody>
                                     </table>
                                 </div>
