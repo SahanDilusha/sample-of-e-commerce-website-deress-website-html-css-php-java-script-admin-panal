@@ -31,9 +31,15 @@
             <div class="row">
                 <div class="col-12 overflow-x-scroll mt-5">
 
-                    <h4 class="fw-bold">Orders</h4>
+                    <h4 class="fw-bold">Users(<?= $getUsers->num_rows; ?>)</h4>
 
-                    <table class="table align-middle mb-0 bg-white" id="in_item">
+                    <form class="d-flex w-50 mt-4 mb-4" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-dark" type="submit">Search</button>
+                    </form>
+
+
+                    <table class="table align-middle mb-0 bg-white" id="user_table">
                         <thead class="bg-light">
                             <tr>
                                 <th>Username</th>
@@ -47,46 +53,60 @@
                         </thead>
                         <tbody>
 
-                        <?php 
-                            if ($getUsers->num_rows !=0) {
-                              
-                            for ($i=0; $i < $getUsers->num_rows ; $i++) { 
-                               
-                                $row = $getUsers->fetch_assoc();
+                            <?php
+                            if ($getUsers->num_rows != 0) {
 
-                                $getItemCount=Database::search("SELECT COUNT(`invoice_items_id`) AS `count` FROM `invoice_items` WHERE `invoice_invoice_id` = '".$row["invoice_id"]."';");
-                           
-                        ?>
+                                for ($i = 0; $i < $getUsers->num_rows; $i++) {
 
-                            <tr>
-                                <td>
-                                <div class="d-flex align-items-center">
-                                        <img src="http://localhost/MyShop/profile_images/<?= $row["username"];?>.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
-                                        <div class="ms-3">
-                                            <p class="fw-bold mb-1"><?= $row["username"];?></p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    
-                                </td>
-                                <td>
-                                    <?php if ( $getItemCount->num_rows !=0) {
-                                        echo($getItemCount->fetch_assoc()["count"]);
-                                    }?>
-                                </td>
-                                <td><?= $row["grand_total"];?></td>
-                                <td><select class="form-select" aria-label="Default select example">
-                                        <option value="1" selected>Active</option>
-                                        <option value="2">Processing</option>
-                                        <option value="3">On Packing</option>
-                                        <option value="4">On Shiping</option>
-                                        <option value="5">Diliverd</option>
-                                        <option value="6">Cancel</option>
-                                    </select></td>
-                            </tr>
+                                    $row = $getUsers->fetch_assoc();
 
-                            <?php } }?>
+                            ?>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <?php
+                                                if ($row["stetus_dp"] == "2") {
+                                                ?>
+                                                    <img src="http://localhost/myshop-admin/profile_images/d.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <img src="http://localhost/MyShop/profile_images/<?= $row["username"]; ?>.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
+                                                <?php
+                                                }
+                                                ?>
+                                                <div class="ms-3">
+                                                    <p class="fw-bold mb-1"><?= $row["username"]; ?></p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <?= $row["first_name"]; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row["last_name"]; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row["mobile"]; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row["email"]; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row["r_date"]; ?>
+                                        </td>
+                                        <td><select class="form-select" aria-label="Default select example">
+                                                <option value="1" selected>Active</option>
+                                                <option value="2">Processing</option>
+                                                <option value="3">On Packing</option>
+                                                <option value="4">On Shiping</option>
+                                                <option value="5">Diliverd</option>
+                                                <option value="6">Cancel</option>
+                                            </select></td>
+                                    </tr>
+
+                            <?php }
+                            } ?>
 
                         </tbody>
                     </table>
@@ -138,12 +158,12 @@
                                     <div class="mb-3">
                                         <label for="in_status" class="form-label">Status</label>
                                         <select class="form-select" id="in_status">
-                                        <option value="1" selected>Active</option>
-                                        <option value="2">Processing</option>
-                                        <option value="3">On Packing</option>
-                                        <option value="4">On Shiping</option>
-                                        <option value="5">Diliverd</option>
-                                        <option value="6">Cancel</option>
+                                            <option value="1" selected>Active</option>
+                                            <option value="2">Processing</option>
+                                            <option value="3">On Packing</option>
+                                            <option value="4">On Shiping</option>
+                                            <option value="5">Diliverd</option>
+                                            <option value="6">Cancel</option>
                                         </select>
                                     </div>
                                 </div>
