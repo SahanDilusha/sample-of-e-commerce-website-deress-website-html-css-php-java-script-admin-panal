@@ -273,3 +273,7 @@ function searchInvoice(){
     window.location.href="http://localhost/myshop-admin/orders.php?id="+document.getElementById("searchField").value;
 }
 
+function filterInvoice() {
+    window.location.href="http://localhost/myshop-admin/orders.php?fl="+document.getElementById("searchField").value;
+}
+

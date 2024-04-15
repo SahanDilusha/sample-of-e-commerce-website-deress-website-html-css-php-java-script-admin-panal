@@ -25,8 +25,11 @@
 
         $q = "SELECT * FROM `invoice` INNER JOIN `users` ON `invoice`.`users_username` = `users`.`username` INNER JOIN `user_address` ON `invoice`.`user_address_address_id` = `user_address`.`address_id` INNER JOIN `city` ON `user_address`.`city_city_id` = `city`.`city_id`";
 
-        if (isset($_GET["id"]) & $_GET["id"] != '') {
-            $q = $q . "AND `invoice_id` = '" . $_GET["id"] . "';";
+        if (isset($_GET["id"])) {
+
+            if ($_GET["id"] != '') {
+                $q = $q . "AND `invoice_id` = '" . $_GET["id"] . "';";
+            }
         }
 
         $getInvoice = Database::search($q);
@@ -39,20 +42,19 @@
                 <div class="d-flex w-50 mt-4 mb-4">
                     <input class="form-control me-2" type="text" value="<?php if (isset($_GET["id"])) {
                                                                             echo ($_GET["id"]);
-                                                                        } ?>" id="searchField" placeholder="Username" />
+                                                                        } ?>" id="searchField" placeholder="Invoice No" />
                     <button class="btn btn-dark" onclick="searchInvoice();">Search</button>
                 </div>
 
                 <div class="col-12 d-flex justify-content-between align-items-center">
                     <h4 class="fw-bold">Orders</h4>
-                    <select class="form-select w-25" aria-label="Default select example">
+                    <select class="form-select w-25" id="fl">
                         <option value="1" selected>All</option>
-                        <option value="1">Active</option>
-                        <option value="2">Processing</option>
-                        <option value="3">On Packing</option>
-                        <option value="4">On Shiping</option>
-                        <option value="5">Diliverd</option>
-                        <option value="6">Cancel</option>
+                        <option value="11">Processing</option>
+                        <option value="12">On Packing</option>
+                        <option value="13">On Shiping</option>
+                        <option value="14">Delivered</option>
+                        <option value="9">Cancel</option>
                     </select>
                 </div>
 
@@ -109,12 +111,11 @@
                                         </td>
                                         <td><?= $row["grand_total"]; ?></td>
                                         <td><select class="form-select" aria-label="Default select example">
-                                                <option value="1" selected>Active</option>
-                                                <option value="2">Processing</option>
-                                                <option value="3">On Packing</option>
-                                                <option value="4">On Shiping</option>
-                                                <option value="5">Diliverd</option>
-                                                <option value="6">Cancel</option>
+                                                <option value="11">Processing</option>
+                                                <option value="12">On Packing</option>
+                                                <option value="13">On Shiping</option>
+                                                <option value="14">Delivered</option>
+                                                <option value="9">Cancel</option>
                                             </select></td>
                                     </tr>
 
@@ -171,12 +172,12 @@
                                     <div class="mb-3">
                                         <label for="in_status" class="form-label">Status</label>
                                         <select class="form-select" id="in_status">
-                                            <option value="1" selected>Active</option>
-                                            <option value="2">Processing</option>
-                                            <option value="3">On Packing</option>
-                                            <option value="4">On Shiping</option>
-                                            <option value="5">Diliverd</option>
-                                            <option value="6">Cancel</option>
+                                            <option value="1" selected>All</option>
+                                            <option value="11">Processing</option>
+                                            <option value="12">On Packing</option>
+                                            <option value="13">On Shiping</option>
+                                            <option value="14">Delivered</option>
+                                            <option value="9">Cancel</option>
                                         </select>
                                     </div>
                                 </div>
