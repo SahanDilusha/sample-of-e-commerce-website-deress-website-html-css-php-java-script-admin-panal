@@ -23,7 +23,7 @@
 
         include "connecton.php";
 
-        $getInvoice = Database::search("SELECT * FROM `invoice` INNER JOIN `users` ON `invoice`.`users_username` = `users`.`username`  WHERE  `invoice`.`stetus_stetus_id` != '9' OR `invoice`.`stetus_stetus_id`!='10';");
+        $getInvoice = Database::search("SELECT * FROM `invoice` INNER JOIN `users` ON `invoice`.`users_username` = `users`.`username` INNER JOIN `user_address` ON `invoice`.`user_address_address_id` = `user_address`.`address_id`  WHERE  `invoice`.`stetus_stetus_id` != '9' OR `invoice`.`stetus_stetus_id`!='10';");
 
     ?>
 
@@ -38,6 +38,8 @@
                             <tr>
                                 <th>Invoice No.</th>
                                 <th>Username</th>
+                                <th>Address</th>
+                                <th>Mobile</th>
                                 <th>Total Items</th>
                                 <th>Grand Total(LKR)</th>
                                 <th>Status</th>
@@ -68,6 +70,12 @@
                                                     <p class="text-muted mb-0"><?= $row["email"]; ?></p>
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td>
+                                            <?= $row["invoice_id"]; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row["address_mobile"]; ?>
                                         </td>
                                         <td>
                                             <?php if ($getItemCount->num_rows != 0) {

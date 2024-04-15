@@ -110,6 +110,8 @@ function resendCode() {
 
 }
 
+// get invoice items
+
 document.addEventListener("DOMContentLoaded", function () {
     const adminTable = document.getElementById("in_item");
     const modal = new bootstrap.Modal(document.getElementById("staticBackdrop"));
@@ -193,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+// get invoice items
 
 document.addEventListener("DOMContentLoaded", function () {
     const userTable = document.getElementById("user_table");
