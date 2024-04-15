@@ -25,7 +25,7 @@
 
         $q = "SELECT * FROM `invoice` INNER JOIN `users` ON `invoice`.`users_username` = `users`.`username` INNER JOIN `user_address` ON `invoice`.`user_address_address_id` = `user_address`.`address_id` INNER JOIN `city` ON `user_address`.`city_city_id` = `city`.`city_id`";
 
-        if (isset($_GET["id"]) & $_GET["id"]!='') {
+        if (isset($_GET["id"]) & $_GET["id"] != '') {
             $q = $q . "AND `invoice_id` = '" . $_GET["id"] . "';";
         }
 
@@ -38,14 +38,25 @@
 
                 <div class="d-flex w-50 mt-4 mb-4">
                     <input class="form-control me-2" type="text" value="<?php if (isset($_GET["id"])) {
-                                                                                echo ($_GET["id"]);
-                                                                            } ?>" id="searchField" placeholder="Username" />
+                                                                            echo ($_GET["id"]);
+                                                                        } ?>" id="searchField" placeholder="Username" />
                     <button class="btn btn-dark" onclick="searchInvoice();">Search</button>
                 </div>
 
-                <div class="col-12 overflow-x-scroll mt-5">
-
+                <div class="col-12 d-flex justify-content-between align-items-center">
                     <h4 class="fw-bold">Orders</h4>
+                    <select class="form-select w-25" aria-label="Default select example">
+                        <option value="1" selected>All</option>
+                        <option value="1">Active</option>
+                        <option value="2">Processing</option>
+                        <option value="3">On Packing</option>
+                        <option value="4">On Shiping</option>
+                        <option value="5">Diliverd</option>
+                        <option value="6">Cancel</option>
+                    </select>
+                </div>
+
+                <div class="col-12 overflow-x-scroll mt-5">
 
                     <table class="table align-middle mb-0 bg-white" id="in_item">
                         <thead class="bg-light">
