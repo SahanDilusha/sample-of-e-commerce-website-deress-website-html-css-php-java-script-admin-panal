@@ -45,47 +45,48 @@
                         </thead>
                         <tbody>
 
-                        <?php 
-                            if ($getInvoice->num_rows !=0) {
-                              
-                            for ($i=0; $i < $getInvoice->num_rows ; $i++) { 
-                               
-                                $row = $getInvoice->fetch_assoc();
+                            <?php
+                            if ($getInvoice->num_rows != 0) {
 
-                                $getItemCount=Database::search("SELECT COUNT(`invoice_items_id`) AS `count` FROM `invoice_items` WHERE `invoice_invoice_id` = '".$row["invoice_id"]."';");
-                           
-                        ?>
+                                for ($i = 0; $i < $getInvoice->num_rows; $i++) {
 
-                            <tr>
-                                <td>
-                                    <?= $row["invoice_id"];?>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="http://localhost/MyShop/profile_images/<?= $row["username"];?>.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
-                                        <div class="ms-3">
-                                            <p class="fw-bold mb-1"><?= $row["username"];?></p>
-                                            <p class="text-muted mb-0"><?= $row["email"];?></p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <?php if ( $getItemCount->num_rows !=0) {
-                                        echo($getItemCount->fetch_assoc()["count"]);
-                                    }?>
-                                </td>
-                                <td><?= $row["grand_total"];?></td>
-                                <td><select class="form-select" aria-label="Default select example">
-                                        <option value="1" selected>Active</option>
-                                        <option value="2">Processing</option>
-                                        <option value="3">On Packing</option>
-                                        <option value="4">On Shiping</option>
-                                        <option value="5">Diliverd</option>
-                                        <option value="6">Cancel</option>
-                                    </select></td>
-                            </tr>
+                                    $row = $getInvoice->fetch_assoc();
 
-                            <?php } }?>
+                                    $getItemCount = Database::search("SELECT COUNT(`invoice_items_id`) AS `count` FROM `invoice_items` WHERE `invoice_invoice_id` = '" . $row["invoice_id"] . "';");
+
+                            ?>
+
+                                    <tr>
+                                        <td>
+                                            <?= $row["invoice_id"]; ?>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="http://localhost/MyShop/profile_images/<?= $row["username"]; ?>.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
+                                                <div class="ms-3">
+                                                    <p class="fw-bold mb-1"><?= $row["username"]; ?></p>
+                                                    <p class="text-muted mb-0"><?= $row["email"]; ?></p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <?php if ($getItemCount->num_rows != 0) {
+                                                echo ($getItemCount->fetch_assoc()["count"]);
+                                            } ?>
+                                        </td>
+                                        <td><?= $row["grand_total"]; ?></td>
+                                        <td><select class="form-select" aria-label="Default select example">
+                                                <option value="1" selected>Active</option>
+                                                <option value="2">Processing</option>
+                                                <option value="3">On Packing</option>
+                                                <option value="4">On Shiping</option>
+                                                <option value="5">Diliverd</option>
+                                                <option value="6">Cancel</option>
+                                            </select></td>
+                                    </tr>
+
+                            <?php }
+                            } ?>
 
                         </tbody>
                     </table>
@@ -94,7 +95,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdrop"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -137,12 +138,12 @@
                                     <div class="mb-3">
                                         <label for="in_status" class="form-label">Status</label>
                                         <select class="form-select" id="in_status">
-                                        <option value="1" selected>Active</option>
-                                        <option value="2">Processing</option>
-                                        <option value="3">On Packing</option>
-                                        <option value="4">On Shiping</option>
-                                        <option value="5">Diliverd</option>
-                                        <option value="6">Cancel</option>
+                                            <option value="1" selected>Active</option>
+                                            <option value="2">Processing</option>
+                                            <option value="3">On Packing</option>
+                                            <option value="4">On Shiping</option>
+                                            <option value="5">Diliverd</option>
+                                            <option value="6">Cancel</option>
                                         </select>
                                     </div>
                                 </div>
@@ -185,8 +186,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
 
