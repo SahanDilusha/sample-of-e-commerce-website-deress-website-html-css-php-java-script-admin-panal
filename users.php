@@ -14,7 +14,7 @@
 <body>
 
     <?php
-    include "spinners.php";
+    
     include "navbar.php";
     if (!isset($_SESSION["user"])) {
         header("Location: http://localhost/myshop-admin/index.php");
@@ -22,8 +22,11 @@
     } else {
 
         include "connecton.php";
+        include "spinners.php";
 
         $getUsers = Database::search("SELECT * FROM `users`;");
+
+        $_COOKIE["text"] = 'no';
 
     ?>
 

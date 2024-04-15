@@ -21,6 +21,8 @@
         exit;
     } else {
 
+        setcookie("text","no");
+
     ?>
 
         <div class="container mt-5 mb-5">
