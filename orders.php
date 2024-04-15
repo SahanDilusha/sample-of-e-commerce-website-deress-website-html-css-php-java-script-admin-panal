@@ -137,10 +137,12 @@
                                     <div class="mb-3">
                                         <label for="in_status" class="form-label">Status</label>
                                         <select class="form-select" id="in_status">
-                                            <option selected>Processing</option>
-                                            <option value="1">On Packing</option>
-                                            <option value="2">On Shiping</option>
-                                            <option value="3">Diliverd</option>
+                                        <option value="1" selected>Active</option>
+                                        <option value="2">Processing</option>
+                                        <option value="3">On Packing</option>
+                                        <option value="4">On Shiping</option>
+                                        <option value="5">Diliverd</option>
+                                        <option value="6">Cancel</option>
                                         </select>
                                     </div>
                                 </div>
