@@ -119,7 +119,7 @@
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Invoice Items</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">User</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -179,11 +179,11 @@
                                     <table class="table align-middle mb-0 bg-white">
                                         <thead class="bg-light">
                                             <tr>
-                                                <th>Product Id</th>
-                                                <th>Product Name</th>
-                                                <th>QTY</th>
-                                                <th>Item Price(LKR)</th>
-                                                <th>Total(LKR)</th>
+                                                <th>Address Id</th>
+                                                <th>No</th>
+                                                <th>Line 1</th>
+                                                <th>Line 2</th>
+                                                <th>Mobile</th>
                                             </tr>
                                         </thead>
                                         <tbody>
