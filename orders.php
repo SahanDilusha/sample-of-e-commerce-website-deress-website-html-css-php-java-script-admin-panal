@@ -23,7 +23,7 @@
 
         include "connecton.php";
 
-        $getInvoice = Database::search("SELECT * FROM `invoice` INNER JOIN `users` ON `invoice`.`users_username` = `users`.`username` INNER JOIN `user_address` ON `invoice`.`user_address_address_id` = `user_address`.`address_id`  WHERE  `invoice`.`stetus_stetus_id` != '9' OR `invoice`.`stetus_stetus_id`!='10';");
+        $getInvoice = Database::search("SELECT * FROM `invoice` INNER JOIN `users` ON `invoice`.`users_username` = `users`.`username` INNER JOIN `user_address` ON `invoice`.`user_address_address_id` = `user_address`.`address_id` INNER JOIN `city` ON `user_address`.`city_city_id` = `city`.`city_id`  WHERE  `invoice`.`stetus_stetus_id` != '9' OR `invoice`.`stetus_stetus_id`!='10';");
 
     ?>
 
@@ -57,7 +57,6 @@
                                     $getItemCount = Database::search("SELECT COUNT(`invoice_items_id`) AS `count` FROM `invoice_items` WHERE `invoice_invoice_id` = '" . $row["invoice_id"] . "';");
 
                             ?>
-
                                     <tr>
                                         <td>
                                             <?= $row["invoice_id"]; ?>
@@ -71,8 +70,9 @@
                                                 </div>
                                             </div>
                                         </td>
+                                       
                                         <td>
-                                            <?= $row["invoice_id"]; ?>
+                                            <?="No.". $row["line_1"].", ".$row["line_2"].", ".$row["city_name"] ?>
                                         </td>
                                         <td>
                                             <?= $row["address_mobile"]; ?>

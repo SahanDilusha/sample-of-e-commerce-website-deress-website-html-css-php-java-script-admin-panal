@@ -127,8 +127,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("in_id").value = cells[0].textContent.trim();
             const usernameDiv = cells[1].querySelector(".fw-bold");
             document.getElementById("in_username").value = usernameDiv.textContent.trim();
-            document.getElementById("in_qty").value = cells[2].textContent.trim();
-            document.getElementById("in_grand").value = cells[3].textContent.trim();
+            document.getElementById("in_qty").value = cells[4].textContent.trim();
+            document.getElementById("in_grand").value = cells[5].textContent.trim();
             document.getElementById("in_status").value = tr.querySelector("select").value;
 
             const request = new XMLHttpRequest();
