@@ -129,8 +129,31 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("in_grand").value = cells[3].textContent.trim();
             document.getElementById("in_status").value = tr.querySelector("select").value;
 
+            const request = new XMLHttpRequest();
+
+            const from = new FormData();
+            from.append("id",cells[0].textContent.trim());
+
+            showSpinners();
+
+            request.onreadystatechange = function () {
+
+                if (request.readyState == "4" && request.status == "200") {
+                    hideSpinners();
+                    if (request.responseText == "ok") {
+                        
+                        
+
+                    }
+                }
+
+            }
+
+            request.open("POST", "get-invoice-items.php", true);
+            request.send();
+
             // Show modal
-            modal.show();
+            modal.show(from);
         }
     });
 
@@ -153,18 +176,6 @@ document.addEventListener("DOMContentLoaded", function () {
         lastTouchTime = currentTime;
     }, false);
 
-    // Event listener for modal submit
-    document.getElementById("modalSubmit").addEventListener("click", function () {
-        const in_id = document.getElementById("in_id").value;
-        const in_status = document.getElementById("in_status").value;
-
-        // Update table row with new status
-        const tr = adminTable.querySelector(`tr td:first-child:contains('${in_id}')`).closest("tr");
-        tr.querySelector("select").value = in_status;
-
-        // Hide modal
-        modal.hide();
-    });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -206,29 +217,17 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             event.target.dispatchEvent(fakeDblClickEvent);
         }
-        
+
         lastTouchTime = currentTime;
     }, false);
 
-    // Event listener for modal submit
-    document.getElementById("modalSubmit").addEventListener("click", function () {
-        const in_username = document.getElementById("in_username").value;
-        const in_status = document.getElementById("in_status").value;
-
-        // Update table row with new status
-        const tr = userTable.querySelector(`tr td:first-child .fw-bold:contains('${in_username}')`).closest("tr");
-        tr.querySelector("select").value = in_status;
-
-        // Hide modal
-        modal.hide();
-    });
 });
 
 
 function search() {
 
     const username = document.getElementById("searchField").value;
-    
+
     const request = new XMLHttpRequest();
 
     const from = new FormData();
