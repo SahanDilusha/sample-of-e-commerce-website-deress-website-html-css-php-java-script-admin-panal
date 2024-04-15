@@ -28,7 +28,42 @@
         if (isset($_GET["id"])) {
 
             if ($_GET["id"] != '') {
-                $q = $q . "AND `invoice_id` = '" . $_GET["id"] . "';";
+
+                if (strpos("WHERE", $q) == false) {
+                    $q = $q . "WHERE";
+                }
+
+                $q = $q . "AND `invoice_id` = '" . $_GET["id"] . "'";
+            }
+        }
+
+        if (isset($_GET["fl"])) {
+
+            if ($_GET["fl"] == "11") {
+                if (strpos("WHERE", $q) == false) {
+                    $q = $q . "WHERE";
+                }
+                $q = $q . "`invoice`.`stetus_stetus_id` = '11'";  //show all Processing
+            } else if ($_GET["fl"] == "12") {
+                if (strpos("WHERE", $q) == false) {
+                    $q = $q . "WHERE";
+                }
+                $q = $q . "`invoice`.`stetus_stetus_id` = '12'";  //show all On Packing
+            } else if ($_GET["fl"] == "13") {
+                if (strpos("WHERE", $q) == false) {
+                    $q = $q . "WHERE";
+                }
+                $q = $q . "`invoice`.`stetus_stetus_id` = '13'";  //show all On Shiping
+            } else if ($_GET["fl"] == "14") {
+                if (strpos("WHERE", $q) == false) {
+                    $q = $q . "WHERE";
+                }
+                $q = $q . "`invoice`.`stetus_stetus_id` = '14'";  //show all Delivered
+            }else if ($_GET["fl"] == "9") {
+                if (strpos("WHERE", $q) == false) {
+                    $q = $q . "WHERE";
+                }
+                $q = $q . "`invoice`.`stetus_stetus_id` = '9'";  //show all Delivered
             }
         }
 

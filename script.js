@@ -275,5 +275,6 @@ function searchInvoice(){
 
 function filterInvoice() {
     window.location.href="http://localhost/myshop-admin/orders.php?fl="+document.getElementById("fl").value;
+   
 }
 
