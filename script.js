@@ -166,3 +166,61 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.hide();
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const userTable = document.getElementById("user_table");
+    const modal = new bootstrap.Modal(document.getElementById("staticBackdrop"));
+
+    // Event listener for table row double-click
+    userTable.addEventListener("dblclick", function (event) {
+        const target = event.target;
+        const tr = target.closest("tr");
+
+        if (tr) {
+            // Populate modal fields with table row data
+            const cells = tr.querySelectorAll("td");
+            document.getElementById("in_username").value = cells[0].querySelector(".fw-bold").textContent.trim();
+            document.getElementById("in_firstname").value = cells[1].textContent.trim();
+            document.getElementById("in_lastname").value = cells[2].textContent.trim();
+            document.getElementById("in_mobile").value = cells[3].textContent.trim();
+            document.getElementById("in_email").value = cells[4].textContent.trim();
+            document.getElementById("in_status").value = tr.querySelector("select").value;
+
+            // Show modal
+            modal.show();
+        }
+    });
+
+    // Event listener for mobile touch (simulate double-click)
+    let lastTouchTime = 0;
+    userTable.addEventListener("touchend", function (event) {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTouchTime;
+
+        if (tapLength < 500 && tapLength > 0) {
+            event.preventDefault();
+            const fakeDblClickEvent = new MouseEvent("dblclick", {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+            event.target.dispatchEvent(fakeDblClickEvent);
+        }
+        
+        lastTouchTime = currentTime;
+    }, false);
+
+    // Event listener for modal submit
+    document.getElementById("modalSubmit").addEventListener("click", function () {
+        const in_username = document.getElementById("in_username").value;
+        const in_status = document.getElementById("in_status").value;
+
+        // Update table row with new status
+        const tr = userTable.querySelector(`tr td:first-child .fw-bold:contains('${in_username}')`).closest("tr");
+        tr.querySelector("select").value = in_status;
+
+        // Hide modal
+        modal.hide();
+    });
+});
+

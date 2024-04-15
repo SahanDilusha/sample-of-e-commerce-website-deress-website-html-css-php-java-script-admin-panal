@@ -128,29 +128,36 @@
 
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="in_id" class="form-label">Invoice Id</label>
-                                        <input type="text" class="form-control" id="in_id" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="in_username" class="form-label">Username</label>
+                                        <label for="in_id" class="form-label">Username</label>
                                         <input type="text" class="form-control" id="in_username" disabled>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="in_qty" class="form-label">Total Items</label>
-                                        <input type="text" class="form-control" id="in_qty" disabled>
+                                        <label for="in_username" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="in_firstname" disabled>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Grand Total(LKR)</label>
-                                        <input type="text" class="form-control" id="in_grand" disabled>
+                                        <label for="in_qty" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="in_lastname" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Mobile</label>
+                                        <input type="text" class="form-control" id="in_mobile" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                        <input type="text" class="form-control" id="in_email" disabled>
                                     </div>
                                 </div>
 
