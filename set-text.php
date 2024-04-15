@@ -1,9 +1,11 @@
 <?php
 
-$username = $_POST["username"];
+$text = $_POST["text"];
 
-if ($username == "") {
-    $_COOKIE["text"] = "no";
+if ($text == "") {
+    setcookie("text","");
 } else {
-    $_COOKIE["text"] = $username;
+    setcookie("text", $text);
 }
+echo $text;
+?>

@@ -27,8 +27,8 @@
 
         $q = "SELECT * FROM `users`";
 
-        if ($_COOKIE['text'] != "no") {
-            $q = $q . ' WHERE username LIKE "%' . $_GET['text'] . '%"';
+        if (isset($_COOKIE['text'])) {
+            $q = $q . ' WHERE username LIKE "%' . $_COOKIE['text'] . '%"';
         }
 
         $getUsers = Database::search($q);
@@ -42,8 +42,10 @@
                     <h4 class="fw-bold">Users(<?= $getUsers->num_rows; ?>)</h4>
 
                     <form class="d-flex w-50 mt-4 mb-4" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Username" aria-label="Search">
-                        <button class="btn btn-dark" type="submit">Search</button>
+                        <input class="form-control me-2" type="search" value="<?php if (isset($_COOKIE['text'])) {
+                            echo($_COOKIE['text']);
+                        } ?>" id="searchField" placeholder="Username" aria-label="Search">
+                        <button class="btn btn-dark"  onclick="search();">Search</button>
                     </form>
 
 

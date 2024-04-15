@@ -21,7 +21,7 @@
         exit;
     } else {
 
-        setcookie("text","no");
+        setcookie("text","");
 
     ?>
 
