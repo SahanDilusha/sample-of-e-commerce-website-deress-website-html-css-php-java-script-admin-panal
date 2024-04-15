@@ -33,9 +33,11 @@
                     $q = $q . "WHERE";
                 }
 
-                $q = $q . "AND `invoice_id` = '" . $_GET["id"] . "'";
+                $q = $q . "`invoice_id` = '" . $_GET["id"] . "'";
             }
         }
+
+        $si = 1;
 
         if (isset($_GET["fl"])) {
 
@@ -43,8 +45,10 @@
                 if (strpos("WHERE", $q) == false) {
                     $q = $q . "WHERE";
                 }
+                $si = 11;
                 $q = $q . "`invoice`.`stetus_stetus_id` = '11'";  //show all Processing
             } else if ($_GET["fl"] == "12") {
+                $si = 12;
                 if (strpos("WHERE", $q) == false) {
                     $q = $q . "WHERE";
                 }
@@ -53,21 +57,26 @@
                 if (strpos("WHERE", $q) == false) {
                     $q = $q . "WHERE";
                 }
+                $si = 13;
                 $q = $q . "`invoice`.`stetus_stetus_id` = '13'";  //show all On Shiping
             } else if ($_GET["fl"] == "14") {
                 if (strpos("WHERE", $q) == false) {
                     $q = $q . "WHERE";
                 }
+                $si = 14;
                 $q = $q . "`invoice`.`stetus_stetus_id` = '14'";  //show all Delivered
-            }else if ($_GET["fl"] == "9") {
+            } else if ($_GET["fl"] == "9") {
                 if (strpos("WHERE", $q) == false) {
                     $q = $q . "WHERE";
                 }
+                $si = 9;
                 $q = $q . "`invoice`.`stetus_stetus_id` = '9'";  //show all Delivered
             }
         }
 
         $getInvoice = Database::search($q);
+
+
 
     ?>
 
@@ -86,12 +95,24 @@
 
                     <div class="d-flex gap-2">
                         <select class="form-select" id="fl">
-                            <option value="1" selected>All</option>
-                            <option value="11">Processing</option>
-                            <option value="12">On Packing</option>
-                            <option value="13">On Shiping</option>
-                            <option value="14">Delivered</option>
-                            <option value="9">Cancel</option>
+                            <option value="1" <?php if ($si == "1") {
+                                                ?> selected <?php
+                                                        } ?>>All</option>
+                            <option value="11" <?php if ($si == "11") {
+                                                ?> selected <?php
+                                                        } ?>>Processing</option>
+                            <option value="12" <?php if ($si == "12") {
+                                                ?> selected <?php
+                                                        } ?>>On Packing</option>
+                            <option value="13" <?php if ($si == "13") {
+                                                ?> selected <?php
+                                                        } ?>>On Shiping</option>
+                            <option value="14" <?php if ($si == "14") {
+                                                ?> selected <?php
+                                                        } ?>>Delivered</option>
+                            <option value="9" <?php if ($si == "9") {
+                                                ?> selected <?php
+                                                        } ?>>Cancel</option>
                         </select>
                         <button class="btn btn-dark" onclick="filterInvoice();">Search</button>
                     </div>
