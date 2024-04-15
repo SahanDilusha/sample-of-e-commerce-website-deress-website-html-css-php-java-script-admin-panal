@@ -18,13 +18,15 @@ if ($id != "" || $id != null) {
 
             $object = new stdClass();
 
-            $object->itemId = $row['item_id'];
-            $object->itemName = $row['item_id'];
-            $object->itemName = $row['item_id'];
-            $object->itemPrice = $row['product_id'];
-            $object->itemQty = $row['item_id'];
+            $object->itemId = $row['invoice_items_id'];
+            $object->itemName = $row['product_name'];
+            $object->itemPrice = $row['product_price'];
+            $object->itemQty = $row['qty'];
+            $object->toatal = $row['qty']* $row['product_price'];
 
             array_push($array, $object);
         }
+
+        echo(json_encode($array));
     }
 }

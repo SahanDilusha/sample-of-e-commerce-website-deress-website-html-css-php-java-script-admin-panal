@@ -152,34 +152,15 @@
                                     <table class="table align-middle mb-0 bg-white">
                                         <thead class="bg-light">
                                             <tr>
-                                                <th>Product Id</th>
+                                                <th>Item Id</th>
                                                 <th>Product Name</th>
                                                 <th>QTY</th>
                                                 <th>Item Price(LKR)</th>
                                                 <th>Total(LKR)</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    #5788878
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <img src="http://localhost/MyShop/product_image/img2-2.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
-                                                        <div class="ms-3">
-                                                            <p class="fw-bold mb-1">John Doe</p>
-                                                            <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>10</td>
-                                                <td>3000.00</td>
-                                                <td>
-                                                    3000.00
-                                                </td>
-                                            </tr>
-
+                                        <tbody id="modalTableBody">
+                                           
                                         </tbody>
                                     </table>
                                 </div>

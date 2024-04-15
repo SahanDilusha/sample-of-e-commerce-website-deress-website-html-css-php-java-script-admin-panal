@@ -131,29 +131,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const request = new XMLHttpRequest();
 
-            const from = new FormData();
-            from.append("id",cells[0].textContent.trim());
+            const formData = new FormData();
+            formData.append("id", cells[0].textContent.trim());
 
             showSpinners();
 
             request.onreadystatechange = function () {
-
-                if (request.readyState == "4" && request.status == "200") {
+                if (request.readyState == 4 && request.status == 200) {
                     hideSpinners();
-                    if (request.responseText == "ok") {
-                        
-                        
-
+                    if (request.responseText) {
+                        const items = JSON.parse(request.responseText);
+                        populateModalTable(items);
                     }
                 }
-
-            }
+            };
 
             request.open("POST", "get-invoice-items.php", true);
-            request.send();
+            request.send(formData);
 
             // Show modal
-            modal.show(from);
+            modal.show();
         }
     });
 
@@ -176,7 +173,26 @@ document.addEventListener("DOMContentLoaded", function () {
         lastTouchTime = currentTime;
     }, false);
 
+    // Function to populate the modal table
+    function populateModalTable(items) {
+        const modalTableBody = document.getElementById("modalTableBody");
+        modalTableBody.innerHTML = ""; // Clear existing rows
+
+        items.forEach(item => {
+            const row = `
+                <tr>
+                    <td>${item.itemId}</td>
+                    <td>${item.itemName}</td>
+                    <td>${item.itemQty}</td>
+                    <td>${item.itemPrice}</td>
+                    <td>${item.toatal}</td>
+                </tr>
+            `;
+            modalTableBody.innerHTML += row;
+        });
+    }
 });
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const userTable = document.getElementById("user_table");
