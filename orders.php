@@ -48,14 +48,19 @@
 
                 <div class="col-12 d-flex justify-content-between align-items-center">
                     <h4 class="fw-bold">Orders</h4>
-                    <select class="form-select w-25" id="fl">
-                        <option value="1" selected>All</option>
-                        <option value="11">Processing</option>
-                        <option value="12">On Packing</option>
-                        <option value="13">On Shiping</option>
-                        <option value="14">Delivered</option>
-                        <option value="9">Cancel</option>
-                    </select>
+
+                    <div class="d-flex gap-2">
+                        <select class="form-select" id="fl">
+                            <option value="1" selected>All</option>
+                            <option value="11">Processing</option>
+                            <option value="12">On Packing</option>
+                            <option value="13">On Shiping</option>
+                            <option value="14">Delivered</option>
+                            <option value="9">Cancel</option>
+                        </select>
+                        <button class="btn btn-dark" onclick="filterInvoice();">Search</button>
+                    </div>
+
                 </div>
 
                 <div class="col-12 overflow-x-scroll mt-5">
