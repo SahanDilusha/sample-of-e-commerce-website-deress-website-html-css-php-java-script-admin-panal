@@ -24,7 +24,7 @@ session_start();
                     <a class="nav-link" href="#">Manege Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Users</a>
+                    <a class="nav-link" href="users.php">Users</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Admins</a>
