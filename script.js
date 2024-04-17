@@ -8,16 +8,18 @@ function hideSpinners() {
 
 function Login() {
 
-    const id = document.getElementById("id").value;
+    const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
     const form = new FormData();
-    form.append('id', id);
+    form.append('username', username);
     form.append('password', password);
 
     const request = new XMLHttpRequest();
 
     showSpinners();
+
+    
 
     request.onreadystatechange = function () {
 
