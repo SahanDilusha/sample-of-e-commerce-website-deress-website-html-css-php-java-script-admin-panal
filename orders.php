@@ -46,31 +46,31 @@
                     $q = $q . "WHERE";
                 }
                 $si = 11;
-                $q = $q . "`invoice`.`stetus_stetus_id` = '11'";  //show all Processing
+                $q = $q . "`invoice`.`invoice_stetus` = '11'";  //show all Processing
             } else if ($_GET["fl"] == "12") {
                 $si = 12;
                 if (strpos("WHERE", $q) == false) {
                     $q = $q . "WHERE";
                 }
-                $q = $q . "`invoice`.`stetus_stetus_id` = '12'";  //show all On Packing
+                $q = $q . "`invoice`.`invoice_stetus` = '12'";  //show all On Packing
             } else if ($_GET["fl"] == "13") {
                 if (strpos("WHERE", $q) == false) {
                     $q = $q . "WHERE";
                 }
                 $si = 13;
-                $q = $q . "`invoice`.`stetus_stetus_id` = '13'";  //show all On Shiping
+                $q = $q . "`invoice`.`invoice_stetus` = '13'";  //show all On Shiping
             } else if ($_GET["fl"] == "14") {
                 if (strpos("WHERE", $q) == false) {
                     $q = $q . "WHERE";
                 }
                 $si = 14;
-                $q = $q . "`invoice`.`stetus_stetus_id` = '14'";  //show all Delivered
+                $q = $q . "`invoice`.`invoice_stetus` = '14'";  //show all Delivered
             } else if ($_GET["fl"] == "9") {
                 if (strpos("WHERE", $q) == false) {
                     $q = $q . "WHERE";
                 }
                 $si = 9;
-                $q = $q . "`invoice`.`stetus_stetus_id` = '9'";  //show all Delivered
+                $q = $q . "`invoice`.`invoice_stetus` = '9'";  //show all Delivered
             }
         }
 
@@ -171,12 +171,22 @@
                                             } ?>
                                         </td>
                                         <td><?= $row["grand_total"]; ?></td>
-                                        <td><select class="form-select" aria-label="Default select example" id="get_status">
-                                                <option value="11">Processing</option>
-                                                <option value="12">On Packing</option>
-                                                <option value="13">On Shiping</option>
-                                                <option value="14">Delivered</option>
-                                                <option value="9">Cancel</option>
+                                        <td><select class="form-select" aria-label="Default select example" id="get_status" onchange="chengInvoiceStatus(<?= $row['invoice_id']; ?>);">
+                                                <option value="11" <?php if ($row["invoice_stetus"] == "11") {
+                                                                    ?> selected <?php
+                                                                    } ?>>Processing</option>
+                                                <option value="12" <?php if ($row["invoice_stetus"] == "12") {
+                                                                    ?> selected <?php
+                                                                    } ?>>On Packing</option>
+                                                <option value="13" <?php if ($row["invoice_stetus"] == "13") {
+                                                                    ?> selected <?php
+                                                                    } ?>>On Shiping</option>
+                                                <option value="14" <?php if ($row["invoice_stetus"] == "14") {
+                                                                    ?> selected <?php
+                                                                    } ?>>Delivered</option>
+                                                <option value="9" <?php if ($row["invoice_stetus"] == "9") {
+                                                                    ?> selected <?php
+                                                                    } ?>>Cancel</option>
                                             </select></td>
                                     </tr>
 
