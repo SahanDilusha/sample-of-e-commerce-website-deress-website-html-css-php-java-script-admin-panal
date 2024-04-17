@@ -297,7 +297,7 @@ function chengInvoiceStatus() {
 
     }
 
-    request.open("POST", "set-text.php", true);
+    request.open("POST", "cheng-Invoice-status.php", true);
     request.send(from);
 
 }
