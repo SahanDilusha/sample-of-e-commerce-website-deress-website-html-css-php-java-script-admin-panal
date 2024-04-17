@@ -241,9 +241,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     hideSpinners();
                     if (request.responseText) {
 
-                        const items = JSON.parse(request.responseText);
-                        populateModalTable(items);
 
+                        const items = JSON.parse(request.responseText);
+
+                        if (items == "no") {
+                            const modalTableBody = document.getElementById("modalTableBody");
+                            modalTableBody.innerHTML = ""; // Clear existing rows
+                        } else {
+                            populateModalTable(items);
+                        }
                     }
                 }
             };
@@ -284,12 +290,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         items.forEach(item => {
             const row = `
+            <tr>
             <td>${item.address_id}</td>
-            <td>${item.address_mobile}</td>
             <td>${item.address}</td>
             <td>${item.city_name}</td>
             <td>${item.district_name}</td>
             <td>${item.address_mobile}</td>
+            </tr>
             `;
             modalTableBody.innerHTML += row;
         });

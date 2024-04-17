@@ -184,7 +184,6 @@
                                         <thead class="bg-light">
                                             <tr>
                                                 <th>Address Id</th>
-                                                <th>No</th>
                                                 <th>Address</th>
                                                 <th>City</th>
                                                 <th>District</th>
