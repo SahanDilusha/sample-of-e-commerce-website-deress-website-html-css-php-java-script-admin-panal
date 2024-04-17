@@ -105,10 +105,16 @@
                                         <td>
                                             <?= $row["r_date"]; ?>
                                         </td>
-                                        <td><select class="form-select" aria-label="Default select example">
-                                                <option value="1" selected>Active</option>
-                                                <option value="6">Disable</option>
-                                                <option value="4">Delete</option>
+                                        <td><select class="form-select"  onchange="chengUserStatus('<?= $row['username']; ?>');" id="get_status">
+                                                <option value="1" <?php if ($row["stetus_stetus_id"] == "1") {
+                                                                    ?> selected <?php
+                                                                            } ?>>Active</option>
+                                                <option value="6" <?php if ($row["stetus_stetus_id"] == "6") {
+                                                                    ?> selected <?php
+                                                                            } ?>>Disable</option>
+                                                <option value="4" <?php if ($row["stetus_stetus_id"] == "4") {
+                                                                    ?> selected <?php
+                                                                            } ?>>Delete</option>
                                             </select></td>
                                     </tr>
 

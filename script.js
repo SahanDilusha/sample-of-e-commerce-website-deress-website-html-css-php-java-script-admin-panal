@@ -358,6 +358,7 @@ function chengInvoiceStatus(id) {
         if (request.readyState == "4" && request.status == "200") {
             alert(request.responseText);
             hideSpinners();
+            window.location.reload();
         }
 
     }
@@ -365,4 +366,30 @@ function chengInvoiceStatus(id) {
     request.open("POST", "cheng-Invoice-status.php", true);
     request.send(from);
 
+}
+
+function chengUserStatus(username) {
+
+    const st = document.getElementById("get_status").value;
+  
+    const request = new XMLHttpRequest();
+
+    const from = new FormData();
+    from.append('st', st);
+    from.append('username', username);
+
+    showSpinners();
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+            alert(request.responseText);
+            hideSpinners();
+            window.location.reload();
+        }
+
+    }
+
+    request.open("POST", "cheng-user-status.php", true);
+    request.send(from);
 }
