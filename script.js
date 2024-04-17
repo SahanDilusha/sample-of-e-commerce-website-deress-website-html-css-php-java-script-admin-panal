@@ -278,7 +278,7 @@ function filterInvoice() {
    
 }
 
-function chengInvoiceStatus() {
+function chengInvoiceStatus(id) {
     
     const st = document.getElementById("get_status").value;
 
@@ -286,6 +286,7 @@ function chengInvoiceStatus() {
 
     const from = new FormData();
     from.append('st', st);
+    from.append('id', id);
 
     showSpinners();
 
