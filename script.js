@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const request = new XMLHttpRequest();
 
             const formData = new FormData();
-            formData.append("id", cells[0].querySelector(".fw-bold").textContent.trim());
+            formData.append("username", cells[0].querySelector(".fw-bold").textContent.trim());
 
             showSpinners();
 
@@ -240,18 +240,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (request.readyState == 4 && request.status == 200) {
                     hideSpinners();
                     if (request.responseText) {
+
                         const items = JSON.parse(request.responseText);
                         populateModalTable(items);
+
                     }
                 }
             };
 
-            request.open("POST", "get-invoice-items.php", true);
+            request.open("POST", "get-user-address.php", true);
             request.send(formData);
 
             // Show modal
             modal.show();
         }
+
     });
 
     // Event listener for mobile touch (simulate double-click)
@@ -272,6 +275,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
         lastTouchTime = currentTime;
     }, false);
+
+
+    // Function to populate the modal table
+    function populateModalTable(items) {
+        const modalTableBody = document.getElementById("modalTableBody");
+        modalTableBody.innerHTML = ""; // Clear existing rows
+
+        items.forEach(item => {
+            const row = `
+            <td>${item.address_id}</td>
+            <td>${item.address_mobile}</td>
+            <td>${item.address}</td>
+            <td>${item.city_name}</td>
+            <td>${item.district_name}</td>
+            <td>${item.address_mobile}</td>
+            `;
+            modalTableBody.innerHTML += row;
+        });
+    }
+
 
 });
 

@@ -185,23 +185,14 @@
                                             <tr>
                                                 <th>Address Id</th>
                                                 <th>No</th>
-                                                <th>Line 1</th>
-                                                <th>Line 2</th>
+                                                <th>Address</th>
                                                 <th>City</th>
                                                 <th>District</th>
                                                 <th>Mobile</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
+                                        <tbody id="modalTableBody">
+
 
                                         </tbody>
                                     </table>

@@ -12,12 +12,26 @@ if (isset($_POST["username"])) {
         WHERE `user_address`.`users_username` = '" . $_POST["username"] . "';");
 
         if ($data->num_rows !=0) {
+
+            $array = array();
             
             for ($i=0; $i < $data->num_rows; $i++) { 
                 
-                
+              $row = $data->fetch_assoc();
+
+              $object = new  stdClass;
+              
+              $object -> city_name = $row["city_name"];
+              $object -> district_name = $row["district_name"];
+              $object -> address =  $row["line_1"].", ".$row["line_2"];
+              $object -> address_id = $row["address_id"];
+              $object -> address_mobile = $row["address_mobile"];
+             
+              array_push($array, $object);
 
             }
+
+            echo(json_encode($array));
 
         }
 
