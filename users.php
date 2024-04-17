@@ -14,7 +14,7 @@
 <body>
 
     <?php
-    
+
     include "navbar.php";
     if (!isset($_SESSION["user"])) {
         header("Location: http://localhost/myshop-admin/index.php");
@@ -43,9 +43,9 @@
 
                     <form class="d-flex w-50 mt-4 mb-4" role="search">
                         <input class="form-control me-2" type="search" value="<?php if (isset($_COOKIE['text'])) {
-                            echo($_COOKIE['text']);
-                        } ?>" id="searchField" placeholder="Username" aria-label="Search">
-                        <button class="btn btn-dark"  onclick="search();">Search</button>
+                                                                                    echo ($_COOKIE['text']);
+                                                                                } ?>" id="searchField" placeholder="Username" aria-label="Search">
+                        <button class="btn btn-dark" onclick="search();">Search</button>
                     </form>
 
 
@@ -107,11 +107,8 @@
                                         </td>
                                         <td><select class="form-select" aria-label="Default select example">
                                                 <option value="1" selected>Active</option>
-                                                <option value="2">Processing</option>
-                                                <option value="3">On Packing</option>
-                                                <option value="4">On Shiping</option>
-                                                <option value="5">Diliverd</option>
-                                                <option value="6">Cancel</option>
+                                                <option value="6">Disable</option>
+                                                <option value="4">Delete</option>
                                             </select></td>
                                     </tr>
 
@@ -125,11 +122,11 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="user_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="user_modalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">User</h1>
+                        <h1 class="modal-title fs-5" id="user_modalLabel">User</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -176,11 +173,8 @@
                                         <label for="in_status" class="form-label">Status</label>
                                         <select class="form-select" id="in_status">
                                             <option value="1" selected>Active</option>
-                                            <option value="2">Processing</option>
-                                            <option value="3">On Packing</option>
-                                            <option value="4">On Shiping</option>
-                                            <option value="5">Diliverd</option>
-                                            <option value="6">Cancel</option>
+                                            <option value="6">Disable</option>
+                                            <option value="4">Delete</option>
                                         </select>
                                     </div>
                                 </div>

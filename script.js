@@ -199,9 +199,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // get invoice items
 
+// user data
+
 document.addEventListener("DOMContentLoaded", function () {
     const userTable = document.getElementById("user_table");
-    const modal = new bootstrap.Modal(document.getElementById("staticBackdrop"));
+    const modal = new bootstrap.Modal(document.getElementById("user_modal"));
 
     // Event listener for table row double-click
     userTable.addEventListener("dblclick", function (event) {
@@ -211,12 +213,41 @@ document.addEventListener("DOMContentLoaded", function () {
         if (tr) {
             // Populate modal fields with table row data
             const cells = tr.querySelectorAll("td");
-            document.getElementById("in_id").value = cells[0].querySelector(".fw-bold").textContent.trim();
+            document.getElementById("in_username").value = cells[0].querySelector(".fw-bold").textContent.trim();
             document.getElementById("in_firstname").value = cells[1].textContent.trim();
             document.getElementById("in_lastname").value = cells[2].textContent.trim();
             document.getElementById("in_mobile").value = cells[3].textContent.trim();
             document.getElementById("in_email").value = cells[4].textContent.trim();
-            document.getElementById("in_status").value = tr.querySelector("select").value;
+
+            // Set selected status
+            const statusValue = tr.querySelector("select").value;
+            const statusSelect = document.getElementById("in_status");
+            for (let i = 0; i < statusSelect.options.length; i++) {
+                if (statusSelect.options[i].value === statusValue) {
+                    statusSelect.options[i].selected = true;
+                    break;
+                }
+            }
+
+            const request = new XMLHttpRequest();
+
+            const formData = new FormData();
+            formData.append("id", cells[0].querySelector(".fw-bold").textContent.trim());
+
+            showSpinners();
+
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    hideSpinners();
+                    if (request.responseText) {
+                        const items = JSON.parse(request.responseText);
+                        populateModalTable(items);
+                    }
+                }
+            };
+
+            request.open("POST", "get-invoice-items.php", true);
+            request.send(formData);
 
             // Show modal
             modal.show();
@@ -245,6 +276,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// user data
+
 function search() {
 
     const id = document.getElementById("searchField").value;
@@ -269,17 +302,17 @@ function search() {
 
 }
 
-function searchInvoice(){
-    window.location.href="http://localhost/myshop-admin/orders.php?id="+document.getElementById("searchField").value;
+function searchInvoice() {
+    window.location.href = "http://localhost/myshop-admin/orders.php?id=" + document.getElementById("searchField").value;
 }
 
 function filterInvoice() {
-    window.location.href="http://localhost/myshop-admin/orders.php?fl="+document.getElementById("fl").value;
-   
+    window.location.href = "http://localhost/myshop-admin/orders.php?fl=" + document.getElementById("fl").value;
+
 }
 
 function chengInvoiceStatus(id) {
-    
+
     const st = document.getElementById("get_status").value;
 
     const request = new XMLHttpRequest();
