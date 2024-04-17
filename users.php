@@ -187,28 +187,20 @@
                                                 <th>No</th>
                                                 <th>Line 1</th>
                                                 <th>Line 2</th>
+                                                <th>City</th>
+                                                <th>District</th>
                                                 <th>Mobile</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>
-                                                    #5788878
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <img src="http://localhost/MyShop/product_image/img2-2.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
-                                                        <div class="ms-3">
-                                                            <p class="fw-bold mb-1">John Doe</p>
-                                                            <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>10</td>
-                                                <td>3000.00</td>
-                                                <td>
-                                                    3000.00
-                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
 
                                         </tbody>
