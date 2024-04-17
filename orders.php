@@ -171,7 +171,7 @@
                                             } ?>
                                         </td>
                                         <td><?= $row["grand_total"]; ?></td>
-                                        <td><select class="form-select" aria-label="Default select example">
+                                        <td><select class="form-select" aria-label="Default select example" id="get_status">
                                                 <option value="11">Processing</option>
                                                 <option value="12">On Packing</option>
                                                 <option value="13">On Shiping</option>

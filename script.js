@@ -19,8 +19,6 @@ function Login() {
 
     showSpinners();
 
-    
-
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
@@ -280,3 +278,26 @@ function filterInvoice() {
    
 }
 
+function chengInvoiceStatus() {
+    
+    const st = document.getElementById("get_status").value;
+
+    const request = new XMLHttpRequest();
+
+    const from = new FormData();
+    from.append('st', st);
+
+    showSpinners();
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+            hideSpinners();
+        }
+
+    }
+
+    request.open("POST", "set-text.php", true);
+    request.send(from);
+
+}
