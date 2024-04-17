@@ -41,12 +41,25 @@
 
                     <h4 class="fw-bold">Users(<?= $getUsers->num_rows; ?>)</h4>
 
-                    <form class="d-flex w-50 mt-4 mb-4" role="search">
-                        <input class="form-control me-2" type="search" value="<?php if (isset($_COOKIE['text'])) {
-                                                                                    echo ($_COOKIE['text']);
-                                                                                } ?>" id="searchField" placeholder="Username" aria-label="Search">
-                        <button class="btn btn-dark" onclick="search();">Search</button>
-                    </form>
+                    <div class="d-flex w-100 mt-4 mb-4 justify-content-between align-items-center">
+
+                        <div class="d-flex gap-2">
+                            <input class="form-control me-2" type="search" value="<?php if (isset($_COOKIE['text'])) {
+                                                                                        echo ($_COOKIE['text']);
+                                                                                    } ?>" id="searchField" placeholder="Username" aria-label="Search">
+                            <button class="btn btn-dark" onclick="search();">Search</button>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <select class="form-select" onchange="chengUserStatus('<?= $row['username']; ?>');" id="get_status">
+                                <option value="1" selected>Active</option>
+                                <option value="6">Disable</option>
+                                <option value="4">Delete</option>
+                            </select>
+                            <button class="btn btn-dark">Apply</button>
+                        </div>
+
+                    </div>
 
 
                     <table class="table align-middle mb-0 bg-white" id="user_table">
@@ -105,7 +118,7 @@
                                         <td>
                                             <?= $row["r_date"]; ?>
                                         </td>
-                                        <td><select class="form-select"  onchange="chengUserStatus('<?= $row['username']; ?>');" id="get_status">
+                                        <td><select class="form-select" onchange="chengUserStatus('<?= $row['username']; ?>');" id="get_status">
                                                 <option value="1" <?php if ($row["stetus_stetus_id"] == "1") {
                                                                     ?> selected <?php
                                                                             } ?>>Active</option>

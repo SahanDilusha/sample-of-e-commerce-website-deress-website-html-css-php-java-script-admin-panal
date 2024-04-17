@@ -83,38 +83,52 @@
         <div class="container-fluid overflow-x-hidden">
             <div class="row">
 
-                <div class="d-flex w-50 mt-4 mb-4">
-                    <input class="form-control me-2" type="text" value="<?php if (isset($_GET["id"])) {
-                                                                            echo ($_GET["id"]);
-                                                                        } ?>" id="searchField" placeholder="Invoice No" />
-                    <button class="btn btn-dark" onclick="searchInvoice();">Search</button>
+
+
+                <div class="w-100 mt-4 mb-4">
+
+                    <h4 class="fw-bold">Orders</h4>
+
                 </div>
 
                 <div class="col-12 d-flex justify-content-between align-items-center">
-                    <h4 class="fw-bold">Orders</h4>
 
-                    <div class="d-flex gap-2">
-                        <select class="form-select" id="fl">
-                            <option value="1" <?php if ($si == "1") {
-                                                ?> selected <?php
-                                                        } ?>>All</option>
-                            <option value="11" <?php if ($si == "11") {
-                                                ?> selected <?php
-                                                        } ?>>Processing</option>
-                            <option value="12" <?php if ($si == "12") {
-                                                ?> selected <?php
-                                                        } ?>>On Packing</option>
-                            <option value="13" <?php if ($si == "13") {
-                                                ?> selected <?php
-                                                        } ?>>On Shiping</option>
-                            <option value="14" <?php if ($si == "14") {
-                                                ?> selected <?php
-                                                        } ?>>Delivered</option>
-                            <option value="9" <?php if ($si == "9") {
-                                                ?> selected <?php
-                                                        } ?>>Cancel</option>
-                        </select>
-                        <button class="btn btn-dark" onclick="filterInvoice();">Search</button>
+
+
+
+                    <div class="d-flex w-100 mt-4 mb-4 justify-content-between align-items-center">
+
+                        <div class="d-flex gap-2">
+                            <input class="form-control me-2" type="text" value="<?php if (isset($_GET["id"])) {
+                                                                                    echo ($_GET["id"]);
+                                                                                } ?>" id="searchField" placeholder="Invoice No" />
+                            <button class="btn btn-dark" onclick="searchInvoice();">Search</button>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <select class="form-select" id="fl">
+                                <option value="1" <?php if ($si == "1") {
+                                                    ?> selected <?php
+                                                            } ?>>All</option>
+                                <option value="11" <?php if ($si == "11") {
+                                                    ?> selected <?php
+                                                            } ?>>Processing</option>
+                                <option value="12" <?php if ($si == "12") {
+                                                    ?> selected <?php
+                                                            } ?>>On Packing</option>
+                                <option value="13" <?php if ($si == "13") {
+                                                    ?> selected <?php
+                                                            } ?>>On Shiping</option>
+                                <option value="14" <?php if ($si == "14") {
+                                                    ?> selected <?php
+                                                            } ?>>Delivered</option>
+                                <option value="9" <?php if ($si == "9") {
+                                                    ?> selected <?php
+                                                            } ?>>Cancel</option>
+                            </select>
+                            <button class="btn btn-dark" onclick="filterInvoice();">Apply</button>
+                        </div>
+
                     </div>
 
                 </div>
@@ -174,19 +188,19 @@
                                         <td><select class="form-select" aria-label="Default select example" id="get_status" onchange="chengInvoiceStatus(<?= $row['invoice_id']; ?>);">
                                                 <option value="11" <?php if ($row["invoice_stetus"] == "11") {
                                                                     ?> selected <?php
-                                                                    } ?>>Processing</option>
+                                                                            } ?>>Processing</option>
                                                 <option value="12" <?php if ($row["invoice_stetus"] == "12") {
                                                                     ?> selected <?php
-                                                                    } ?>>On Packing</option>
+                                                                            } ?>>On Packing</option>
                                                 <option value="13" <?php if ($row["invoice_stetus"] == "13") {
                                                                     ?> selected <?php
-                                                                    } ?>>On Shiping</option>
+                                                                            } ?>>On Shiping</option>
                                                 <option value="14" <?php if ($row["invoice_stetus"] == "14") {
                                                                     ?> selected <?php
-                                                                    } ?>>Delivered</option>
+                                                                            } ?>>Delivered</option>
                                                 <option value="9" <?php if ($row["invoice_stetus"] == "9") {
                                                                     ?> selected <?php
-                                                                    } ?>>Cancel</option>
+                                                                            } ?>>Cancel</option>
                                             </select></td>
                                     </tr>
 
