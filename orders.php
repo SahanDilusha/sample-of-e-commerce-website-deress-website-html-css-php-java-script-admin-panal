@@ -76,8 +76,6 @@
 
         $getInvoice = Database::search($q);
 
-
-
     ?>
 
         <div class="container-fluid overflow-x-hidden">
@@ -93,10 +91,7 @@
 
                 <div class="col-12 d-flex justify-content-between align-items-center">
 
-
-
-
-                    <div class="d-flex w-100 mt-4 mb-4 justify-content-between align-items-center">
+                    <div class="d-flex w-100 mt-2 mb-2 justify-content-between align-items-center">
 
                         <div class="d-flex gap-2">
                             <input class="form-control me-2" type="text" value="<?php if (isset($_GET["id"])) {
