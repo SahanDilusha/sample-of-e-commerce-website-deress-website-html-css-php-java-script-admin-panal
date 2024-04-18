@@ -468,6 +468,8 @@ function addNewAddmin() {
         showToast('Email is invalid!','bg-danger-subtle');
     }else if (mregex.test(mobile.value)==false) {
         showToast('Mobile Number is invalid!','bg-danger-subtle');
+    }else{
+        
     }
 
 }
