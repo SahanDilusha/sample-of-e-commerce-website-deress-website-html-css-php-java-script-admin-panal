@@ -434,3 +434,9 @@ function chengAdminStatus(username) {
     request.open("POST", "cheng-admin-status.php", true);
     request.send(from);
 }
+
+function addNewAddmin() {
+    
+    
+
+}

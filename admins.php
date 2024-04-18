@@ -24,7 +24,7 @@
         include "connecton.php";
         include "spinners.php";
 
-        $q = "SELECT * FROM `system_login` WHERE `system_login_username` !='".$_SESSION["user"]["system_login_username"]."'";
+        $q = "SELECT * FROM `system_login` WHERE `system_login_username` !='" . $_SESSION["user"]["system_login_username"] . "'";
 
         if (isset($_GET['search'])) {
             if ($_GET['search'] != '') {
@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="d-flex gap-2">
-                            <select class="form-select"  id="get_status">
+                            <select class="form-select" id="get_status">
                                 <option value="0" <?php if (isset($_GET["fl"])) {
                                                         if ($_GET["fl"] == "0") {
                                                     ?> selected <?php
@@ -84,6 +84,10 @@
                             <button class="btn btn-dark" onclick="flAdmin();">Apply</button>
                         </div>
 
+                    </div>
+
+                    <div class="w-100 mb-3 d-flex justify-content-end">
+                        <button class="btn btn-dark" onclick="addNewAddmin();">Add New Admin</button>
                     </div>
 
                     <table class="table align-middle mb-0 bg-white">
@@ -164,7 +168,7 @@
             </div>
         </div>
 
-       
+
         <?php
         include "modle-erro.php";
         ?>
