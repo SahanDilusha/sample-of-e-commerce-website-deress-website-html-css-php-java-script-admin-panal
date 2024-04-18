@@ -2,7 +2,7 @@
 
 class GeneratePassword
 {
-    public final function generatePassword($length)
+    public final static function generatePassword($length)
     {
         $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $lowercase = 'abcdefghijklmnopqrstuvwxyz';

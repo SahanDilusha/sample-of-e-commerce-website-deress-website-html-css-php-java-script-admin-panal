@@ -26,7 +26,13 @@ if (!isset($_POST["email"])) {
 
     if ($checkData->num_rows == 0) {
 
-        Database::iud("INSERT INTO `system_login`(`system_login_username`,
+        include "generate-password.php";
+        include "generate-otp.php";
+
+        $username = strstr($_POST["email"], '@', true);
+
+        Database::iud("INSERT INTO `system_login`(
+        `system_login_username`,
         `password`,
         `system_login_r_date`,
         `stetus_stetus_id`,
@@ -38,8 +44,22 @@ if (!isset($_POST["email"])) {
         `mobile`,
         `first_name`,
         `last_name`) VALUES(
-        
+        '" . $username . "',
+        '" . GeneratePassword::generatePassword(8) . "',
+        '" . date('Y-m-d H:i:s') . "',
+        '1',
+        '4',
+        '" . $_POST["email"] . "',
+        '1',
+        '" . GenerateOtp::generateOTP(6) . "',
+        '2',
+        '" . $_POST["mobile"] . "',
+        '" . $_POST["fname"] . "',
+        '" . $_POST["lname"] . "'
         );");
+
+        echo("ok");
+
     } else {
         $row = $checkData->fetch_assoc();
 
