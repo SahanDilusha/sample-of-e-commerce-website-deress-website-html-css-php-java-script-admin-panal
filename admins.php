@@ -76,11 +76,6 @@
                                                     ?> selected <?php
                                                             }
                                                         } ?>>Disable</option>
-                                <option value="4" <?php if (isset($_GET["fl"])) {
-                                                        if ($_GET["fl"] == "4") {
-                                                    ?> selected <?php
-                                                            }
-                                                        } ?>>Delete</option>
                             </select>
                             <button class="btn btn-dark" onclick="flAdmin();">Apply</button>
                         </div>
@@ -154,9 +149,6 @@
                                                 <option value="6" <?php if ($row["stetus_stetus_id"] == "6") {
                                                                     ?> selected <?php
                                                                             } ?>>Disable</option>
-                                                <option value="4" <?php if ($row["stetus_stetus_id"] == "4") {
-                                                                    ?> selected <?php
-                                                                            } ?>>Delete</option>
                                             </select></td>
                                     </tr>
 

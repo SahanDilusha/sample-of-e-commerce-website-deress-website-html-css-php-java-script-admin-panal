@@ -436,7 +436,6 @@ function chengAdminStatus(username) {
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-            alert(request.responseText);
             hideSpinners();
             window.location.reload();
         }
