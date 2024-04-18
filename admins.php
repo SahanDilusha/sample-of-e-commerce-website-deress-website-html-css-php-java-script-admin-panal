@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users</title>
+    <title>Admins</title>
     <link rel="icon" href="resources/image/Logo.png" />
     <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-12 overflow-x-scroll mt-5">
 
-                    <h4 class="fw-bold">Users(<?= $getUsers->num_rows; ?>)</h4>
+                    <h4 class="fw-bold">Admins(<?= $getUsers->num_rows; ?>)</h4>
 
                     <div class="d-flex w-100 mt-4 mb-4 justify-content-between align-items-center">
 

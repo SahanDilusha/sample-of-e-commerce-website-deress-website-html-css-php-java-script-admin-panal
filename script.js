@@ -409,3 +409,28 @@ function searchAdmins() {
 function flAdmin() {
     window.location.href="http://localhost/myshop-admin/admins.php?fl=" + document.getElementById("get_status").value;
 }
+
+function chengAdminStatus(username) {
+    const st = document.getElementById("get_status1").value;
+  
+    const request = new XMLHttpRequest();
+
+    const from = new FormData();
+    from.append('st', st);
+    from.append('username', username);
+
+    showSpinners();
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+            alert(request.responseText);
+            hideSpinners();
+            window.location.reload();
+        }
+
+    }
+
+    request.open("POST", "cheng-admin-status.php", true);
+    request.send(from);
+}
