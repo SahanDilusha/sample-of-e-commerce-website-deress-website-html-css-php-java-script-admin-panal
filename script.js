@@ -6,9 +6,9 @@ function hideSpinners() {
     document.getElementById("loadingSpin").className = "d-none";
 }
 
-function showToast(text,cl) {
+function showToast(text, cl) {
     document.getElementById("text-body").innerHTML = text;
-    document.getElementById("toast-container").className = "toast "+cl;
+    document.getElementById("toast-container").className = "toast " + cl;
     const toastElement = new bootstrap.Toast(document.querySelector('.toast'));
     toastElement.show();
 }
@@ -457,19 +457,45 @@ function addNewAddmin() {
     const mregex = /^[0]{1}[7]{1}[01245678]{1}[0-9]{7}$/;
 
     if (email.value == "") {
-        showToast('Please enter an Email address!','bg-danger-subtle');
-    }else if (fname.value =="") {
-        showToast('Please enter first name!','bg-danger-subtle');
-    }else if (lname.value =="") {
-        showToast('Please enter last name!','bg-danger-subtle');
-    }else if (mobile.value =="") {
-        showToast('Please enter mobile number!','bg-danger-subtle');
-    }else if (regex.test(email.value)==false) {
-        showToast('Email is invalid!','bg-danger-subtle');
-    }else if (mregex.test(mobile.value)==false) {
-        showToast('Mobile Number is invalid!','bg-danger-subtle');
-    }else{
-        
+        showToast('Please enter an Email address!', 'bg-danger-subtle');
+    } else if (fname.value == "") {
+        showToast('Please enter first name!', 'bg-danger-subtle');
+    } else if (lname.value == "") {
+        showToast('Please enter last name!', 'bg-danger-subtle');
+    } else if (mobile.value == "") {
+        showToast('Please enter mobile number!', 'bg-danger-subtle');
+    } else if (regex.test(email.value) == false) {
+        showToast('Email is invalid!', 'bg-danger-subtle');
+    } else if (mregex.test(mobile.value) == false) {
+        showToast('Mobile Number is invalid!', 'bg-danger-subtle');
+    } else {
+
+        const request = new XMLHttpRequest();
+
+        const from = new FormData();
+        from.append('email', email.value);
+        from.append('fname', fname.value);
+        from.append('lname', lname.value);
+        from.append('mobile', mobile.value);
+
+        showSpinners();
+
+        request.onreadystatechange = function () {
+            hideSpinners();
+            if (request.readyState == "4" && request.status == "200") {
+
+                if (request.responseText == "ok") {
+                    window.location.reload();
+                } else {
+                    showToast(`${request.responseText}`, 'bg-danger-subtle');
+                }
+            }
+
+        }
+
+        request.open("POST", "add-new-admin.php", true);
+        request.send(from);
+
     }
 
 }
