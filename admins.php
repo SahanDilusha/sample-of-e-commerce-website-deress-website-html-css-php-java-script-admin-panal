@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="w-100 mb-3 d-flex justify-content-end">
-                        <button class="btn btn-dark" onclick="addNewAddmin();">Add New Admin</button>
+                        <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#addAdminModle">Add New Admin</button>
                     </div>
 
                     <table class="table align-middle mb-0 bg-white">
@@ -164,6 +164,26 @@
 
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="addAdminModle" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addAdminModleLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="addAdminModleLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark">Add</button>
+                    </div>
                 </div>
             </div>
         </div>
