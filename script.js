@@ -452,7 +452,9 @@ function addNewAddmin() {
     const email = document.getElementById("new_email");
     const fname = document.getElementById("new_fname");
     const lname = document.getElementById("new_lname");
+    const mobile = document.getElementById("new_mobile");
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const mregex = /^[0]{1}[7]{1}[01245678]{1}[0-9]{7}$/;
 
     if (email.value == "") {
         showToast('Please enter an Email address!','bg-danger-subtle');
@@ -460,8 +462,12 @@ function addNewAddmin() {
         showToast('Please enter first name!','bg-danger-subtle');
     }else if (lname.value =="") {
         showToast('Please enter last name!','bg-danger-subtle');
+    }else if (mobile.value =="") {
+        showToast('Please enter mobile number!','bg-danger-subtle');
     }else if (regex.test(email.value)==false) {
         showToast('Email is invalid!','bg-danger-subtle');
+    }else if (mregex.test(mobile.value)==false) {
+        showToast('Mobile Number is invalid!','bg-danger-subtle');
     }
 
 }

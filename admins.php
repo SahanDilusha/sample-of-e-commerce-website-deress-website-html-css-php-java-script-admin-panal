@@ -191,6 +191,10 @@
                                 <label for="new_lname" class="form-label">Last Name</label>
                                 <input type="text" class="form-control" id="new_lname">
                             </div>
+                            <div class="col-12 mb-2">
+                                <label for="new_lname" class="form-label">Mobile</label>
+                                <input type="text" class="form-control" id="new_mobile">
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
