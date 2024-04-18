@@ -452,6 +452,7 @@ function addNewAddmin() {
     const email = document.getElementById("new_email");
     const fname = document.getElementById("new_fname");
     const lname = document.getElementById("new_lname");
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if (email.value == "") {
         showToast('Please enter an Email address!','bg-danger-subtle');
@@ -459,6 +460,8 @@ function addNewAddmin() {
         showToast('Please enter first name!','bg-danger-subtle');
     }else if (lname.value =="") {
         showToast('Please enter last name!','bg-danger-subtle');
+    }else if (regex.test(email.value)==false) {
+        showToast('Email is invalid!','bg-danger-subtle');
     }
 
 }
