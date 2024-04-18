@@ -23,6 +23,7 @@
 
         include "connecton.php";
         include "spinners.php";
+        include "toast.php";
 
         $q = "SELECT * FROM `system_login` WHERE `system_login_username` !='" . $_SESSION["user"]["system_login_username"] . "'";
 
@@ -49,7 +50,7 @@
 
                     <h4 class="fw-bold">Admins(<?= $getUsers->num_rows; ?>)</h4>
 
-                    <div class="d-flex w-100 mt-4 mb-4 justify-content-between align-items-center">
+                    <div class="d-flex  w-100 mt-4 mb-4 justify-content-between align-items-center">
 
                         <div class="d-flex gap-2">
                             <input class="form-control me-2" type="search" value="<?php if (isset($_GET['search'])) {
@@ -167,7 +168,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- Modal -->
         <div class="modal fade" id="addAdminModle" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addAdminModleLabel" aria-hidden="true">

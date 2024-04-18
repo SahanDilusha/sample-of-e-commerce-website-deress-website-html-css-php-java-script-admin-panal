@@ -6,6 +6,18 @@ function hideSpinners() {
     document.getElementById("loadingSpin").className = "d-none";
 }
 
+function showToast(text,cl) {
+    document.getElementById("text-body").innerHTML = text;
+    document.getElementById("toast-container").className = "toast "+cl;
+    const toastElement = new bootstrap.Toast(document.querySelector('.toast'));
+    toastElement.show();
+}
+
+function hideToast() {
+    const toastElement = new bootstrap.Toast(document.querySelector('.toast'));
+    toastElement.hide();
+}
+
 function Login() {
 
     const username = document.getElementById("username").value;
@@ -371,7 +383,7 @@ function chengInvoiceStatus(id) {
 function chengUserStatus(username) {
 
     const st = document.getElementById("get_status1").value;
-  
+
     const request = new XMLHttpRequest();
 
     const from = new FormData();
@@ -395,24 +407,24 @@ function chengUserStatus(username) {
 }
 
 function searchUsers() {
-    window.location.href="http://localhost/myshop-admin/users.php?search=" + document.getElementById("searchField").value;
+    window.location.href = "http://localhost/myshop-admin/users.php?search=" + document.getElementById("searchField").value;
 }
 
 function flUsers() {
-    window.location.href="http://localhost/myshop-admin/users.php?fl=" + document.getElementById("get_status").value;
+    window.location.href = "http://localhost/myshop-admin/users.php?fl=" + document.getElementById("get_status").value;
 }
 
 function searchAdmins() {
-    window.location.href="http://localhost/myshop-admin/admins.php?search=" + document.getElementById("searchField").value;
+    window.location.href = "http://localhost/myshop-admin/admins.php?search=" + document.getElementById("searchField").value;
 }
 
 function flAdmin() {
-    window.location.href="http://localhost/myshop-admin/admins.php?fl=" + document.getElementById("get_status").value;
+    window.location.href = "http://localhost/myshop-admin/admins.php?fl=" + document.getElementById("get_status").value;
 }
 
 function chengAdminStatus(username) {
     const st = document.getElementById("get_status1").value;
-  
+
     const request = new XMLHttpRequest();
 
     const from = new FormData();
@@ -436,7 +448,17 @@ function chengAdminStatus(username) {
 }
 
 function addNewAddmin() {
-    
 
+    const email = document.getElementById("new_email");
+    const fname = document.getElementById("new_fname");
+    const lname = document.getElementById("new_lname");
+
+    if (email.value == "") {
+        showToast('Please enter an Email address!','bg-danger-subtle');
+    }else if (fname.value =="") {
+        showToast('Please enter first name!','bg-danger-subtle');
+    }else if (lname.value =="") {
+        showToast('Please enter last name!','bg-danger-subtle');
+    }
 
 }
