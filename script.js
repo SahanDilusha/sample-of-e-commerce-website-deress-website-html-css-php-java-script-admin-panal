@@ -370,7 +370,7 @@ function chengInvoiceStatus(id) {
 
 function chengUserStatus(username) {
 
-    const st = document.getElementById("get_status").value;
+    const st = document.getElementById("get_status1").value;
   
     const request = new XMLHttpRequest();
 

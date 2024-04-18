@@ -60,16 +60,31 @@
 
                         <div class="d-flex gap-2">
                             <select class="form-select" onchange="chengUserStatus('<?= $row['username']; ?>');" id="get_status">
-                                <option value="0" selected>All</option>
-                                <option value="1">Active</option>
-                                <option value="6">Disable</option>
-                                <option value="4">Delete</option>
+                                <option value="0" <?php if (isset($_GET["fl"])) {
+                                                        if ($_GET["fl"] == "0") {
+                                                    ?> selected <?php
+                                                            }
+                                                        } ?>>All</option>
+                                <option value="1" <?php if (isset($_GET["fl"])) {
+                                                        if ($_GET["fl"] == "1") {
+                                                    ?> selected <?php
+                                                            }
+                                                        } ?>>Active</option>
+                                <option value="6" <?php if (isset($_GET["fl"])) {
+                                                        if ($_GET["fl"] == "6") {
+                                                    ?> selected <?php
+                                                            }
+                                                        } ?>>Disable</option>
+                                <option value="4" <?php if (isset($_GET["fl"])) {
+                                                        if ($_GET["fl"] == "4") {
+                                                    ?> selected <?php
+                                                            }
+                                                        } ?>>Delete</option>
                             </select>
                             <button class="btn btn-dark" onclick="flUsers();">Apply</button>
                         </div>
 
                     </div>
-
 
                     <table class="table align-middle mb-0 bg-white" id="user_table">
                         <thead class="bg-light">
@@ -127,7 +142,7 @@
                                         <td>
                                             <?= $row["r_date"]; ?>
                                         </td>
-                                        <td><select class="form-select" onchange="chengUserStatus('<?= $row['username']; ?>');" id="get_status">
+                                        <td><select class="form-select" onchange="chengUserStatus('<?= $row['username']; ?>');" id="get_status1">
                                                 <option value="1" <?php if ($row["stetus_stetus_id"] == "1") {
                                                                     ?> selected <?php
                                                                             } ?>>Active</option>
