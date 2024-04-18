@@ -21,8 +21,17 @@
         exit;
     } else {
 
-        setcookie("text","");
+        include "connecton.php";
+        $total = 0;
+        $gettotal = Database::search("SELECT `invoice`.`grand_total` FROM `invoice` WHERE `invoice`.`invoice_stetus` = '14' AND `date` LIKE '%" . date('Y-m') . "%';");
+        $getCountOrders = Database::search("SELECT COUNT(`invoice`.`invoice_id`) AS `count` FROM `invoice` WHERE `invoice`.`invoice_stetus` = '11';");
+        $getUserCount = Database::search("SELECT COUNT(`users`.`username`) AS `count` FROM `users` WHERE `users`.`stetus_stetus_id` = '1';");
 
+        if ($gettotal->num_rows != 0) {
+            for ($i = 0; $i < $gettotal->num_rows; $i++) {
+                $total += $gettotal->fetch_assoc()["grand_total"];
+            }
+        }
     ?>
 
         <div class="container mt-5 mb-5">
@@ -33,7 +42,11 @@
                     </div>
                     <div class="w-75">
                         <h5 class="text-center fw-bold pt-3 ps-3">New Orders</h5>
-                        <h3 class="text-center">10</h3>
+                        <h3 class="text-center"><?php
+                                                if ($getCountOrders->num_rows != 0) {
+                                                    echo ($getCountOrders->fetch_assoc()['count']);
+                                                }
+                                                ?></h3>
                     </div>
                 </div>
                 <div class="col-md-3 col-lg-3 d2 p-4 d-flex rounded-3">
@@ -41,8 +54,8 @@
                         <i class="bi bi-cash-coin fs-1 text-white"></i>
                     </div>
                     <div class="w-75">
-                        <h5 class="text-center fw-bold pt-3 ps-3">Total Revenue</h5>
-                        <h3 class="text-center">10</h3>
+                        <h5 class="text-center fw-bold pt-3 ps-3">Total Revenue(LKR)</h5>
+                        <h3 class="text-center"><?= $total ?></h3>
                     </div>
                 </div>
                 <div class="col-md-3 col-lg-3 d3 p-4 d-flex rounded-3">
@@ -51,7 +64,11 @@
                     </div>
                     <div class="w-75">
                         <h5 class="text-center fw-bold pt-3 ps-3">Total Users</h5>
-                        <h3 class="text-center">10</h3>
+                        <h3 class="text-center"><?php
+                                                if ($getUserCount->num_rows != 0) {
+                                                    echo ($getUserCount->fetch_assoc()['count']);
+                                                }
+                                                ?></h3>
                     </div>
                 </div>
 
