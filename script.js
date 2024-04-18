@@ -393,3 +393,11 @@ function chengUserStatus(username) {
     request.open("POST", "cheng-user-status.php", true);
     request.send(from);
 }
+
+function searchUsers() {
+    window.location.href="http://localhost/myshop-admin/users.php?search=" + document.getElementById("searchField").value;
+}
+
+function flUsers() {
+    window.location.href="http://localhost/myshop-admin/users.php?fl=" + document.getElementById("get_status").value;
+}

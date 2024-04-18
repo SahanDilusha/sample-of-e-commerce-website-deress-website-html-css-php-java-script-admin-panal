@@ -24,11 +24,19 @@
         include "connecton.php";
         include "spinners.php";
 
-
         $q = "SELECT * FROM `users`";
 
-        if (isset($_COOKIE['text'])) {
-            $q = $q . ' WHERE username LIKE "%' . $_COOKIE['text'] . '%"';
+        if (isset($_GET['search'])) {
+            if ($_GET['search'] != '') {
+                $q = $q . ' WHERE `username` LIKE "%' . $_GET['search'] . '%"';
+            }
+        }
+
+        if (isset($_GET["fl"])) {
+
+            if ($_GET["fl"] != "0" & $_GET["fl"] != "") {
+                $q = $q . "WHERE `stetus_stetus_id` = '" . $_GET['fl'] . "' ";
+            }
         }
 
         $getUsers = Database::search($q);
@@ -44,19 +52,20 @@
                     <div class="d-flex w-100 mt-4 mb-4 justify-content-between align-items-center">
 
                         <div class="d-flex gap-2">
-                            <input class="form-control me-2" type="search" value="<?php if (isset($_COOKIE['text'])) {
-                                                                                        echo ($_COOKIE['text']);
+                            <input class="form-control me-2" type="search" value="<?php if (isset($_GET['search'])) {
+                                                                                        echo ($_GET['search']);
                                                                                     } ?>" id="searchField" placeholder="Username" aria-label="Search">
-                            <button class="btn btn-dark" onclick="search();">Search</button>
+                            <button class="btn btn-dark" onclick="searchUsers();">Search</button>
                         </div>
 
                         <div class="d-flex gap-2">
                             <select class="form-select" onchange="chengUserStatus('<?= $row['username']; ?>');" id="get_status">
-                                <option value="1" selected>Active</option>
+                                <option value="0" selected>All</option>
+                                <option value="1">Active</option>
                                 <option value="6">Disable</option>
                                 <option value="4">Delete</option>
                             </select>
-                            <button class="btn btn-dark">Apply</button>
+                            <button class="btn btn-dark" onclick="flUsers();">Apply</button>
                         </div>
 
                     </div>
