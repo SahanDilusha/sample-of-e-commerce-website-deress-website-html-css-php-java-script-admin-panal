@@ -174,15 +174,28 @@
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="addAdminModleLabel">Modal title</h1>
+                        <h1 class="modal-title fs-5" id="addAdminModleLabel">Add New Admin</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <div class="row d-flex align-items-center">
+                            <div class="col-12 mb-2">
+                                <label for="new_email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="new_email">
+                            </div>
+                            <div class="col-12 mb-2">
+                                <label for="new_fname" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="new_fname">
+                            </div>
+                            <div class="col-12 mb-2">
+                                <label for="new_lname" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="new_lname">
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-dark">Add</button>
+                        <button type="button" class="btn btn-dark" onclick="addNewAddmin();">Add</button>
                     </div>
                 </div>
             </div>

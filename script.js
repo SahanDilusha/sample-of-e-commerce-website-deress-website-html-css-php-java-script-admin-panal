@@ -435,7 +435,7 @@ function chengAdminStatus(username) {
     request.send(from);
 }
 
-function addNewAddmin(i) {
+function addNewAddmin() {
     
 
 
