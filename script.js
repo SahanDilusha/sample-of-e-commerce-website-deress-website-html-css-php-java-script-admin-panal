@@ -401,3 +401,11 @@ function searchUsers() {
 function flUsers() {
     window.location.href="http://localhost/myshop-admin/users.php?fl=" + document.getElementById("get_status").value;
 }
+
+function searchAdmins() {
+    window.location.href="http://localhost/myshop-admin/admins.php?search=" + document.getElementById("searchField").value;
+}
+
+function flAdmin() {
+    window.location.href="http://localhost/myshop-admin/admins.php?fl=" + document.getElementById("get_status").value;
+}

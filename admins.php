@@ -24,11 +24,11 @@
         include "connecton.php";
         include "spinners.php";
 
-        $q = "SELECT * FROM `users`";
+        $q = "SELECT * FROM `system_login`";
 
         if (isset($_GET['search'])) {
             if ($_GET['search'] != '') {
-                $q = $q . ' WHERE `username` LIKE "%' . $_GET['search'] . '%"';
+                $q = $q . ' WHERE `system_login_username` LIKE "%' . $_GET['search'] . '%"';
             }
         }
 
@@ -55,7 +55,7 @@
                             <input class="form-control me-2" type="search" value="<?php if (isset($_GET['search'])) {
                                                                                         echo ($_GET['search']);
                                                                                     } ?>" id="searchField" placeholder="Username" aria-label="Search">
-                            <button class="btn btn-dark" onclick="searchUsers();">Search</button>
+                            <button class="btn btn-dark" onclick="searchAdmins();">Search</button>
                         </div>
 
                         <div class="d-flex gap-2">
@@ -81,12 +81,12 @@
                                                             }
                                                         } ?>>Delete</option>
                             </select>
-                            <button class="btn btn-dark" onclick="flUsers();">Apply</button>
+                            <button class="btn btn-dark" onclick="flAdmin();">Apply</button>
                         </div>
 
                     </div>
 
-                    <table class="table align-middle mb-0 bg-white" id="user_table">
+                    <table class="table align-middle mb-0 bg-white">
                         <thead class="bg-light">
                             <tr>
                                 <th>Username</th>
@@ -118,12 +118,12 @@
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <img src="http://localhost/MyShop/profile_images/<?= $row["username"]; ?>.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
+                                                    <img src="http://localhost/MyShop/profile_images/<?= $row["system_login_username"]; ?>.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
                                                 <?php
                                                 }
                                                 ?>
                                                 <div class="ms-3">
-                                                    <p class="fw-bold mb-1"><?= $row["username"]; ?></p>
+                                                    <p class="fw-bold mb-1"><?= $row["system_login_username"]; ?></p>
                                                 </div>
                                             </div>
                                         </td>
@@ -140,9 +140,9 @@
                                             <?= $row["email"]; ?>
                                         </td>
                                         <td>
-                                            <?= $row["r_date"]; ?>
+                                            <?= $row["system_login_r_date"]; ?>
                                         </td>
-                                        <td><select class="form-select" onchange="chengUserStatus('<?= $row['username']; ?>');" id="get_status1">
+                                        <td><select class="form-select" onchange="chengAdminStatus('<?= $row['system_login_username']; ?>');" id="get_status1">
                                                 <option value="1" <?php if ($row["stetus_stetus_id"] == "1") {
                                                                     ?> selected <?php
                                                                             } ?>>Active</option>
@@ -164,89 +164,7 @@
             </div>
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="user_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="user_modalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="user_modalLabel">User</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="in_id" class="form-label">Username</label>
-                                        <input type="text" class="form-control" id="in_username" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="in_username" class="form-label">First Name</label>
-                                        <input type="text" class="form-control" id="in_firstname" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="in_qty" class="form-label">Last Name</label>
-                                        <input type="text" class="form-control" id="in_lastname" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Mobile</label>
-                                        <input type="text" class="form-control" id="in_mobile" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Email</label>
-                                        <input type="text" class="form-control" id="in_email" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="in_status" class="form-label">Status</label>
-                                        <select class="form-select" id="in_status">
-                                            <option value="1" selected>Active</option>
-                                            <option value="6">Disable</option>
-                                            <option value="4">Delete</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 overflow-x-scroll">
-                                    <table class="table align-middle mb-0 bg-white">
-                                        <thead class="bg-light">
-                                            <tr>
-                                                <th>Address Id</th>
-                                                <th>Address</th>
-                                                <th>City</th>
-                                                <th>District</th>
-                                                <th>Mobile</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="modalTableBody">
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
+       
         <?php
         include "modle-erro.php";
         ?>

@@ -27,7 +27,7 @@ session_start();
                     <a class="nav-link" href="users.php">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Admins</a>
+                    <a class="nav-link" href="admins.php">Admins</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Messages</a>
