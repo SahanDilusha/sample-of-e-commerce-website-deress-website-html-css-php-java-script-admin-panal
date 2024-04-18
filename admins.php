@@ -24,18 +24,18 @@
         include "connecton.php";
         include "spinners.php";
 
-        $q = "SELECT * FROM `system_login`";
+        $q = "SELECT * FROM `system_login` WHERE `system_login_username` !='".$_SESSION["user"]["system_login_username"]."'";
 
         if (isset($_GET['search'])) {
             if ($_GET['search'] != '') {
-                $q = $q . ' WHERE `system_login_username` LIKE "%' . $_GET['search'] . '%"';
+                $q = $q . 'AND  `system_login_username` LIKE "%' . $_GET['search'] . '%"';
             }
         }
 
         if (isset($_GET["fl"])) {
 
             if ($_GET["fl"] != "0" & $_GET["fl"] != "") {
-                $q = $q . "WHERE `stetus_stetus_id` = '" . $_GET['fl'] . "' ";
+                $q = $q . "AND `stetus_stetus_id` = '" . $_GET['fl'] . "' ";
             }
         }
 
