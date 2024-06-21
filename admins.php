@@ -25,7 +25,7 @@
         include "spinners.php";
         include "toast.php";
 
-        $q = "SELECT * FROM `system_login` WHERE `system_login_username` !='" . $_SESSION["user"]["system_login_username"] . "'";
+        $q = "SELECT * FROM `system_login` WHERE `system_login_username` !='" . $_SESSION["user2"]["system_login_username"] . "'";
 
         if (isset($_GET['search'])) {
             if ($_GET['search'] != '') {

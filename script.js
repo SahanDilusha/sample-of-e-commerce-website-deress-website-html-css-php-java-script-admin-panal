@@ -353,11 +353,11 @@ function searchInvoice() {
     const from = new FormData();
     from.append('id', id);
     from.append('fl', fl);
-    document.getElementById("in_table_body").innerHTML ="";
+    document.getElementById("in_table_body").innerHTML = "";
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-            document.getElementById("in_table_body").innerHTML =request.responseText;
+            document.getElementById("in_table_body").innerHTML = request.responseText;
         }
 
     }
@@ -381,14 +381,39 @@ function chengInvoiceStatus(id) {
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-            alert(request.responseText);
             hideSpinners();
-            window.location.reload();
+            searchInvoice();
         }
 
     }
 
     request.open("POST", "cheng-Invoice-status.php", true);
+    request.send(from);
+
+}
+
+function searchUsers() {
+
+    const search = document.getElementById("searchField").value;
+    const fl = document.getElementById("get_status").value;
+
+    const request = new XMLHttpRequest();
+
+    const from = new FormData();
+    from.append('search', search);
+    from.append('fl', fl);
+    document.getElementById("userTableBody").innerHTML = "";
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+            document.getElementById("userTableBody").innerHTML = "";
+            document.getElementById("userTableBody").innerHTML = request.responseText;
+            document.getElementById("us-count").innerHTML = "Users(" + document.getElementById("userTableBody").rows.length + ")";
+        }
+
+    }
+
+    request.open("POST", "get-users.php", true);
     request.send(from);
 
 }
@@ -408,9 +433,8 @@ function chengUserStatus(username) {
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-            alert(request.responseText);
             hideSpinners();
-            window.location.reload();
+            searchUsers();
         }
 
     }
@@ -419,13 +443,6 @@ function chengUserStatus(username) {
     request.send(from);
 }
 
-function searchUsers() {
-    window.location.href = "http://localhost/myshop-admin/users.php?search=" + document.getElementById("searchField").value;
-}
-
-function flUsers() {
-    window.location.href = "http://localhost/myshop-admin/users.php?fl=" + document.getElementById("get_status").value;
-}
 
 function searchAdmins() {
     window.location.href = "http://localhost/myshop-admin/admins.php?search=" + document.getElementById("searchField").value;

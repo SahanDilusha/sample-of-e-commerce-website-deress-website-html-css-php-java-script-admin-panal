@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body onload="searchUsers();">
 
     <?php
 
@@ -24,64 +24,28 @@
         include "connecton.php";
         include "spinners.php";
 
-        $q = "SELECT * FROM `users`";
-
-        if (isset($_GET['search'])) {
-            if ($_GET['search'] != '') {
-                $q = $q . ' WHERE `username` LIKE "%' . $_GET['search'] . '%"';
-            }
-        }
-
-        if (isset($_GET["fl"])) {
-
-            if ($_GET["fl"] != "0" & $_GET["fl"] != "") {
-                $q = $q . "WHERE `stetus_stetus_id` = '" . $_GET['fl'] . "' ";
-            }
-        }
-
-        $getUsers = Database::search($q);
-
     ?>
 
         <div class="container-fluid overflow-x-hidden">
             <div class="row">
                 <div class="col-12 overflow-x-scroll mt-5">
 
-                    <h4 class="fw-bold">Users(<?= $getUsers->num_rows; ?>)</h4>
+                    <h4 class="fw-bold" id="us-count"></h4>
 
                     <div class="d-flex w-100 mt-4 mb-4 justify-content-between align-items-center">
 
                         <div class="d-flex gap-2">
-                            <input class="form-control me-2" type="search" value="<?php if (isset($_GET['search'])) {
-                                                                                        echo ($_GET['search']);
-                                                                                    } ?>" id="searchField" placeholder="Username" aria-label="Search">
+                            <input class="form-control me-2" type="search" id="searchField" placeholder="Username" aria-label="Search" onkeydown="searchUsers();">
                             <button class="btn btn-dark" onclick="searchUsers();">Search</button>
                         </div>
 
                         <div class="d-flex gap-2">
-                            <select class="form-select"  id="get_status">
-                                <option value="0" <?php if (isset($_GET["fl"])) {
-                                                        if ($_GET["fl"] == "0") {
-                                                    ?> selected <?php
-                                                            }
-                                                        } ?>>All</option>
-                                <option value="1" <?php if (isset($_GET["fl"])) {
-                                                        if ($_GET["fl"] == "1") {
-                                                    ?> selected <?php
-                                                            }
-                                                        } ?>>Active</option>
-                                <option value="6" <?php if (isset($_GET["fl"])) {
-                                                        if ($_GET["fl"] == "6") {
-                                                    ?> selected <?php
-                                                            }
-                                                        } ?>>Disable</option>
-                                <option value="4" <?php if (isset($_GET["fl"])) {
-                                                        if ($_GET["fl"] == "4") {
-                                                    ?> selected <?php
-                                                            }
-                                                        } ?>>Delete</option>
+                            <select class="form-select" id="get_status" onclick="searchUsers();">
+                                <option value="0" selected>All</option>
+                                <option value="1">Active</option>
+                                <option value="6">Disable</option>
+                                <option value="4">>Delete</option>
                             </select>
-                            <button class="btn btn-dark" onclick="flUsers();">Apply</button>
                         </div>
 
                     </div>
@@ -98,65 +62,7 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-
-                            <?php
-                            if ($getUsers->num_rows != 0) {
-
-                                for ($i = 0; $i < $getUsers->num_rows; $i++) {
-
-                                    $row = $getUsers->fetch_assoc();
-
-                            ?>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <?php
-                                                if ($row["stetus_dp"] == "2") {
-                                                ?>
-                                                    <img src="http://localhost/myshop-admin/profile_images/d.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <img src="http://localhost/MyShop/profile_images/<?= $row["username"]; ?>.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
-                                                <?php
-                                                }
-                                                ?>
-                                                <div class="ms-3">
-                                                    <p class="fw-bold mb-1"><?= $row["username"]; ?></p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <?= $row["first_name"]; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row["last_name"]; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row["mobile"]; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row["email"]; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row["r_date"]; ?>
-                                        </td>
-                                        <td><select class="form-select" onchange="chengUserStatus('<?= $row['username']; ?>');" id="get_status1">
-                                                <option value="1" <?php if ($row["stetus_stetus_id"] == "1") {
-                                                                    ?> selected <?php
-                                                                            } ?>>Active</option>
-                                                <option value="6" <?php if ($row["stetus_stetus_id"] == "6") {
-                                                                    ?> selected <?php
-                                                                            } ?>>Disable</option>
-                                                <option value="4" <?php if ($row["stetus_stetus_id"] == "4") {
-                                                                    ?> selected <?php
-                                                                            } ?>>Delete</option>
-                                            </select></td>
-                                    </tr>
-
-                            <?php }
-                            } ?>
+                        <tbody id="userTableBody">
 
                         </tbody>
                     </table>
@@ -214,7 +120,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="in_status" class="form-label">Status</label>
-                                        <select class="form-select" id="in_status">
+                                        <select class="form-select" id="in_status" disabled>
                                             <option value="1" selected>Active</option>
                                             <option value="6">Disable</option>
                                             <option value="4">Delete</option>
