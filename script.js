@@ -547,3 +547,7 @@ function addNewAddmin() {
     }
 
 }
+
+function updateAdmin() {
+    
+}

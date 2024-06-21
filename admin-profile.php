@@ -26,8 +26,9 @@
                 <div class="profile-header d-flex align-items-center">
                     <img src="https://via.placeholder.com/100" alt="Admin Avatar" class="me-3">
                     <div>
-                        <h2>Admin Name</h2>
-                        <p class="mb-0">admin@example.com</p>
+                        <h2><?=$user["first_name"] ?>  <?=$user["last_name"] ?></h2>
+
+                        <p class="mb-0"><?=$user["email"] ?></p>
                     </div>
                 </div>
 
@@ -44,25 +45,25 @@
                                     <form>
                                         <div class="mb-3">
                                             <label for="firstName" class="form-label">First Name</label>
-                                            <input type="text" class="form-control" id="firstName" value="John">
+                                            <input type="text" class="form-control" id="firstName" value="<?=$user["first_name"] ?>">
                                         </div>
                                         <div class="mb-3">
                                             <label for="lastName" class="form-label">Last Name</label>
-                                            <input type="text" class="form-control" id="lastName" value="Doe">
+                                            <input type="text" class="form-control" id="lastName" value="<?=$user["last_name"] ?>">
                                         </div>
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="email" value="admin@example.com">
+                                            <input type="email" class="form-control" id="email" value="<?=$user["email"] ?>">
                                         </div>
                                         <div class="mb-3">
                                             <label for="phone" class="form-label">Phone</label>
-                                            <input type="text" class="form-control" id="phone" value="+1234567890">
+                                            <input type="text" class="form-control" id="phone" value="<?=$user["mobile"] ?>">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="address" class="form-label">Address</label>
-                                            <input type="text" class="form-control" id="address" value="123 Main St, City, Country">
+                                            <label for="address" class="form-label">Profile Image</label>
+                                            <input type="file" class="form-control" id="p_img" >
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-primary" onclick="updateAdmin();">Update</button>
                                     </form>
                                 </div>
                             </div>
@@ -88,7 +89,9 @@
                                             <label for="confirmPassword" class="form-label">Confirm New Password</label>
                                             <input type="password" class="form-control" id="confirmPassword">
                                         </div>
+                                        <div class="">
                                         <button type="submit" class="btn btn-primary">Change Password</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -100,18 +103,15 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
-                                        <label class="form-check-label">Enable Two-Step Verification</label>
-                                        <input type="checkbox" class="form-check-input ms-2" id="enable2FA" checked>
+                                        <label class="form-check-label">
+                                        <?php 
+                                        if ($user[""] == "1") {
+                                            # code...
+                                        }
+                                        ?>    
+                                        Enable Two-Step Verification</label>
                                     </div>
-                                    <form id="2FASetup" style="display: none;">
-                                        <div class="mb-3">
-                                            <label for="2FAEmail" class="form-label">Email for 2FA</label>
-                                            <input type="email" class="form-control" id="2FAEmail" value="admin@example.com">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="2FAPhone" class="form-label">Phone for 2FA</label>
-                                            <input type="text" class="form-control" id="2FAPhone" value="+1234567890">
-                                        </div>
+                                    <form id="2FASetup" >
                                         <button type="submit" class="btn btn-primary">Setup 2FA</button>
                                     </form>
                                 </div>
