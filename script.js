@@ -402,7 +402,7 @@ function searchUsers() {
     const from = new FormData();
     from.append('search', search);
     from.append('fl', fl);
-    document.getElementById("userTableBody").innerHTML = "";
+
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
@@ -445,12 +445,30 @@ function chengUserStatus(username) {
 
 
 function searchAdmins() {
-    window.location.href = "http://localhost/myshop-admin/admins.php?search=" + document.getElementById("searchField").value;
+    const search = document.getElementById("searchField").value;
+    const fl = document.getElementById("get_status").value;
+
+    const request = new XMLHttpRequest();
+
+    const from = new FormData();
+    from.append('search', search);
+    from.append('fl', fl);
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+            document.getElementById("adminTableBody").innerHTML = "";
+            document.getElementById("adminTableBody").innerHTML = request.responseText;
+            document.getElementById("us-count").innerHTML = "Admins(" + document.getElementById("userTableBody").rows.length + ")";
+        }
+
+    }
+
+    request.open("POST", "get-admin.php", true);
+    request.send(from);
 }
 
-function flAdmin() {
-    window.location.href = "http://localhost/myshop-admin/admins.php?fl=" + document.getElementById("get_status").value;
-}
+
 
 function chengAdminStatus(username) {
     const st = document.getElementById("get_status1").value;
@@ -514,7 +532,8 @@ function addNewAddmin() {
             if (request.readyState == "4" && request.status == "200") {
 
                 if (request.responseText == "ok") {
-                    window.location.reload();
+                    bootstrap.Modal.getInstance(document.getElementById("addAdminModle")).hide();
+                    searchAdmins();
                 } else {
                     showToast(`${request.responseText}`, 'bg-danger-subtle');
                 }

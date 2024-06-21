@@ -50,8 +50,8 @@
 
                     </div>
 
-                    <table class="table align-middle mb-0 bg-white" id="user_table">
-                        <thead class="bg-light">
+                    <table class="table table-bordered table-hover align-middle mb-0 bg-white" id="user_table">
+                        <thead class="table-dark">
                             <tr>
                                 <th>Username</th>
                                 <th>First Name</th>

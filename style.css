@@ -20,5 +20,32 @@
     background: linear-gradient(90deg, rgba(78, 63, 251, 1) 4%, rgba(252, 158, 70, 1) 91%);
 }
 
+.table-responsive {
+    overflow-x: auto;
+}
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.profile-header {
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+}
+.profile-header img {
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+}
+.content {
+    padding: 20px;
+}
+.content .card {
+    margin-bottom: 20px;
+}
+
 
     

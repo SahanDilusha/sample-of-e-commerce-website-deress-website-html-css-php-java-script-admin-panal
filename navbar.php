@@ -21,7 +21,7 @@ session_start();
                     <a class="nav-link" href="orders.php">Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Manege Product</a>
+                    <a class="nav-link" href="manage-products.php">Manege Product</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="users.php">Users</a>
@@ -34,7 +34,7 @@ session_start();
                 </li>
             </ul>
 
-            <a href="#" class="px-2 text-decoration-none d-flex justify-content-center align-items-center gap-2">
+            <a href="admin-profile.php" class="px-2 text-decoration-none d-flex justify-content-center align-items-center gap-2">
                 <img src="profile_images/pwani.png" class="rounded-5" alt="p-img" width="40px" />
                 <label class="fw-bold text-white"><?= $_SESSION["user2"]["system_login_username"] ?></label>
             </a>

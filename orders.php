@@ -60,8 +60,8 @@
 
                 <div class="col-12 overflow-x-scroll mt-5">
 
-                    <table class="table align-middle mb-0 bg-white" id="in_item">
-                        <thead class="bg-light">
+                    <table class="table table-bordered table-hover align-middle mb-0 bg-white" id="in_item">
+                        <thead class="table-dark">
                             <tr>
                                 <th>Invoice No.</th>
                                 <th>Username</th>
