@@ -36,7 +36,7 @@ session_start();
 
             <a href="#" class="px-2 text-decoration-none d-flex justify-content-center align-items-center gap-2">
                 <img src="profile_images/pwani.png" class="rounded-5" alt="p-img" width="40px" />
-                <label class="fw-bold text-white"><?= $_SESSION["user"]["system_login_username"] ?></label>
+                <label class="fw-bold text-white"><?= $_SESSION["user2"]["system_login_username"] ?></label>
             </a>
 
         </div>

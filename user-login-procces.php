@@ -130,7 +130,7 @@ if ($username == "") {
                 echo 'Error sending email: ' . $mail->ErrorInfo;
             }
         } else {
-            $_SESSION['user'] = $row;
+            $_SESSION['user2'] = $row;
             setcookie("email", $email);
             echo ("ok");
         }

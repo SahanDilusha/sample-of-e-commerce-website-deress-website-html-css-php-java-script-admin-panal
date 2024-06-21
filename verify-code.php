@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION["user"])) {
+if (isset($_SESSION["user2"])) {
     header("Location: http://localhost/myshop-admin/dashboard.php");
 } elseif (!isset($_COOKIE["2fa"])) {
     header("Location: http://localhost/myshop-admin/index.php");

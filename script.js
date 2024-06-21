@@ -345,12 +345,25 @@ function search() {
 }
 
 function searchInvoice() {
-    window.location.href = "http://localhost/myshop-admin/orders.php?id=" + document.getElementById("searchField").value;
-}
+    const id = document.getElementById("searchField").value;
+    const fl = document.getElementById("fl").value;
 
-function filterInvoice() {
-    window.location.href = "http://localhost/myshop-admin/orders.php?fl=" + document.getElementById("fl").value;
+    const request = new XMLHttpRequest();
 
+    const from = new FormData();
+    from.append('id', id);
+    from.append('fl', fl);
+    document.getElementById("in_table_body").innerHTML ="";
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+            document.getElementById("in_table_body").innerHTML =request.responseText;
+        }
+
+    }
+
+    request.open("POST", "get-invoice.php", true);
+    request.send(from);
 }
 
 function chengInvoiceStatus(id) {

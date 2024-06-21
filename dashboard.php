@@ -16,7 +16,7 @@
     <?php
     include "spinners.php";
     include "navbar.php";
-    if (!isset($_SESSION["user"])) {
+    if (!isset($_SESSION["user2"])) {
         header("Location: http://localhost/myshop-admin/index.php");
         exit;
     } else {

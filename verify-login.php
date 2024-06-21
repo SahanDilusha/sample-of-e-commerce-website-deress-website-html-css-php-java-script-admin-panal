@@ -21,7 +21,7 @@ if (!isset($_SESSION["otp"]) || !isset($_COOKIE["email"]) || !isset($_SESSION["t
 
             Database::iud("UPDATE `system_login` SET `system_login`.`otp` = '" . GenerateOtp::generateOTP(6) . "' WHERE `system_login`.`system_login_username` = '" . $_SESSION["temp_user"]["system_login_username"] . "';");
 
-            $_SESSION["user"] = $_SESSION["temp_user"];
+            $_SESSION["user2"] = $_SESSION["temp_user"];
             unset($_SESSION["temp_user"]);
             unset($_SESSION["otp"]);
 

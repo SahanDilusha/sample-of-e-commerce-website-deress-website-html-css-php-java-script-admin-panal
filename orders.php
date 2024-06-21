@@ -11,77 +11,22 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body onload="searchInvoice();">
 
     <?php
     include "spinners.php";
     include "navbar.php";
-    if (!isset($_SESSION["user"])) {
+    if (!isset($_SESSION["user2"])) {
         header("Location: http://localhost/myshop-admin/index.php");
         exit;
     } else {
 
         include "connecton.php";
 
-        $q = "SELECT * FROM `invoice` INNER JOIN `users` ON `invoice`.`users_username` = `users`.`username` INNER JOIN `user_address` ON `invoice`.`user_address_address_id` = `user_address`.`address_id` INNER JOIN `city` ON `user_address`.`city_city_id` = `city`.`city_id`";
-
-        if (isset($_GET["id"])) {
-
-            if ($_GET["id"] != '') {
-
-                if (strpos("WHERE", $q) == false) {
-                    $q = $q . "WHERE";
-                }
-
-                $q = $q . "`invoice_id` = '" . $_GET["id"] . "'";
-            }
-        }
-
-        $si = 1;
-
-        if (isset($_GET["fl"])) {
-
-            if ($_GET["fl"] == "11") {
-                if (strpos("WHERE", $q) == false) {
-                    $q = $q . "WHERE";
-                }
-                $si = 11;
-                $q = $q . "`invoice`.`invoice_stetus` = '11'";  //show all Processing
-            } else if ($_GET["fl"] == "12") {
-                $si = 12;
-                if (strpos("WHERE", $q) == false) {
-                    $q = $q . "WHERE";
-                }
-                $q = $q . "`invoice`.`invoice_stetus` = '12'";  //show all On Packing
-            } else if ($_GET["fl"] == "13") {
-                if (strpos("WHERE", $q) == false) {
-                    $q = $q . "WHERE";
-                }
-                $si = 13;
-                $q = $q . "`invoice`.`invoice_stetus` = '13'";  //show all On Shiping
-            } else if ($_GET["fl"] == "14") {
-                if (strpos("WHERE", $q) == false) {
-                    $q = $q . "WHERE";
-                }
-                $si = 14;
-                $q = $q . "`invoice`.`invoice_stetus` = '14'";  //show all Delivered
-            } else if ($_GET["fl"] == "9") {
-                if (strpos("WHERE", $q) == false) {
-                    $q = $q . "WHERE";
-                }
-                $si = 9;
-                $q = $q . "`invoice`.`invoice_stetus` = '9'";  //show all Delivered
-            }
-        }
-
-        $getInvoice = Database::search($q);
-
     ?>
 
         <div class="container-fluid overflow-x-hidden">
             <div class="row">
-
-
 
                 <div class="w-100 mt-4 mb-4">
 
@@ -94,34 +39,19 @@
                     <div class="d-flex w-100 mt-2 mb-2 justify-content-between align-items-center">
 
                         <div class="d-flex gap-2">
-                            <input class="form-control me-2" type="text" value="<?php if (isset($_GET["id"])) {
-                                                                                    echo ($_GET["id"]);
-                                                                                } ?>" id="searchField" placeholder="Invoice No" />
+                            <input class="form-control me-2" type="text" id="searchField" placeholder="Invoice No" onkeyup="searchInvoice();"/>
                             <button class="btn btn-dark" onclick="searchInvoice();">Search</button>
                         </div>
 
                         <div class="d-flex gap-2">
-                            <select class="form-select" id="fl">
-                                <option value="1" <?php if ($si == "1") {
-                                                    ?> selected <?php
-                                                            } ?>>All</option>
-                                <option value="11" <?php if ($si == "11") {
-                                                    ?> selected <?php
-                                                            } ?>>Processing</option>
-                                <option value="12" <?php if ($si == "12") {
-                                                    ?> selected <?php
-                                                            } ?>>On Packing</option>
-                                <option value="13" <?php if ($si == "13") {
-                                                    ?> selected <?php
-                                                            } ?>>On Shiping</option>
-                                <option value="14" <?php if ($si == "14") {
-                                                    ?> selected <?php
-                                                            } ?>>Delivered</option>
-                                <option value="9" <?php if ($si == "9") {
-                                                    ?> selected <?php
-                                                            } ?>>Cancel</option>
+                            <select class="form-select" id="fl" onchange="searchInvoice();">
+                                <option value="1" selected >All</option>
+                                <option value="11">Processing</option>
+                                <option value="12">On Packing</option>
+                                <option value="13">On Shiping</option>
+                                <option value="14">Delivered</option>
+                                <option value="9">Cancel</option>
                             </select>
-                            <button class="btn btn-dark" onclick="filterInvoice();">Apply</button>
                         </div>
 
                     </div>
@@ -142,65 +72,7 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-
-                            <?php
-                            if ($getInvoice->num_rows != 0) {
-
-                                for ($i = 0; $i < $getInvoice->num_rows; $i++) {
-
-                                    $row = $getInvoice->fetch_assoc();
-
-                                    $getItemCount = Database::search("SELECT COUNT(`invoice_items_id`) AS `count` FROM `invoice_items` WHERE `invoice_invoice_id` = '" . $row["invoice_id"] . "';");
-
-                            ?>
-                                    <tr>
-                                        <td>
-                                            <?= $row["invoice_id"]; ?>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="http://localhost/MyShop/profile_images/<?= $row["username"]; ?>.png" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
-                                                <div class="ms-3">
-                                                    <p class="fw-bold mb-1"><?= $row["username"]; ?></p>
-                                                    <p class="text-muted mb-0"><?= $row["email"]; ?></p>
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <?= "No." . $row["line_1"] . ", " . $row["line_2"] . ", " . $row["city_name"] ?>
-                                        </td>
-                                        <td>
-                                            <?= $row["address_mobile"]; ?>
-                                        </td>
-                                        <td>
-                                            <?php if ($getItemCount->num_rows != 0) {
-                                                echo ($getItemCount->fetch_assoc()["count"]);
-                                            } ?>
-                                        </td>
-                                        <td><?= $row["grand_total"]; ?></td>
-                                        <td><select class="form-select" aria-label="Default select example" id="get_status" onchange="chengInvoiceStatus(<?= $row['invoice_id']; ?>);">
-                                                <option value="11" <?php if ($row["invoice_stetus"] == "11") {
-                                                                    ?> selected <?php
-                                                                            } ?>>Processing</option>
-                                                <option value="12" <?php if ($row["invoice_stetus"] == "12") {
-                                                                    ?> selected <?php
-                                                                            } ?>>On Packing</option>
-                                                <option value="13" <?php if ($row["invoice_stetus"] == "13") {
-                                                                    ?> selected <?php
-                                                                            } ?>>On Shiping</option>
-                                                <option value="14" <?php if ($row["invoice_stetus"] == "14") {
-                                                                    ?> selected <?php
-                                                                            } ?>>Delivered</option>
-                                                <option value="9" <?php if ($row["invoice_stetus"] == "9") {
-                                                                    ?> selected <?php
-                                                                            } ?>>Cancel</option>
-                                            </select></td>
-                                    </tr>
-
-                            <?php }
-                            } ?>
+                        <tbody id="in_table_body">
 
                         </tbody>
                     </table>
