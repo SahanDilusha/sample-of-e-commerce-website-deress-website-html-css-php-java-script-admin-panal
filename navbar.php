@@ -32,10 +32,25 @@ session_start();
                 <li class="nav-item">
                     <a class="nav-link" href="#">Messages</a>
                 </li>
+                <li class="nav-item">
+                    <button class="nav-link text-danger" onclick="Logout();">Logout</button>
+                </li>
             </ul>
 
             <a href="admin-profile.php" class="px-2 text-decoration-none d-flex justify-content-center align-items-center gap-2">
-                <img src="profile_images/pwani.png" class="rounded-5" alt="p-img" width="40px" />
+
+                <?php
+                if ($_SESSION["user2"]["stetus_dp"] == "1") {
+                ?>
+                    <img src="profile_images/<?= $_SESSION["user2"]["system_login_username"] ?>.png" class="rounded-5" alt="p-img" width="40px" />
+                <?php
+                } else {
+                ?>
+                    <img src="resources/image/default_profile.png" class="rounded-5" alt="p-img" width="40px" />
+                <?php
+                }
+                ?>
+
                 <label class="fw-bold text-white"><?= $_SESSION["user2"]["system_login_username"] ?></label>
             </a>
 

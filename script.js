@@ -549,5 +549,64 @@ function addNewAddmin() {
 }
 
 function updateAdmin() {
-    
+
+}
+
+function VerificationCheng(st) {
+
+    const request = new XMLHttpRequest();
+
+    const from = new FormData();
+
+    from.append("st", st);
+
+    showSpinners();
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+
+            if (request.responseText == "ok") {
+                window.location.reload();
+            } else {
+                hideSpinners();
+                showToast(`${request.responseText}`, 'bg-danger-subtle');
+            }
+        }
+
+    }
+
+    request.open("POST", "chenge-verification.php", true);
+    request.send(from);
+}
+
+function DeactivateAccount() {
+
+
+    if (confirm("") == true) {
+        const request = new XMLHttpRequest();
+
+        const from = new FormData();
+
+        showSpinners();
+
+        request.onreadystatechange = function () {
+
+            if (request.readyState == "4" && request.status == "200") {
+
+                if (request.responseText == "ok") {
+                    window.location.reload();
+                } else {
+                    hideSpinners();
+                    showToast(`${request.responseText}`, 'bg-danger-subtle');
+                }
+            }
+
+        }
+
+        request.open("POST", "deactivate-account.php", true);
+        request.send(from);
+    }
+
+
 }
