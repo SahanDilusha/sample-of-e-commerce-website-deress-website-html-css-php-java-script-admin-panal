@@ -13,7 +13,9 @@
 
 <body onload="getProduct();">
     <!-- Navigation Bar -->
-    <?php include "navbar.php" ?>
+    <?php include "navbar.php";
+    include "spinners.php";
+    ?>
 
     <!-- Main Content -->
     <div class="container-fluid mt-5">
@@ -22,7 +24,7 @@
         <!-- Search and Filter Controls -->
         <div class="row mb-4">
             <div class="col-md-6">
-                <input type="search" class="form-control" id="searchField" placeholder="Search products...">
+                <input type="search" class="form-control" id="searchField" onkeyup="getProduct();" placeholder="Search products...">
             </div>
             <div class="col-md-4">
                 <select class="form-select" id="filterCategory">

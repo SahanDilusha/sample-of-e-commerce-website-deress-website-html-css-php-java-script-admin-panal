@@ -649,20 +649,52 @@ function ChangePassword() {
 function getProduct() {
 
     const body = document.getElementById("productTbaleBody");
+    const text = document.getElementById("searchField");
 
     const request = new XMLHttpRequest();
 
-    body.innerHTML  = "";
+    body.innerHTML = "";
 
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-          body.innerHTML = request.responseText;
+            body.innerHTML = request.responseText;
         }
 
     }
 
-    request.open("GET", "get-product.php", true);
+    request.open("GET", "get-product.php?search=" + text.value, true);
+
     request.send();
 
+}
+
+function chengStatusProduct(id, st) {
+
+    if (confirm("Chenge Status?") === true) {
+
+        const request = new XMLHttpRequest();
+
+        const from = new FormData();
+
+        from.append("id", id);
+        from.append("st", st);
+
+        showSpinners();
+        request.onreadystatechange = function () {
+
+            if (request.readyState == "4" && request.status == "200") {
+                hideSpinners();
+                if (request.responseText == "ok") {
+                    getProduct();
+                } else {
+                    alert(request.responseText);
+                }
+            }
+
+        }
+
+        request.open("POST", "cheng-product-status.php", true);
+        request.send(from);
+    }
 }
