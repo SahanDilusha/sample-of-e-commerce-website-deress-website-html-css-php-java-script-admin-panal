@@ -48,7 +48,7 @@
             <div class="col-md-2 mt-4">
                 <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#productModal">Add Product</button>
             </div>
-            
+
         </div>
 
         <!-- Product Table -->
