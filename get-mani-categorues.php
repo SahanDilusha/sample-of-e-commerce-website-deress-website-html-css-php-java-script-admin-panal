@@ -3,9 +3,9 @@
 include "connecton.php";
 
 $data = Database::search("SELECT * FROM `main_category`;");
-
-$item = "<option value='0'>All Categories</option>";
-
+?>
+<option value='0'>Select</option>
+<?php
 if ($data->num_rows !== 0) {
 
     for ($i = 0; $i < $data->num_rows; $i++) {
@@ -20,6 +20,6 @@ if ($data->num_rows !== 0) {
     }
 }
 
-echo ($item);
+
 
 ?>

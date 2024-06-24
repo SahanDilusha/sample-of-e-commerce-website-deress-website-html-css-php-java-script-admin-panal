@@ -707,7 +707,7 @@ function getMainCategories() {
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-            return request.responseText;
+            document.getElementById("filterCategory").innerHTML =  request.responseText;
         }
 
     }
@@ -716,6 +716,18 @@ function getMainCategories() {
     request.send();
 }
 
-function filterCategoryLode() {
-    document.getElementById("filterCategory") = getMainCategories();
+function getSubCategories() {
+
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+            document.getElementById("filterCategory").innerHTML =  request.responseText;
+        }
+
+    }
+
+    request.open("GET", "get-mani-categorues.php", true);
+    request.send();
 }

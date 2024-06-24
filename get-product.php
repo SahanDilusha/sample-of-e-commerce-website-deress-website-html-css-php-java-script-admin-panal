@@ -1,8 +1,6 @@
 <?php
 include "connecton.php";
 
-
-
 $q = "SELECT `id`,`product_name`,`main_category_name`,`sub_categor_name`,`colors_name`,`color_code`,`product_description`,`product_qty`,`product_price`,`product_discount`,`stetus_stetus_id`,`brand_name`,`delivery` FROM `product` 
 INNER JOIN `main_category` ON `product`.`main_category_id` = `main_category`.`main_category_id`
 INNER JOIN `sub_category` ON `product`.`sub_category_id` = `sub_category`.`sub_categor_id`

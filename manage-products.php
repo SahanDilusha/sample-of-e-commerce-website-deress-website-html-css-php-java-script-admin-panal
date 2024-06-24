@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body onload="getProduct(); filterCategoryLode();">
+<body onload="getProduct(); getMainCategories();">
     <!-- Navigation Bar -->
     <?php include "navbar.php";
 
@@ -28,18 +28,27 @@
         <h4 class="mb-4">Manage Products</h4>
 
         <!-- Search and Filter Controls -->
-        <div class="row mb-4">
-            <div class="col-md-6">
+        <div class="row mb-4 d-flex justify-content-center align-items-center">
+            <div class="col-md-3">
+                <label for="filterCategory">Search</label>
                 <input type="search" class="form-control" id="searchField" onkeyup="getProduct();" placeholder="Search products...">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="filterCategory">Main Category</label>
                 <select class="form-select" id="filterCategory">
-                   
+
                 </select>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
+                <label for="filterCategory">Sub Category</label>
+                <select class="form-select" id="filterSuCategory">
+
+                </select>
+            </div>
+            <div class="col-md-2 mt-4">
                 <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#productModal">Add Product</button>
             </div>
+            
         </div>
 
         <!-- Product Table -->
