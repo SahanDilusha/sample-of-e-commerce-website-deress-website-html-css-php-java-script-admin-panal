@@ -553,37 +553,39 @@ function updateAdmin() {
 }
 
 function VerificationCheng(st) {
+    if (confirm("Continue?") == true) {
+        const request = new XMLHttpRequest();
 
-    const request = new XMLHttpRequest();
+        const from = new FormData();
 
-    const from = new FormData();
+        from.append("st", st);
 
-    from.append("st", st);
+        showSpinners();
 
-    showSpinners();
+        request.onreadystatechange = function () {
 
-    request.onreadystatechange = function () {
+            if (request.readyState == "4" && request.status == "200") {
 
-        if (request.readyState == "4" && request.status == "200") {
-
-            if (request.responseText == "ok") {
-                window.location.reload();
-            } else {
-                hideSpinners();
-                showToast(`${request.responseText}`, 'bg-danger-subtle');
+                if (request.responseText == "ok") {
+                    window.location.reload();
+                } else {
+                    hideSpinners();
+                    showToast(`${request.responseText}`, 'bg-danger-subtle');
+                }
             }
+
         }
 
-    }
+        request.open("POST", "chenge-verification.php", true);
+        request.send(from);
 
-    request.open("POST", "chenge-verification.php", true);
-    request.send(from);
+    }
 }
 
 function DeactivateAccount() {
 
 
-    if (confirm("") == true) {
+    if (confirm("Deactivate Account?") == true) {
         const request = new XMLHttpRequest();
 
         const from = new FormData();
@@ -608,5 +610,59 @@ function DeactivateAccount() {
         request.send(from);
     }
 
+
+}
+
+
+function ChangePassword() {
+
+    if (confirm("Change Password?") == true) {
+        const request = new XMLHttpRequest();
+
+        const from = new FormData();
+
+        from.append("c_passwrod", document.getElementById("currentPassword").value);
+        from.append("co_passwrod", document.getElementById("confirmPassword").value);
+        from.append("new_passwrod", document.getElementById("newPassword").value);
+
+        showSpinners();
+
+        request.onreadystatechange = function () {
+
+            if (request.readyState == "4" && request.status == "200") {
+                if (request.responseText == "ok") {
+                    window.location.reload();
+                } else {
+                    hideSpinners();
+                    showToast(`${request.responseText}`, 'bg-danger-subtle');
+                }
+            }
+
+        }
+
+        request.open("POST", "change-password.php", true);
+        request.send(from);
+    }
+
+}
+
+function getProduct() {
+
+    const body = document.getElementById("productTbaleBody");
+
+    const request = new XMLHttpRequest();
+
+    body.innerHTML  = "";
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+          body.innerHTML = request.responseText;
+        }
+
+    }
+
+    request.open("GET", "get-product.php", true);
+    request.send();
 
 }

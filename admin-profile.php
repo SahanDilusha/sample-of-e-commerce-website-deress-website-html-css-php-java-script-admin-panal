@@ -20,6 +20,7 @@
     } else {
 
         include "spinners.php";
+        include "toast.php";
         $user = $_SESSION["user2"];
 
     ?>
@@ -100,14 +101,14 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="newPassword" class="form-label">New Password</label>
-                                                <input type="password" class="form-control" id="newPassword">
+                                                <input type="password" class="form-control" id="newPassword" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="confirmPassword" class="form-label">Confirm New Password</label>
-                                                <input type="password" class="form-control" id="confirmPassword">
+                                                <input type="password" class="form-control" id="confirmPassword" required>
                                             </div>
                                             <div class="">
-                                                <button type="submit" class="btn btn-primary">Change Password</button>
+                                                <button type="submit" class="btn btn-primary" onclick="ChangePassword();">Change Password</button>
                                             </div>
                                         </form>
                                     </div>

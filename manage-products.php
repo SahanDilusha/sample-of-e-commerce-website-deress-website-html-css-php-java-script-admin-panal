@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users</title>
+    <title>Manage Products</title>
     <link rel="icon" href="resources/image/Logo.png" />
     <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body onload="getProduct();">
     <!-- Navigation Bar -->
     <?php include "navbar.php" ?>
 
@@ -44,34 +44,15 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Price</th>
-                        <th>Category</th>
+                        <th>Price(Rs.)</th>
+                        <th>Discount(%)</th>
+                        <th>Main Category</th>
+                        <th>Sub Category</th>
+                        <th>Color</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Sample Data Rows -->
-                    <tr>
-                        <td>1</td>
-                        <td>Wireless Mouse</td>
-                        <td>$20.00</td>
-                        <td>Electronics</td>
-                        <td>
-                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#productModal">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Running Shoes</td>
-                        <td>$50.00</td>
-                        <td>Fashion</td>
-                        <td>
-                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#productModal">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                    </tr>
-                    <!-- End of Sample Data Rows -->
+                <tbody id="productTbaleBody">
                 </tbody>
             </table>
         </div>
