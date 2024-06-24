@@ -35,25 +35,25 @@
             </div>
             <div class="col-md-3">
                 <label for="filterCategory">Main Category</label>
-                <select class="form-select" id="filterCategory">
+                <select class="form-select" id="filterCategory" onchange="getProduct();">
 
                 </select>
             </div>
             <div class="col-md-3">
                 <label for="filterCategory">Sub Category</label>
-                <select class="form-select" id="filterSuCategory">
+                <select class="form-select" id="filterSuCategory" onchange="getProduct();">
 
                 </select>
             </div>
             <div class="col-md-2 mt-4">
-                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#productModal">Add Product</button>
+                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#productModal2">Add Product</button>
             </div>
 
         </div>
 
         <!-- Product Table -->
         <div class="table-responsive">
-            <table class="table table-bordered align-middle table-hover">
+            <table class="table table-bordered align-middle table-hover" id="productTable">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
@@ -63,6 +63,7 @@
                         <th>Main Category</th>
                         <th>Sub Category</th>
                         <th>Color</th>
+                        <th>Sales</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -72,43 +73,48 @@
         </div>
     </div>
 
-    <!-- Product Modal -->
+
     <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="productModalLabel">Add/Edit Product</h5>
+                    <h5 class="modal-title" id="productModalLabel">Edit Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="editProductForm">
+                        <input type="hidden" id="productId" name="m_productId">
                         <div class="mb-3">
-                            <label for="productName" class="form-label">Product Name</label>
-                            <input type="text" class="form-control" id="productName" required>
+                            <label for="m_productName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="m_productName" name="productName">
                         </div>
                         <div class="mb-3">
-                            <label for="productPrice" class="form-label">Product Price</label>
-                            <input type="number" class="form-control" id="productPrice" required>
+                            <label for="m_productPrice" class="form-label">Price (Rs.)</label>
+                            <input type="text" class="form-control" id="m_productPrice" name="productPrice">
                         </div>
                         <div class="mb-3">
-                            <label for="productCategory" class="form-label">Category</label>
-                            <select class="form-select" id="productCategory" required>
-                                <option value="">Choose...</option>
-                                <option value="electronics">Electronics</option>
-                                <option value="fashion">Fashion</option>
-                                <option value="home">Home & Garden</option>
-                            </select>
+                            <label for="m_productDiscount" class="form-label">Discount (%)</label>
+                            <input type="text" class="form-control" id="m_productDiscount" name="productDiscount">
                         </div>
+                        <div class="mb-3">
+                            <label for="m_productMainCategory" class="form-label">Main Category</label>
+                            <input type="text" class="form-control" id="m_productMainCategory" name="productMainCategory">
+                        </div>
+                        <div class="mb-3">
+                            <label for="m_productSubCategory" class="form-label">Sub Category</label>
+                            <input type="text" class="form-control" id="m_productSubCategory" name="productSubCategory">
+                        </div>
+                        <div class="mb-3">
+                            <label for="m_productColor" class="form-label">Color</label>
+                            <input type="text" class="form-control" id="m_productColor" name="productColor">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="script.js"></script>

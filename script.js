@@ -649,7 +649,9 @@ function ChangePassword() {
 function getProduct() {
 
     const body = document.getElementById("productTbaleBody");
-    const text = document.getElementById("searchField");
+    const searchText = document.getElementById("searchField");
+    const subCategory = document.getElementById("filterSuCategory");
+    const mainCategory = document.getElementById("filterCategory");
 
     const request = new XMLHttpRequest();
 
@@ -663,8 +665,8 @@ function getProduct() {
 
     }
 
-    request.open("GET", "get-product.php?search=" + text.value, true);
-
+    const url = `get-product.php?search=${searchText.value}&su=${subCategory.value}&mc=${mainCategory.value}`;
+    request.open("GET", url, true);
     request.send();
 
 }
@@ -707,7 +709,7 @@ function getMainCategories() {
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-            document.getElementById("filterCategory").innerHTML =  request.responseText;
+            document.getElementById("filterCategory").innerHTML = request.responseText;
         }
 
     }
@@ -723,7 +725,7 @@ function getSubCategories() {
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-            document.getElementById("filterSuCategory").innerHTML =  request.responseText;
+            document.getElementById("filterSuCategory").innerHTML = request.responseText;
         }
 
     }
@@ -731,3 +733,36 @@ function getSubCategories() {
     request.open("GET", "get-sub-categorues.php", true);
     request.send();
 }
+
+// Assuming you have jQuery included for simplicity in handling DOM events and manipulation
+$(document).ready(function() {
+    // Double-click event listener on table rows
+    $('#productTable tbody').on('dblclick', 'tr', function() {
+        // Get data from the clicked row
+        var id = $(this).find('td:eq(0)').text(); // ID
+        var name = $(this).find('td:eq(1)').text(); // Name
+        var price = $(this).find('td:eq(2)').text(); // Price
+        var discount = $(this).find('td:eq(3)').text(); // Discount
+        var mainCategory = $(this).find('td:eq(4)').text(); // Main Category
+        var subCategory = $(this).find('td:eq(5)').text(); // Sub Category
+        var color = $(this).find('td:eq(6)').text(); // Color
+
+        // Set values to the modal form fields
+        $('#productId').val(id);
+        $('#m_productName').val(name);
+        $('#m_productPrice').val(price);
+        $('#m_productDiscount').val(discount);
+        $('#m_productMainCategory').val(mainCategory);
+        $('#m_productSubCategory').val(subCategory);
+        $('#m_productColor').val(color);
+
+        // Show the modal
+        $('#productModal').modal('show');
+    });
+});
+
+
+
+  
+  
+  
