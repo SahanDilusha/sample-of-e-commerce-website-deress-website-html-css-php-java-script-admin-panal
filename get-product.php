@@ -10,9 +10,6 @@ INNER JOIN `brand` ON `product`.`brand_idbrand` = `brand`.`idbrand`
 INNER JOIN `product_colors` ON `product`.`product_colors_id` = `product_colors`.`colors_id`
 WHERE `product`.`product_name` LIKE '" . $_GET["search"] . "%'";
 
-
-
-
 $dateProduct =  Database::search($q);
 
 if ($dateProduct->num_rows === 0) {
