@@ -10,6 +10,8 @@ INNER JOIN `brand` ON `product`.`brand_idbrand` = `brand`.`idbrand`
 INNER JOIN `product_colors` ON `product`.`product_colors_id` = `product_colors`.`colors_id`
 WHERE `product`.`product_name` LIKE '" . $_GET["search"] . "%'";
 
+$q =$q."ORDER BY `id` ASC ";
+
 $dateProduct =  Database::search($q);
 
 if ($dateProduct->num_rows === 0) {
@@ -19,7 +21,6 @@ if ($dateProduct->num_rows === 0) {
     for ($i = 0; $i < $dateProduct->num_rows; $i++) {
 
         $row = $dateProduct->fetch_assoc();
-
 ?>
         <tr>
             <td><?= $row['id']; ?></td>

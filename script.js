@@ -698,3 +698,24 @@ function chengStatusProduct(id, st) {
         request.send(from);
     }
 }
+
+
+function getMainCategories() {
+
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+            return request.responseText;
+        }
+
+    }
+
+    request.open("GET", "get-mani-categorues.php", true);
+    request.send();
+}
+
+function filterCategoryLode() {
+    document.getElementById("filterCategory") = getMainCategories();
+}

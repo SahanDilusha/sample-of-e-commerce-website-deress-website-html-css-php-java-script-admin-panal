@@ -11,9 +11,15 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body onload="getProduct();">
+<body onload="getProduct(); filterCategoryLode();">
     <!-- Navigation Bar -->
     <?php include "navbar.php";
+
+    if (!isset($_SESSION["user2"])) {
+        header("Location: http://localhost/myshop-admin/index.php");
+        exit;
+    }
+
     include "spinners.php";
     ?>
 
@@ -28,10 +34,7 @@
             </div>
             <div class="col-md-4">
                 <select class="form-select" id="filterCategory">
-                    <option value="all">All Categories</option>
-                    <option value="electronics">Electronics</option>
-                    <option value="fashion">Fashion</option>
-                    <option value="home">Home & Garden</option>
+                   
                 </select>
             </div>
             <div class="col-md-2">
