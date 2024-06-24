@@ -723,11 +723,11 @@ function getSubCategories() {
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-            document.getElementById("filterCategory").innerHTML =  request.responseText;
+            document.getElementById("filterSuCategory").innerHTML =  request.responseText;
         }
 
     }
 
-    request.open("GET", "get-mani-categorues.php", true);
+    request.open("GET", "get-sub-categorues.php", true);
     request.send();
 }

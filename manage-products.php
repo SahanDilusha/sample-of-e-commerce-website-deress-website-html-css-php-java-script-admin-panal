@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body onload="getProduct(); getMainCategories();">
+<body onload="getProduct(); getMainCategories(); getSubCategories();">
     <!-- Navigation Bar -->
     <?php include "navbar.php";
 
