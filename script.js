@@ -1048,7 +1048,7 @@ function getMainCa() {
         }
     };
 
-    request.open("GET", "get-mani-categorues2.phptext=" + text, true);
+    request.open("GET", "get-mani-categorues2.php?text=" + text.value, true);
     request.send(); // Send the form data
 
 }
@@ -1065,12 +1065,58 @@ function getSubCa() {
         }
     };
 
-    request.open("GET", "get-sub-categorues2.php?text=" + text, true);
+    request.open("GET", "get-sub-categorues2.php?text=" + text.value, true);
     request.send(); // Send the form data
 
 }
 
+function addMainC() {
+    const text = document.getElementById("cmInput");
+    const request = new XMLHttpRequest();
+    const from = new FormData();
 
+    from.append("text", text.value);
+    showSpinners();
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            hideSpinners();
+            alert(request.responseText);
+            if (request.responseText === "ok") {
+                text.value('');
+                getMainCategories();
+                getMainCa();
+            }
+        }
+    };
+
+    request.open("POST", "add-new-mainC.php", true);
+    request.send(from); // Send the form data
+
+}
+
+function addSubC() {
+    const text = document.getElementById("suInput");
+    const request = new XMLHttpRequest();
+    const from = new FormData();
+
+    from.append("text", text.value);
+    showSpinners();
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            hideSpinners();
+            alert(request.responseText);
+            if (request.responseText === "ok") {
+                text.value('');
+                getSubCategories();
+                getSubCa();
+            }
+        }
+    };
+
+    request.open("POST", "add-new-subc.php", true);
+    request.send(from); // Send the form data
+
+}
 
 
 

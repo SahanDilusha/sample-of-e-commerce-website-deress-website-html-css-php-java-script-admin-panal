@@ -247,8 +247,8 @@
                             <div class="col-12 mt-3">
                                 <div class="mb-3">
                                     <div class="d-flex flex-row justify-content-center align-items-center gap-2">
-                                        <input type="text" class="form-control w-75" id="cmInput" onkeyup="getMainCa();" placeholder="Category id or Name">
-                                        <button class="btn btn-info" id="mainCAddBtn" onclick="addmainC();">Add New</button>
+                                        <input type="text" maxlength="45" class="form-control w-75" id="cmInput" onkeyup="getMainCa();" placeholder="Category id or Name">
+                                        <button class="btn btn-info" id="mainCAddBtn" onclick="addMainC();">Add New</button>
                                     </div>
                                 </div>
                             </div>
@@ -276,8 +276,8 @@
                             <div class="col-12 mt-3">
                                 <div class="mb-3">
                                     <div class="d-flex flex-row justify-content-center align-items-center gap-2">
-                                        <input type="text" class="form-control w-75" id="suInput" onkeyup="getSubCa();" placeholder="Category id or Name">
-                                        <button class="btn btn-info" id="subCAddBtn" disabled onclick="addsubC();">Add New</button>
+                                        <input type="text" maxlength="45" class="form-control w-75" id="suInput" onkeyup="getSubCa();" placeholder="Category id or Name">
+                                        <button class="btn btn-info" id="subCAddBtn" disabled onclick="addSubC()">Add New</button>
                                     </div>
                                 </div>
                             </div>
