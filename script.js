@@ -734,11 +734,10 @@ function getSubCategories() {
     request.send();
 }
 
-// Assuming you have jQuery included for simplicity in handling DOM events and manipulation
 $(document).ready(function() {
-    // Double-click event listener on table rows
+
     $('#productTable tbody').on('dblclick', 'tr', function() {
-        // Get data from the clicked row
+    
         var id = $(this).find('td:eq(0)').text(); // ID
         var name = $(this).find('td:eq(1)').text(); // Name
         var price = $(this).find('td:eq(2)').text(); // Price
@@ -747,7 +746,6 @@ $(document).ready(function() {
         var subCategory = $(this).find('td:eq(5)').text(); // Sub Category
         var color = $(this).find('td:eq(6)').text(); // Color
 
-        // Set values to the modal form fields
         $('#productId').val(id);
         $('#m_productName').val(name);
         $('#m_productPrice').val(price);
@@ -756,7 +754,6 @@ $(document).ready(function() {
         $('#m_productSubCategory').val(subCategory);
         $('#m_productColor').val(color);
 
-        // Show the modal
         $('#productModal').modal('show');
     });
 });

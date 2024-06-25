@@ -86,29 +86,50 @@
                         <input type="hidden" id="productId" name="m_productId">
                         <div class="mb-3">
                             <label for="m_productName" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="m_productName" name="productName">
+                            <input type="text" class="form-control" id="m_productName" name="m_productName">
                         </div>
                         <div class="mb-3">
                             <label for="m_productPrice" class="form-label">Price (Rs.)</label>
-                            <input type="text" class="form-control" id="m_productPrice" name="productPrice">
+                            <input type="text" class="form-control" id="m_productPrice" name="m_productPrice">
                         </div>
                         <div class="mb-3">
                             <label for="m_productDiscount" class="form-label">Discount (%)</label>
-                            <input type="text" class="form-control" id="m_productDiscount" name="productDiscount">
+                            <input type="text" class="form-control" id="m_productDiscount" name="m_productDiscount">
                         </div>
                         <div class="mb-3">
                             <label for="m_productMainCategory" class="form-label">Main Category</label>
-                            <input type="text" class="form-control" id="m_productMainCategory" name="productMainCategory">
+                            <input type="text" class="form-control" id="m_productMainCategory" name="m_productMainCategory">
                         </div>
                         <div class="mb-3">
                             <label for="m_productSubCategory" class="form-label">Sub Category</label>
-                            <input type="text" class="form-control" id="m_productSubCategory" name="productSubCategory">
+                            <input type="text" class="form-control" id="m_productSubCategory" name="m_productSubCategory">
                         </div>
                         <div class="mb-3">
                             <label for="m_productColor" class="form-label">Color</label>
-                            <input type="text" class="form-control" id="m_productColor" name="productColor">
+                            <input type="text" class="form-control" id="m_productColor" name="m_productColor">
                         </div>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary mb-3">Save changes</button>
+
+                        <div class="mb-3">
+                            <div>
+                                <input class="form-control" type="file" id="formFile1">
+                                <button class="btn btn-primary mt-1">Update Image 01</button>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div>
+                                <input class="form-control" type="file" id="formFile2">
+                                <button class="btn btn-primary mt-1">Update Image 02</button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div>
+                                <input class="form-control" type="file" id="formFile3">
+                                <button class="btn btn-primary mt-1">Update Image 03</button>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>
