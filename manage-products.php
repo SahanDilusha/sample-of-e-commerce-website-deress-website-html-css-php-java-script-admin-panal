@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body onload="getProduct(); getMainCategories(); getSubCategories(); getColors(); getMaterial(); getBrands();">
+<body onload="getProduct(); getSubCa(); getMainCa(); getMainCategories(); getSubCategories(); getColors(); getMaterial(); getBrands();">
     <!-- Navigation Bar -->
     <?php include "navbar.php";
 
@@ -33,20 +33,23 @@
                 <label for="filterCategory">Search</label>
                 <input type="search" class="form-control" id="searchField" onkeyup="getProduct();" placeholder="Search products...">
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label for="filterCategory">Main Category</label>
                 <select class="form-select" id="filterCategory" onchange="getProduct();">
 
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label for="filterCategory">Sub Category</label>
                 <select class="form-select" id="filterSuCategory" onchange="getProduct();">
 
                 </select>
             </div>
-            <div class="col-md-2 mt-4">
+            <div class="col-md-2 mt-3">
                 <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#productModal2">Add Product</button>
+            </div>
+            <div class="col-md-2 mt-3">
+                <button class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#productCategoryModal2">Manage Category</button>
             </div>
 
         </div>
@@ -103,7 +106,7 @@
                         <label for="m_productDiscount" class="form-label">Discount (%)</label>
                         <input type="number" class="form-control" id="m_productDiscount" name="m_productDiscount">
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="m_qty" class="form-label">QTY</label>
                         <input type="number" class="form-control" id="m_qty" name="m_qty">
@@ -154,10 +157,8 @@
         </div>
     </div>
 
-
-
     <div class="modal fade" id="productModal2" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="productModalLabel">Add New Product</h5>
@@ -224,6 +225,76 @@
                         <input class="form-control" type="file" id="formFile6">
                     </div>
                     <button type="submit" id="psave" class="btn btn-primary mb-3">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="productCategoryModal2" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Manage Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="w-100">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4>Main Categorys</h4>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <div class="mb-3">
+                                    <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                                        <input type="text" class="form-control w-75" id="cmInput" onkeyup="getMainCa();" placeholder="Category id or Name">
+                                        <button class="btn btn-info" id="mainCAddBtn" onclick="addmainC();">Add New</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle table-hover" id="productTable">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="categoryMainTbaleBody">
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="w-100">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4>Sub Categorys</h4>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <div class="mb-3">
+                                    <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                                        <input type="text" class="form-control w-75" id="suInput" onkeyup="getSubCa();" placeholder="Category id or Name">
+                                        <button class="btn btn-info" id="subCAddBtn" disabled onclick="addsubC();">Add New</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle table-hover" id="productTable">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="categorySuTbaleBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

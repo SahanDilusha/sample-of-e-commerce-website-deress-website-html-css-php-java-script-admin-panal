@@ -978,7 +978,7 @@ $(document).ready(function () {
         formData.append('m_delivery', $('#m_delivery').val());
         formData.append('m_qty', $('#m_qty').val());
         formData.append('m_description', $('#m_description').val());
-        
+
         // Append selected options from select elements
         formData.append('m_productMainCategory', $('#m_productMainCategory').val());
         formData.append('m_productSubCategory', $('#m_productSubCategory').val());
@@ -1034,6 +1034,40 @@ function UpdateImage(id) {
     } else {
         alert("Image " + id + " is required!");
     }
+}
+
+function getMainCa() {
+    const text = document.getElementById("cmInput");
+    const request = new XMLHttpRequest();
+
+    const body = document.getElementById("categoryMainTbaleBody");
+    body.innerHTML = "";
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            body.innerHTML = request.responseText;
+        }
+    };
+
+    request.open("GET", "get-mani-categorues2.phptext=" + text, true);
+    request.send(); // Send the form data
+
+}
+
+function getSubCa() {
+    const text = document.getElementById("suInput");
+    const request = new XMLHttpRequest();
+
+    const body = document.getElementById("categorySuTbaleBody");
+    body.innerHTML = "";
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            body.innerHTML = request.responseText;
+        }
+    };
+
+    request.open("GET", "get-sub-categorues2.php?text=" + text, true);
+    request.send(); // Send the form data
+
 }
 
 
