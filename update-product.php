@@ -30,6 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "Valid product delivery price is required.";
     }
 
+    $qty = filter_input(INPUT_POST, 'm_qty', FILTER_VALIDATE_FLOAT);
+    if ($qty === false || $qty <= 0) {
+        $errors[] = "Valid product qty is required.";
+    }
     // Sanitize product description
     $productDescription = htmlspecialchars(trim($_POST['m_description']));
     if (empty($productDescription)) {
@@ -69,7 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     `product_description` = '$productDescription',
                     `main_category_id` = '$mainCategory',
                     `sub_category_id` = '$subCategory',
-                    `product_colors_id` = '$color'
+                    `product_colors_id` = '$color',
+                    `product_qty` = '$qty'
                   WHERE `id` = '$productId'";
 
         Database::iud($query);

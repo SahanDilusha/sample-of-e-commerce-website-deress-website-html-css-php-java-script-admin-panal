@@ -978,7 +978,7 @@ $(document).ready(function () {
         formData.append('m_delivery', $('#m_delivery').val());
         formData.append('m_qty', $('#m_qty').val());
         formData.append('m_description', $('#m_description').val());
-
+        
         // Append selected options from select elements
         formData.append('m_productMainCategory', $('#m_productMainCategory').val());
         formData.append('m_productSubCategory', $('#m_productSubCategory').val());
@@ -1025,7 +1025,7 @@ function UpdateImage(id) {
 
         request.onreadystatechange = function () {
             if (request.readyState === 4 && request.status === 200) {
-                alert(request.responseText);
+                $('#formFile' + id).val('');
             }
         };
 

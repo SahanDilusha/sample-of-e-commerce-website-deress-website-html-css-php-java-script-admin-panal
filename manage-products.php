@@ -103,6 +103,11 @@
                         <label for="m_productDiscount" class="form-label">Discount (%)</label>
                         <input type="number" class="form-control" id="m_productDiscount" name="m_productDiscount">
                     </div>
+                    
+                    <div class="mb-3">
+                        <label for="m_qty" class="form-label">QTY</label>
+                        <input type="number" class="form-control" id="m_qty" name="m_qty">
+                    </div>
                     <div class="mb-3">
                         <label for="m_productMainCategory" class="form-label">Main Category</label>
                         <select class="form-select" name="m_productMainCategory" id="m_productMainCategory"></select>
