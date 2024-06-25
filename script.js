@@ -1092,7 +1092,7 @@ function addMainC() {
             hideSpinners();
             alert(request.responseText);
             if (request.responseText === "ok") {
-                text.value="";
+                text.value = "";
                 getMainCategories();
                 getMainCa();
             }
@@ -1116,7 +1116,7 @@ function addSubC() {
             hideSpinners();
             alert(request.responseText);
             if (request.responseText === "ok") {
-                text.value="";
+                text.value = "";
                 getSubCategories();
                 getSubCa();
             }
@@ -1140,13 +1140,36 @@ function getBrand2() {
             if (request.responseText !== "no data fuond") {
                 document.getElementById("brandAddBtn").setAttribute("disabled", "");
             } else {
-                document.getElementById("subCAddBtn").removeAttribute("disabled", "");
+                document.getElementById("brandAddBtn").removeAttribute("disabled");
             }
         }
     };
 
     request.open("GET", "get-barnds2.php?text=" + text.value, true);
     request.send(); // Send the form data
+}
+
+function addNewBrand() {
+    const text = document.getElementById("brandInput2");
+    const request = new XMLHttpRequest();
+    const from = new FormData();
+
+    from.append("text", text.value);
+    showSpinners();
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            hideSpinners();
+            alert(request.responseText);
+            if (request.responseText === "ok") {
+                text.value = "";
+                getBrands();
+                getBrand2();
+            }
+        }
+    };
+
+    request.open("POST", "add-new-barnd.php", true);
+    request.send(from); // Send the form data
 }
 
 
