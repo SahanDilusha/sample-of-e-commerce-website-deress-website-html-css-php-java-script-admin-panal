@@ -20,12 +20,21 @@ session_start();
                 <li class="nav-item">
                     <a class="nav-link" href="manage-products.php">Manege Product</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="users.php">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admins.php">Admins</a>
-                </li>
+
+                <?php
+                if ($_SESSION["user2"]["types_types_id"] == "4") {
+                ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admins.php">Admins</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="users.php">Users</a>
+                    </li>
+                <?php
+                }
+
+                ?>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Messages</a>
                 </li>

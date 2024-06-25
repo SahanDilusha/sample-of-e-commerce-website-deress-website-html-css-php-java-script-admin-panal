@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION["user2"])) {
-    header("Location: http://localhost/myshop-admin/dashboard.php");
+    header("Location: http://localhost/myshop-admin/orders.php");
 }
 ?>
 
