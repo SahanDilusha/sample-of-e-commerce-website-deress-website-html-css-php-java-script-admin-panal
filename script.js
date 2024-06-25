@@ -781,57 +781,6 @@ function getBrands() {
     request.send();
 }
 
-
-$(document).ready(function () {
-    // Double-click event listener on table rows
-    $('#productTable tbody').on('dblclick', 'tr', function () {
-        // Get data from the clicked row
-        var id = $(this).find('td:eq(0)').text(); // ID
-        var name = $(this).find('td:eq(1)').text(); // Name
-        var price = $(this).find('td:eq(2)').text(); // Price
-        var discount = $(this).find('td:eq(3)').text(); // Discount
-        var mainCategory = $(this).find('td:eq(4)').text(); // Main Category
-        var subCategory = $(this).find('td:eq(5)').text(); // Sub Category
-        var color = $(this).find('td:eq(6)').text(); // Color
-
-        // Set values to the modal form fields
-        $('#m_productId').val(id);
-        $('#m_productName').val(name);
-        $('#m_productPrice').val(price);
-        $('#m_productDiscount').val(discount);
-
-        // Set the selected option for main category
-        $('#m_productMainCategory option').each(function () {
-            if ($(this).text() === mainCategory) {
-                $(this).prop('selected', true);
-            } else {
-                $(this).prop('selected', false);
-            }
-        });
-
-        // Set the selected option for sub category
-        $('#m_productSubCategory option').each(function () {
-            if ($(this).text() === subCategory) {
-                $(this).prop('selected', true);
-            } else {
-                $(this).prop('selected', false);
-            }
-        });
-
-        // Set the selected option for color
-        $('#m_productColor option').each(function () {
-            if ($(this).text() === color) {
-                $(this).prop('selected', true);
-            } else {
-                $(this).prop('selected', false);
-            }
-        });
-
-        // Show the modal
-        $('#productModal').modal('show');
-    });
-});
-
 $(document).ready(function () {
     // Save button event handler
     $('#psave').on('click', function (event) {
@@ -966,6 +915,132 @@ $(document).ready(function () {
         });
     });
 });
+
+
+$(document).ready(function () {
+    // Double-click event listener on table rows
+    $('#productTable tbody').on('dblclick', 'tr', function () {
+        // Get data from the clicked row
+        var id = $(this).find('td:eq(0)').text().trim(); // ID
+        var name = $(this).find('td:eq(1)').text().trim(); // Name
+        var price = $(this).find('td:eq(2)').text().trim(); // Price
+        var discount = $(this).find('td:eq(3)').text().trim(); // Discount
+        var delivery = $(this).find('td:eq(4)').text().trim(); // Delivery
+        var qty = $(this).find('td:eq(5)').text().trim(); // Stock
+        var brand = $(this).find('td:eq(6)').text().trim(); // Brand Name
+        var mainCategory = $(this).find('td:eq(7)').text().trim(); // Main Category
+        var subCategory = $(this).find('td:eq(8)').text().trim(); // Sub Category
+        var color = $(this).find('td:eq(9)').text().trim(); // Color
+        var material = $(this).find('td:eq(10)').text().trim(); // Material
+        var description = $(this).find('td:eq(12)').text().trim(); // Description
+
+        // Set values to the modal form fields
+        $('#m_productId').val(id);
+        $('#m_productName').val(name);
+        $('#m_productPrice').val(price);
+        $('#m_productDiscount').val(discount);
+        $('#m_delivery').val(delivery);
+        $('#m_qty').val(qty);
+        $('#m_description').val(description);
+
+        // Function to find and select option in select element
+        function selectOption(selectId, optionText) {
+            $('#' + selectId + ' option').each(function () {
+                if ($(this).text().trim() === optionText) {
+                    $(this).prop('selected', true);
+                } else {
+                    $(this).prop('selected', false);
+                }
+            });
+        }
+
+        // Select options in select elements
+        selectOption('m_productMainCategory', mainCategory);
+        selectOption('m_productSubCategory', subCategory);
+        selectOption('m_productColor', color);
+        selectOption('m_material', material);
+        selectOption('m_getBarnds', brand);
+
+        // Show the modal
+        $('#productModal').modal('show');
+    });
+
+    // Submit button event handler without using a form
+    $('#upP').on('click', function () {
+        // Create FormData object
+        var formData = new FormData();
+
+        // Append data to FormData object
+        formData.append('m_productId', $('#m_productId').val());
+        formData.append('m_productName', $('#m_productName').val());
+        formData.append('m_productPrice', $('#m_productPrice').val());
+        formData.append('m_productDiscount', $('#m_productDiscount').val());
+        formData.append('m_delivery', $('#m_delivery').val());
+        formData.append('m_qty', $('#m_qty').val());
+        formData.append('m_description', $('#m_description').val());
+
+        // Append selected options from select elements
+        formData.append('m_productMainCategory', $('#m_productMainCategory').val());
+        formData.append('m_productSubCategory', $('#m_productSubCategory').val());
+        formData.append('m_productColor', $('#m_productColor').val());
+        formData.append('m_material', $('#m_material').val());
+        formData.append('m_getBarnds', $('#m_getBarnds').val());
+
+        // Perform AJAX request
+        $.ajax({
+            url: 'update-product.php', // Replace with your server URL
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log('AJAX Success Response:', response); // Print success response to console
+                if (response === "ok") {
+                    // Close modal
+                    $('#productModal').modal('hide');
+                    alert('Product updated successfully!');
+                    // Optionally update or refresh the product list
+                    getProduct(); // Example function to refresh product list
+                } else {
+                    alert('Failed to update product: ' + response);
+                }
+            },
+            error: function (error) {
+                console.error('AJAX Error:', error); // Print error to console
+                alert('Error updating product. Please try again.');
+            }
+        });
+    });
+});
+
+function UpdateImage(id) {
+    const image = $('#formFile' + id)[0].files[0]; // Get the selected file
+    if (image) { // Check if an image is selected
+        const request = new XMLHttpRequest();
+        const formData = new FormData();
+
+        formData.append("id", $('#m_productId').val()); // Append product ID
+        formData.append("imgid", id); // Append image ID (1, 2, or 3)
+        formData.append("file", image); // Append the selected image file
+
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                alert(request.responseText);
+            }
+        };
+
+        request.open("POST", "http://localhost/MyShop/update-product-image.php", true);
+        request.send(formData); // Send the form data
+    } else {
+        alert("Image " + id + " is required!");
+    }
+}
+
+
+
+
+
+
 
 
 

@@ -60,9 +60,13 @@
                         <th>Name</th>
                         <th>Price(Rs.)</th>
                         <th>Discount(%)</th>
+                        <th>Delivery(Rs.)</th>
+                        <th>Stock</th>
+                        <th>Brand Name</th>
                         <th>Main Category</th>
                         <th>Sub Category</th>
                         <th>Color</th>
+                        <th>Material</th>
                         <th>Sales</th>
                         <th>Actions</th>
                     </tr>
@@ -81,76 +85,71 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editProductForm">
-                        <input type="hidden" id="m_productId" name="m_productId">
-                        <div class="mb-3">
-                            <label for="m_productName" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="m_productName" name="m_productName">
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_productPrice" class="form-label">Price (Rs.)</label>
-                            <input type="number" class="form-control" id="m_productPrice" name="m_productPrice">
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_delivery" class="form-label">Delivery (Rs.)</label>
-                            <input type="number" class="form-control" id="m_delivery" name="m_delivery">
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_productDiscount" class="form-label">Discount (%)</label>
-                            <input type="number" class="form-control" id="m_productDiscount" name="m_productDiscount">
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_productMainCategory" class="form-label">Main Category</label>
-                            <select class="form-select" name="m_productMainCategory" id="m_productMainCategory"></select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_productSubCategory" class="form-label">Sub Category</label>
-                            <select class="form-select" name="m_productSubCategory" id="m_productSubCategory"></select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_productColor" class="form-label">Color</label>
-                            <select class="form-select" name="m_productColor" id="m_productColor">
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_material" class="form-label">Material</label>
-                            <select name="m_material" id="m_material" class="form-select"></select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_getBarnds" class="form-label">Barnd</label>
-                            <select name="m_getBarnds" id="m_getBarnds" class="form-select"></select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_description" class="form-label">Product Description</label>
-                            <textarea class="form-control" name="m_description" id="m_description" cols="3" rows="1" maxlength="500"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary mb-3">Save changes</button>
 
-                        <div class="mb-3">
-                            <div>
-                                <input class="form-control" type="file" id="formFile1">
-                                <button class="btn btn-primary mt-1">Update Image 01</button>
-                            </div>
-                        </div>
+                    <input type="hidden" id="m_productId" name="m_productId">
+                    <div class="mb-3">
+                        <label for="m_productName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="m_productName" name="m_productName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_productPrice" class="form-label">Price (Rs.)</label>
+                        <input type="number" class="form-control" id="m_productPrice" name="m_productPrice">
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_delivery" class="form-label">Delivery (Rs.)</label>
+                        <input type="number" class="form-control" id="m_delivery" name="m_delivery">
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_productDiscount" class="form-label">Discount (%)</label>
+                        <input type="number" class="form-control" id="m_productDiscount" name="m_productDiscount">
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_productMainCategory" class="form-label">Main Category</label>
+                        <select class="form-select" name="m_productMainCategory" id="m_productMainCategory"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_productSubCategory" class="form-label">Sub Category</label>
+                        <select class="form-select" name="m_productSubCategory" id="m_productSubCategory"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_productColor" class="form-label">Color</label>
+                        <select class="form-select" name="m_productColor" id="m_productColor"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_material" class="form-label">Material</label>
+                        <select name="m_material" id="m_material" class="form-select"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_getBarnds" class="form-label">Brand</label>
+                        <select name="m_getBarnds" id="m_getBarnds" class="form-select"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_description" class="form-label">Product Description</label>
+                        <textarea class="form-control" name="m_description" id="m_description" cols="3" rows="1" maxlength="500"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-3" id="upP">Save changes</button>
+                    <div class="mb-3">
+                        <label for="formFile1" class="form-label">Image 01</label>
+                        <input class="form-control" type="file" id="formFile1">
+                        <button class="btn btn-secondary mt-1" id="piUp1" onclick="UpdateImage('1')">Update Image 01</button>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile2" class="form-label">Image 02</label>
+                        <input class="form-control" type="file" id="formFile2">
+                        <button class="btn btn-secondary mt-1" id="piUp2" onclick="UpdateImage('2')">Update Image 02</button>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile3" class="form-label">Image 03</label>
+                        <input class="form-control" type="file" id="formFile3"> <!-- Corrected the ID here -->
+                        <button class="btn btn-secondary mt-1" id="piUp3" onclick="UpdateImage('3')">Update Image 03</button>
+                    </div>
 
-                        <div class="mb-3">
-                            <div>
-                                <input class="form-control" type="file" id="formFile2">
-                                <button class="btn btn-primary mt-1">Update Image 02</button>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div>
-                                <input class="form-control" type="file" id="formFile3">
-                                <button class="btn btn-primary mt-1">Update Image 03</button>
-                            </div>
-                        </div>
-
-                    </form>
                 </div>
             </div>
         </div>
     </div>
+
+
 
     <div class="modal fade" id="productModal2" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
