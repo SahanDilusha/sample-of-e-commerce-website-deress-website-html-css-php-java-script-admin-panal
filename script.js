@@ -720,6 +720,32 @@ function getMainCategories() {
     request.send();
 }
 
+function getColors() {
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200")
+            document.getElementById("m_productColor").innerHTML = request.responseText;
+        document.getElementById("m_productColor2").innerHTML = request.responseText;
+    }
+    request.open("GET", "get-colors.php", true);
+    request.send();
+}
+
+function getMaterial() {
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200")
+            document.getElementById("m_material").innerHTML = request.responseText;
+        document.getElementById("m_material2").innerHTML = request.responseText;
+    }
+    request.open("GET", "get-material.php", true);
+    request.send();
+}
+
 function getSubCategories() {
 
     const request = new XMLHttpRequest();
@@ -738,9 +764,27 @@ function getSubCategories() {
     request.send();
 }
 
-$(document).ready(function() {
+function getBrands() {
+
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+            document.getElementById("m_getBarnds").innerHTML = request.responseText;
+            document.getElementById("m_getBarnds2").innerHTML = request.responseText;
+        }
+
+    }
+
+    request.open("GET", "get-barnds.php", true);
+    request.send();
+}
+
+
+$(document).ready(function () {
     // Double-click event listener on table rows
-    $('#productTable tbody').on('dblclick', 'tr', function() {
+    $('#productTable tbody').on('dblclick', 'tr', function () {
         // Get data from the clicked row
         var id = $(this).find('td:eq(0)').text(); // ID
         var name = $(this).find('td:eq(1)').text(); // Name
@@ -757,7 +801,7 @@ $(document).ready(function() {
         $('#m_productDiscount').val(discount);
 
         // Set the selected option for main category
-        $('#m_productMainCategory option').each(function() {
+        $('#m_productMainCategory option').each(function () {
             if ($(this).text() === mainCategory) {
                 $(this).prop('selected', true);
             } else {
@@ -766,7 +810,7 @@ $(document).ready(function() {
         });
 
         // Set the selected option for sub category
-        $('#m_productSubCategory option').each(function() {
+        $('#m_productSubCategory option').each(function () {
             if ($(this).text() === subCategory) {
                 $(this).prop('selected', true);
             } else {
@@ -775,7 +819,7 @@ $(document).ready(function() {
         });
 
         // Set the selected option for color
-        $('#m_productColor option').each(function() {
+        $('#m_productColor option').each(function () {
             if ($(this).text() === color) {
                 $(this).prop('selected', true);
             } else {
@@ -788,9 +832,145 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function () {
+    // Save button event handler
+    $('#psave').on('click', function (event) {
+        // Prevent any default behavior
+        event.preventDefault();
+
+        var name = $('#m_productName2').val().trim(); // Name
+        var price = $('#m_productPrice2').val().trim(); // Price
+        var discount = $('#m_productDiscount2').val().trim(); // Discount
+        var mainCategory = $('#m_productMainCategory2').val(); // Main Category
+        var subCategory = $('#m_productSubCategory2').val(); // Sub Category
+        var color = $('#m_productColor2').val(); // Color
+        var itemQty = $('#m_qty2').val();
+        var description = $('#m_qty2').val();
+        var material = $('#m_material2').val();
+        var delivery = $('#m_delivery2').val();
+        var barnds = $('#m_getBarnds2').val();
+
+
+        var image1 = $('#formFile4')[0].files[0]; // Image 01 file object
+        var image2 = $('#formFile5')[0].files[0]; // Image 02 file object
+        var image3 = $('#formFile6')[0].files[0]; // Image 03 file object
+
+        // Basic validation
+        var isValid = true;
+        var errorMessage = '';
+
+        if (name === '') {
+            isValid = false;
+            errorMessage += 'Name is required.\n';
+        }
+        if (price === '' || isNaN(price) || price <= 0) {
+            isValid = false;
+            errorMessage += 'Valid price is required.\n';
+        }
+        if (delivery === '' || isNaN(delivery) || delivery <= 0) {
+            isValid = false;
+            errorMessage += 'Valid delivery price is required.\n';
+        }
+        if (discount === '' || isNaN(discount) || discount < 0 || discount > 100) {
+            isValid = false;
+            errorMessage += 'Valid discount percentage is required (0-100).\n';
+        }
+        if (itemQty === '' || isNaN(itemQty) || itemQty < 0) {
+            isValid = false;
+            errorMessage += 'Valid item Qty is required.\n';
+        }
+        if (mainCategory === '') {
+            isValid = false;
+            errorMessage += 'Main Category is required.\n';
+        }
+        if (subCategory === '') {
+            isValid = false;
+            errorMessage += 'Sub Category is required.\n';
+        }
+        if (material === '') {
+            isValid = false;
+            errorMessage += ('Material is required.\n');
+        }
+        if (color === '') {
+            isValid = false;
+            errorMessage += 'Color is required.\n';
+        }
+        if (barnds === '') {
+            isValid = false;
+            errorMessage += 'Brand is required.\n';
+        }
+        if (description === '') {
+            isValid = false;
+            errorMessage += 'Sub Description is required.\n';
+        }
+        if (!image1) {
+            isValid = false;
+            errorMessage += 'Image 01 is required.\n';
+        }
+        if (!image2) {
+            isValid = false;
+            errorMessage += 'Image 02 is required.\n';
+        }
+        if (!image3) {
+            isValid = false;
+            errorMessage += 'Image 03 is required.\n';
+        }
+
+        // Check validation
+        if (!isValid) {
+            // Display error message(s)
+            alert(errorMessage);
+            return;
+        }
+
+        // If valid, prepare form data for AJAX submission
+        var formData = new FormData();
+        formData.append('name', name);
+        formData.append('price', price);
+        formData.append('discount', discount);
+        formData.append('mainCategory', mainCategory);
+        formData.append('subCategory', subCategory);
+        formData.append('color', color);
+        formData.append('image1', image1);
+        formData.append('image2', image2);
+        formData.append('image3', image3);
+        formData.append('qty', itemQty);
+        formData.append('description', description);
+        formData.append('material', material);
+        formData.append('delivery', delivery);
+        formData.append('barnd', barnds);
+
+        // Perform AJAX request
+        $.ajax({
+            url: 'http://localhost/MyShop/add-new-product.php', // Replace with your server URL
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                // Handle success response
+                if (response === "ok") {
+                    $('#productModal2').modal('hide');
+                    alert('Product added successfully!');
+                    // Optionally reload or update the product list
+                    getProduct(); // Example function to refresh product list
+                } else {
+                    alert('Failed to add product: ' + response);
+                }
+            },
+            error: function (error) {
+                // Handle error response
+                console.log('Error:', error);
+                alert('Error adding product. Please try again.');
+            }
+        });
+    });
+});
 
 
 
-  
-  
-  
+
+
+
+
+

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body onload="getProduct(); getMainCategories(); getSubCategories();">
+<body onload="getProduct(); getMainCategories(); getSubCategories(); getColors(); getMaterial(); getBrands();">
     <!-- Navigation Bar -->
     <?php include "navbar.php";
 
@@ -92,6 +92,10 @@
                             <input type="number" class="form-control" id="m_productPrice" name="m_productPrice">
                         </div>
                         <div class="mb-3">
+                            <label for="m_delivery" class="form-label">Delivery (Rs.)</label>
+                            <input type="number" class="form-control" id="m_delivery" name="m_delivery">
+                        </div>
+                        <div class="mb-3">
                             <label for="m_productDiscount" class="form-label">Discount (%)</label>
                             <input type="number" class="form-control" id="m_productDiscount" name="m_productDiscount">
                         </div>
@@ -107,6 +111,18 @@
                             <label for="m_productColor" class="form-label">Color</label>
                             <select class="form-select" name="m_productColor" id="m_productColor">
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="m_material" class="form-label">Material</label>
+                            <select name="m_material" id="m_material" class="form-select"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="m_getBarnds" class="form-label">Barnd</label>
+                            <select name="m_getBarnds" id="m_getBarnds" class="form-select"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="m_description" class="form-label">Product Description</label>
+                            <textarea class="form-control" name="m_description" id="m_description" cols="3" rows="1" maxlength="500"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary mb-3">Save changes</button>
 
@@ -144,52 +160,71 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editProductForm">
-                        <input type="hidden" id="m_productId2" name="m_productId2">
-                        <div class="mb-3">
-                            <label for="m_productName2" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="m_productName2" name="m_productName2">
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_productPrice2" class="form-label">Price (Rs.)</label>
-                            <input type="number" class="form-control" id="m_productPrice2" name="m_productPrice2">
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_productDiscount2" class="form-label">Discount (%)</label>
-                            <input type="number" class="form-control" id="m_productDiscount2" name="m_productDiscount2">
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_productMainCategory2" class="form-label">Main Category</label>
-                            <select name="m_productMainCategory2" id="m_productMainCategory2" class="form-select"></select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_productSubCategory2" class="form-label">Sub Category</label>
-                            <select name="m_productSubCategory2" id="m_productSubCategory2" class="form-select"></select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="m_productColor2" class="form-label">Color</label>
-                            <select name="m_productColor2" id="m_productSubCategory2" class="form-select"></select>
-                        </div>
+                    <input type="hidden" id="m_productId2" name="m_productId2">
+                    <div class="mb-3">
+                        <label for="m_productName2" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="m_productName2" maxlength="100" name="m_productName2">
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_productPrice2" class="form-label">Price (Rs.)</label>
+                        <input type="number" class="form-control" id="m_productPrice2" name="m_productPrice2">
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_delivery2" class="form-label">Delivery (Rs.)</label>
+                        <input type="number" class="form-control" id="m_delivery2" name="m_delivery2">
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_productDiscount2" class="form-label">Discount (%)</label>
+                        <input type="number" class="form-control" id="m_productDiscount2" name="m_productDiscount2">
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_qty2" class="form-label">QTY</label>
+                        <input type="number" class="form-control" id="m_qty2" name="m_qty2">
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_productMainCategory2" class="form-label">Main Category</label>
+                        <select name="m_productMainCategory2" id="m_productMainCategory2" class="form-select"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_productSubCategory2" class="form-label">Sub Category</label>
+                        <select name="m_productSubCategory2" id="m_productSubCategory2" class="form-select"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_productColor2" class="form-label">Color</label>
+                        <select name="m_productColor2" id="m_productColor2" class="form-select"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_material2" class="form-label">Material</label>
+                        <select name="m_material2" id="m_material2" class="form-select"></select>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="formFile4" class="form-label">Image 01</label>
-                            <input class="form-control" type="file" id="formFile4">
-                        </div>
+                    <div class="mb-3">
+                        <label for="m_getBarnds2" class="form-label">Barnd</label>
+                        <select name="m_getBarnds2" id="m_getBarnds2" class="form-select"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="m_description2" class="form-label">Product Description</label>
+                        <textarea class="form-control" name="m_description2" id="m_description2" cols="3" rows="1" maxlength="500"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile4" class="form-label">Image 01</label>
+                        <input class="form-control" type="file" id="formFile4">
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="formFile5" class="form-label">Image 02</label>
-                            <input class="form-control" type="file" id="formFile5">
-                        </div>
-                        <div class="mb-3">
-                            <label for="formFile6" class="form-label">Image 03</label>
-                            <input class="form-control" type="file" id="formFile6">
-                        </div>
-                        <button type="submit" class="btn btn-primary mb-3">Save</button>
-                    </form>
+                    <div class="mb-3">
+                        <label for="formFile5" class="form-label">Image 02</label>
+                        <input class="form-control" type="file" id="formFile5">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile6" class="form-label">Image 03</label>
+                        <input class="form-control" type="file" id="formFile6">
+                    </div>
+                    <button type="submit" id="psave" class="btn btn-primary mb-3">Save</button>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
