@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body onload="getProduct(); getSubCa(); getMainCa(); getMainCategories(); getSubCategories(); getColors(); getMaterial(); getBrands();">
+<body onload="getProduct(); getSubCa(); getMainCa(); getMainCategories(); getSubCategories(); getColors(); getMaterial(); getBrands(); getBrand2();">
     <!-- Navigation Bar -->
     <?php include "navbar.php";
 
@@ -29,8 +29,8 @@
 
         <!-- Search and Filter Controls -->
         <div class="row mb-4 d-flex justify-content-center align-items-center">
-            <div class="col-md-3">
-                <label for="filterCategory">Search</label>
+            <div class="col-md-2">
+                <label for="searchField">Search</label>
                 <input type="search" class="form-control" id="searchField" onkeyup="getProduct();" placeholder="Search products...">
             </div>
             <div class="col-md-2">
@@ -52,6 +52,9 @@
                 <button class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#productCategoryModal2">Manage Category</button>
             </div>
 
+            <div class="col-md-2 mt-3">
+                <button class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#productBrandModal2">Manage Brands</button>
+            </div>
         </div>
 
         <!-- Product Table -->
@@ -248,7 +251,7 @@
                                 <div class="mb-3">
                                     <div class="d-flex flex-row justify-content-center align-items-center gap-2">
                                         <input type="text" maxlength="45" class="form-control w-75" id="cmInput" onkeyup="getMainCa();" placeholder="Category id or Name">
-                                        <button class="btn btn-info" id="mainCAddBtn" onclick="addMainC();">Add New</button>
+                                        <button class="btn btn-info" id="mainCAddBtn" onclick="addMainC();" disabled>Add New</button>
                                     </div>
                                 </div>
                             </div>
@@ -277,7 +280,7 @@
                                 <div class="mb-3">
                                     <div class="d-flex flex-row justify-content-center align-items-center gap-2">
                                         <input type="text" maxlength="45" class="form-control w-75" id="suInput" onkeyup="getSubCa();" placeholder="Category id or Name">
-                                        <button class="btn btn-info" id="subCAddBtn" disabled onclick="addSubC()">Add New</button>
+                                        <button class="btn btn-info" id="subCAddBtn" onclick="addSubC()" disabled>Add New</button>
                                     </div>
                                 </div>
                             </div>
@@ -291,6 +294,43 @@
                                     </tr>
                                 </thead>
                                 <tbody id="categorySuTbaleBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="productBrandModal2" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productBrandModal2Label">Manage Brands</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="w-100">
+                        <div class="row">
+                            <div class="col-12 mt-3">
+                                <div class="mb-3">
+                                    <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                                        <input type="text" maxlength="45" class="form-control w-75" id="brandInput2" onkeyup="getBrand2();" placeholder="Brand id or Name">
+                                        <button class="btn btn-info" id="brandAddBtn" onclick="addNewBrand()" disabled>Add New</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle table-hover" id="brandTable">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="brandsTbaleBody">
                                 </tbody>
                             </table>
                         </div>
