@@ -89,23 +89,24 @@
                         </div>
                         <div class="mb-3">
                             <label for="m_productPrice" class="form-label">Price (Rs.)</label>
-                            <input type="text" class="form-control" id="m_productPrice" name="m_productPrice">
+                            <input type="number" class="form-control" id="m_productPrice" name="m_productPrice">
                         </div>
                         <div class="mb-3">
                             <label for="m_productDiscount" class="form-label">Discount (%)</label>
-                            <input type="text" class="form-control" id="m_productDiscount" name="m_productDiscount">
+                            <input type="number" class="form-control" id="m_productDiscount" name="m_productDiscount">
                         </div>
                         <div class="mb-3">
                             <label for="m_productMainCategory" class="form-label">Main Category</label>
-                            <input type="text" class="form-control" id="m_productMainCategory" name="m_productMainCategory">
+                            <select class="form-select" name="m_productMainCategory" id="m_productMainCategory"></select>
                         </div>
                         <div class="mb-3">
                             <label for="m_productSubCategory" class="form-label">Sub Category</label>
-                            <input type="text" class="form-control" id="m_productSubCategory" name="m_productSubCategory">
+                            <select class="form-select" name="m_productSubCategory" id="m_productSubCategory"></select>
                         </div>
                         <div class="mb-3">
                             <label for="m_productColor" class="form-label">Color</label>
-                            <input type="text" class="form-control" id="m_productColor" name="m_productColor">
+                            <select class="form-select" name="m_productColor" id="m_productColor">
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary mb-3">Save changes</button>
 
@@ -115,7 +116,7 @@
                                 <button class="btn btn-primary mt-1">Update Image 01</button>
                             </div>
                         </div>
-                        
+
                         <div class="mb-3">
                             <div>
                                 <input class="form-control" type="file" id="formFile2">
@@ -139,7 +140,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="productModalLabel">Edit Product</h5>
+                    <h5 class="modal-title" id="productModalLabel">Add New Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -151,37 +152,37 @@
                         </div>
                         <div class="mb-3">
                             <label for="m_productPrice2" class="form-label">Price (Rs.)</label>
-                            <input type="text" class="form-control" id="m_productPrice2" name="m_productPrice2">
+                            <input type="number" class="form-control" id="m_productPrice2" name="m_productPrice2">
                         </div>
                         <div class="mb-3">
                             <label for="m_productDiscount2" class="form-label">Discount (%)</label>
-                            <input type="text" class="form-control" id="m_productDiscount2" name="m_productDiscount2">
+                            <input type="number" class="form-control" id="m_productDiscount2" name="m_productDiscount2">
                         </div>
                         <div class="mb-3">
                             <label for="m_productMainCategory2" class="form-label">Main Category</label>
-                            <input type="text" class="form-control" id="m_productMainCategory2" name="m_productMainCategory2">
+                            <select name="m_productMainCategory2" id="m_productMainCategory2" class="form-select"></select>
                         </div>
                         <div class="mb-3">
                             <label for="m_productSubCategory2" class="form-label">Sub Category</label>
-                            <input type="text" class="form-control" id="m_productSubCategory2" name="m_productSubCategory2">
+                            <select name="m_productSubCategory2" id="m_productSubCategory2" class="form-select"></select>
                         </div>
                         <div class="mb-3">
                             <label for="m_productColor2" class="form-label">Color</label>
-                            <input type="text" class="form-control" id="m_productColor2" name="m_productColor2">
+                            <select name="m_productColor2" id="m_productSubCategory2" class="form-select"></select>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label for="formFile4" class="form-label">Image 01</label>
-                                <input class="form-control" type="file" id="formFile4">
+                            <input class="form-control" type="file" id="formFile4">
                         </div>
-                        
+
                         <div class="mb-3">
                             <label for="formFile5" class="form-label">Image 02</label>
-                                <input class="form-control" type="file" id="formFile5">
+                            <input class="form-control" type="file" id="formFile5">
                         </div>
                         <div class="mb-3">
                             <label for="formFile6" class="form-label">Image 03</label>
-                                <input class="form-control" type="file" id="formFile6">
+                            <input class="form-control" type="file" id="formFile6">
                         </div>
                         <button type="submit" class="btn btn-primary mb-3">Save</button>
                     </form>

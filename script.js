@@ -710,6 +710,8 @@ function getMainCategories() {
 
         if (request.readyState == "4" && request.status == "200") {
             document.getElementById("filterCategory").innerHTML = request.responseText;
+            document.getElementById("m_productMainCategory2").innerHTML = request.responseText;
+            document.getElementById("m_productMainCategory").innerHTML = request.responseText;
         }
 
     }
@@ -726,6 +728,8 @@ function getSubCategories() {
 
         if (request.readyState == "4" && request.status == "200") {
             document.getElementById("filterSuCategory").innerHTML = request.responseText;
+            document.getElementById("m_productSubCategory").innerHTML = request.responseText;
+            document.getElementById("m_productSubCategory2").innerHTML = request.responseText;
         }
 
     }
@@ -735,9 +739,9 @@ function getSubCategories() {
 }
 
 $(document).ready(function() {
-
+    // Double-click event listener on table rows
     $('#productTable tbody').on('dblclick', 'tr', function() {
-    
+        // Get data from the clicked row
         var id = $(this).find('td:eq(0)').text(); // ID
         var name = $(this).find('td:eq(1)').text(); // Name
         var price = $(this).find('td:eq(2)').text(); // Price
@@ -746,17 +750,44 @@ $(document).ready(function() {
         var subCategory = $(this).find('td:eq(5)').text(); // Sub Category
         var color = $(this).find('td:eq(6)').text(); // Color
 
+        // Set values to the modal form fields
         $('#m_productId').val(id);
         $('#m_productName').val(name);
         $('#m_productPrice').val(price);
         $('#m_productDiscount').val(discount);
-        $('#m_productMainCategory').val(mainCategory);
-        $('#m_productSubCategory').val(subCategory);
-        $('#m_productColor').val(color);
 
+        // Set the selected option for main category
+        $('#m_productMainCategory option').each(function() {
+            if ($(this).text() === mainCategory) {
+                $(this).prop('selected', true);
+            } else {
+                $(this).prop('selected', false);
+            }
+        });
+
+        // Set the selected option for sub category
+        $('#m_productSubCategory option').each(function() {
+            if ($(this).text() === subCategory) {
+                $(this).prop('selected', true);
+            } else {
+                $(this).prop('selected', false);
+            }
+        });
+
+        // Set the selected option for color
+        $('#m_productColor option').each(function() {
+            if ($(this).text() === color) {
+                $(this).prop('selected', true);
+            } else {
+                $(this).prop('selected', false);
+            }
+        });
+
+        // Show the modal
         $('#productModal').modal('show');
     });
 });
+
 
 
 
