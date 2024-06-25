@@ -746,7 +746,7 @@ $(document).ready(function() {
         var subCategory = $(this).find('td:eq(5)').text(); // Sub Category
         var color = $(this).find('td:eq(6)').text(); // Color
 
-        $('#productId').val(id);
+        $('#m_productId').val(id);
         $('#m_productName').val(name);
         $('#m_productPrice').val(price);
         $('#m_productDiscount').val(discount);

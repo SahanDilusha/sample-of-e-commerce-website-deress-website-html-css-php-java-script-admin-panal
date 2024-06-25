@@ -73,7 +73,6 @@
         </div>
     </div>
 
-
     <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -83,7 +82,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="editProductForm">
-                        <input type="hidden" id="productId" name="m_productId">
+                        <input type="hidden" id="m_productId" name="m_productId">
                         <div class="mb-3">
                             <label for="m_productName" class="form-label">Name</label>
                             <input type="text" class="form-control" id="m_productName" name="m_productName">
@@ -130,6 +129,61 @@
                             </div>
                         </div>
 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="productModal2" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Edit Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm">
+                        <input type="hidden" id="m_productId2" name="m_productId2">
+                        <div class="mb-3">
+                            <label for="m_productName2" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="m_productName2" name="m_productName2">
+                        </div>
+                        <div class="mb-3">
+                            <label for="m_productPrice2" class="form-label">Price (Rs.)</label>
+                            <input type="text" class="form-control" id="m_productPrice2" name="m_productPrice2">
+                        </div>
+                        <div class="mb-3">
+                            <label for="m_productDiscount2" class="form-label">Discount (%)</label>
+                            <input type="text" class="form-control" id="m_productDiscount2" name="m_productDiscount2">
+                        </div>
+                        <div class="mb-3">
+                            <label for="m_productMainCategory2" class="form-label">Main Category</label>
+                            <input type="text" class="form-control" id="m_productMainCategory2" name="m_productMainCategory2">
+                        </div>
+                        <div class="mb-3">
+                            <label for="m_productSubCategory2" class="form-label">Sub Category</label>
+                            <input type="text" class="form-control" id="m_productSubCategory2" name="m_productSubCategory2">
+                        </div>
+                        <div class="mb-3">
+                            <label for="m_productColor2" class="form-label">Color</label>
+                            <input type="text" class="form-control" id="m_productColor2" name="m_productColor2">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="formFile4" class="form-label">Image 01</label>
+                                <input class="form-control" type="file" id="formFile4">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="formFile5" class="form-label">Image 02</label>
+                                <input class="form-control" type="file" id="formFile5">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile6" class="form-label">Image 03</label>
+                                <input class="form-control" type="file" id="formFile6">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-3">Save</button>
                     </form>
                 </div>
             </div>
