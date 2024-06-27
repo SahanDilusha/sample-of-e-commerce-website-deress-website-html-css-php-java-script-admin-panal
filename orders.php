@@ -39,13 +39,13 @@
                     <div class="d-flex w-100 mt-2 mb-2 justify-content-between align-items-center">
 
                         <div class="d-flex gap-2">
-                            <input class="form-control me-2" type="text" id="searchField" placeholder="Invoice No" onkeyup="searchInvoice();"/>
+                            <input class="form-control me-2" type="text" id="searchField" placeholder="Invoice No" onkeyup="searchInvoice();" />
                             <button class="btn btn-dark" onclick="searchInvoice();">Search</button>
                         </div>
 
                         <div class="d-flex gap-2">
                             <select class="form-select" id="fl" onchange="searchInvoice();">
-                                <option value="1" selected >All</option>
+                                <option value="1" selected>All</option>
                                 <option value="11">Processing</option>
                                 <option value="12">On Packing</option>
                                 <option value="13">On Shiping</option>
@@ -69,6 +69,7 @@
                                 <th>Mobile</th>
                                 <th>Total Items</th>
                                 <th>Grand Total(LKR)</th>
+                                <th>Date</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -122,8 +123,20 @@
 
                                 <div class="col-md-4">
                                     <div class="mb-3">
+                                        <label for="in_date" class="form-label">Date</label>
+                                        <input type="text" class="form-control" id="in_date" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="in_address" class="form-label">Address</label>
+                                        <input type="text" class="form-control" id="in_address" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
                                         <label for="in_status" class="form-label">Status</label>
-                                        <select class="form-select" id="in_status">
+                                        <select class="form-select" id="in_status" disabled>
                                             <option value="1" selected>All</option>
                                             <option value="11">Processing</option>
                                             <option value="12">On Packing</option>
@@ -152,6 +165,10 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark" onclick="printReport();">Print</button>
                     </div>
                 </div>
 

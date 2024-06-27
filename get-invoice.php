@@ -88,6 +88,7 @@ if ($getInvoice->num_rows != 0) {
                 } ?>
             </td>
             <td><?= $row["grand_total"]; ?></td>
+            <td><?=$row["date"];?></td>
             <td><select class="form-select" aria-label="Default select example" id="get_status" onchange="chengInvoiceStatus('<?= $row['invoice_id']; ?>');">
                     <option value="11" <?php if ($row["invoice_stetus"] == "11") {
                                         ?> selected <?php
@@ -104,7 +105,7 @@ if ($getInvoice->num_rows != 0) {
                     <option value="9" <?php if ($row["invoice_stetus"] == "9") {
                                         ?> selected <?php
                                                 } ?>>Cancel</option>
-                </select></td>
+                </select></td>                
         </tr>
 
 <?php }

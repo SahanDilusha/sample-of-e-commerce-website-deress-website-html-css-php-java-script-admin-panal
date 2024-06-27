@@ -1,3 +1,9 @@
+<?php 
+// if (isset($_GET["obj"])&&!empty($_POST["obj"])) {
+    $obj = json_decode($_GET["obj"]);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,21 +88,19 @@
     <div class="invoice">
         <div class="invoice-header">
             <h1>Invoice</h1>
-            <p>Invoice Number: INV-001</p>
-            <p>Date: June 27, 2024</p>
+            <p>Invoice Number: <?=$obj->in_id?></p>
+            <p>Date: <?= date('d-m-Y', strtotime($obj->in_date))?></p>
+             <p>Username: <?=$obj->username?></p>   
         </div>
         <div class="invoice-details">
             <div class="left">
-                <p>Bill To:</p>
-                <p>John Doe</p>
-                <p>123 Main Street</p>
-                <p>City, State ZIP</p>
+                <p>Bill To:<?=$obj->in_address?></p>
             </div>
             <div class="right">
                 <p>From:</p>
-                <p>Your Company Name</p>
-                <p>456 Business Avenue</p>
-                <p>City, State ZIP</p>
+                <p>Krist</p>
+                <p>201 Shanti Villa,Silkhouse Street,Kandy.</p>
+                <p>Sri Lanka</p>
             </div>
         </div>
         <table class="invoice-table">
@@ -110,33 +114,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>Product 1</td>
-                    <td>2</td>
-                    <td>$50.00</td>
-                    <td>$100.00</td>
-                </tr>
-                <tr>
-                    <td>002</td>
-                    <td>Product 2</td>
-                    <td>1</td>
-                    <td>$80.00</td>
-                    <td>$80.00</td>
-                </tr>
+                <?=$obj->items?>
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="4">Subtotal</td>
-                    <td>$180.00</td>
-                </tr>
-                <tr>
-                    <td colspan="4">Tax (10%)</td>
-                    <td>$18.00</td>
-                </tr>
-                <tr>
-                    <td colspan="4">Total</td>
-                    <td>$198.00</td>
+                    <td><?=$obj->total?></td>
                 </tr>
             </tfoot>
         </table>
@@ -146,3 +129,8 @@
     </div>
 </body>
 </html>
+<?php 
+// }else{
+//     echo("error");
+// }
+?>

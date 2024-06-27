@@ -137,12 +137,12 @@ document.addEventListener("DOMContentLoaded", function () {
             // Populate modal fields with table row data
             const cells = tr.querySelectorAll("td");
             document.getElementById("in_id").value = cells[0].textContent.trim();
-            const idDiv = cells[1].querySelector(".fw-bold");
+            document.getElementById("in_date").value = cells[6].textContent.trim();
             const usernameDiv = cells[1].querySelector(".fw-bold");
             document.getElementById("in_username").value = usernameDiv.textContent.trim();
-            document.getElementById("in_id").value = idDiv.textContent.trim();
             document.getElementById("in_qty").value = cells[4].textContent.trim();
             document.getElementById("in_grand").value = cells[5].textContent.trim();
+            document.getElementById("in_address").value = cells[2].textContent.trim();
             document.getElementById("in_status").value = tr.querySelector("select").value;
 
             const request = new XMLHttpRequest();
@@ -1223,6 +1223,59 @@ function checkBackup() {
     request.send(formData);
 
     showSpinners();
+}
+
+
+function printReport() {
+    const items = document.getElementById("modalTableBody");
+    const in_id = document.getElementById("in_id");
+    const in_date = document.getElementById("in_date");
+    const in_address = document.getElementById("in_address");
+    const total = document.getElementById("in_grand");
+    const username = document.getElementById("in_username");
+    const request = new XMLHttpRequest();
+
+    const obj = {
+        items: items.innerHTML,
+        in_date: in_date.value,
+        in_address: in_address.value,
+        in_id: in_id.value,
+        total: total.value,
+        username: username.value,
+    };
+
+    // alert(JSON.stringify(obj));
+
+    showSpinners();
+
+    request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+            hideSpinners();
+            
+            if (request.status === 200) {
+                const responseText = request.responseText;
+                if (responseText !== "error") {
+                    // Print the response
+                    console.log(responseText); // or use alert(responseText);
+                    // Example: alert(responseText);
+
+                    // Optionally, open the response in a new window for printing
+                    const printWindow = window.open("", "_blank");
+                    printWindow.document.write(responseText);
+                    printWindow.print();
+                    printWindow.close();
+                } else {
+                    alert("Error: " + responseText);
+                }
+            } else {
+                alert("Error fetching data: " + request.status);
+            }
+        }
+    };
+
+    request.open("GET", "print-invoice.php?obj=" + JSON.stringify(obj), true);
+
+    request.send();
 }
 
 
