@@ -1173,6 +1173,58 @@ function addNewBrand() {
 }
 
 
+function checkBackup() {
+    const password = document.getElementById("password").value;
+    const username = document.getElementById("username").value;
+    const request = new XMLHttpRequest();
+    const formData = new FormData();
+
+    formData.append("password", password);
+    formData.append("username", username);
+
+    request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+            if (request.status === 200) {
+                const contentType = request.getResponseHeader('Content-Type');
+                if (contentType === 'application/sql') {
+                    const blob = new Blob([request.responseText], { type: 'application/sql' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+
+                    const currentDate = new Date();
+
+                    // Get individual date and time components
+                    const year = currentDate.getFullYear();
+                    const month = currentDate.getMonth() + 1; // Months are zero indexed, so January is 0
+                    const day = currentDate.getDate();
+                    const hours = currentDate.getHours();
+                    const minutes = currentDate.getMinutes();
+                    const seconds = currentDate.getSeconds();
+
+                    const currentDateTime = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
+
+                    a.download = 'database_backup_' + currentDateTime + '.sql';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                } else {
+                    alert('Unexpected response type: ' + contentType);
+                }
+            } else {
+                alert('Error fetching data from server. Status: ' + request.status);
+            }
+            hideSpinners();
+        }
+    };
+
+    request.open("POST", "data-backup.php", true);
+    request.send(formData);
+
+    showSpinners();
+}
+
 
 
 

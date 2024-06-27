@@ -30,6 +30,9 @@ session_start();
                     <li class="nav-item">
                         <a class="nav-link" href="users.php">Users</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="manage-backup.php">Manage Backup</a>
+                    </li>
                 <?php
                 }
 
